@@ -15,6 +15,7 @@ namespace Jason_Chapman_MobileDev_C971
         public Course6Page()
         {
             InitializeComponent();
+
         }
     }
 }
