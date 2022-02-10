@@ -6,38 +6,91 @@
 
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Margin="20">
-                <Label Text="Start: Sept 1, 2021"
+            <!--<StackLayout Margin="30">-->
+            <Grid>
+                <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="25" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                
+                <!--Row 1/2-->
+            <!--Title-->
+            <Label Text="Term 1"
+                   TextColor="Black"
+                   Margin="20,15,0,0"
+                   FontSize="30"
+                   FontAttributes="Bold"/>
+                <!--Start-->
+                <Label Grid.Column="1"
+                   Text="Start Date"
+                   TextColor="Black"
                    FontAttributes="Bold"
                    FontSize="20"
                    HorizontalTextAlignment="End"
                    Margin="10"/>
-                <Label Text="End: Feb 28, 2022"
-                   FontAttributes="Bold"
-                   FontSize="20"
-                   HorizontalTextAlignment="End"
-                   Margin="10"/>
+                <DatePicker Grid.Column="1"
+                            Grid.Row="0"
+                            x:Name="Term1DatePickerStart"
+                            MinimumDate="01/01/2018"
+                            MaximumDate="12/31/2018"
+                            Date="06/21/2018"
+                            HorizontalOptions="End"
+                            Margin="10"/>
+                <!--End-->
+                <Label Grid.Column="1"
+                       Grid.Row="1"
+                       Text="End Date"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       FontSize="20"
+                       HorizontalTextAlignment="End"
+                       Margin="10"/>
+                <DatePicker Grid.Column="1"
+                            Grid.Row="1"
+                            x:Name="Term2DatePickerEnd"
+                            MinimumDate="01/01/2018"
+                            MaximumDate="12/31/2030"
+                            Date="02/9/2022"
+                            HorizontalOptions="End"
+                            Margin="10"/>
 
-                <Button Text="Course 1"
+                
+                <!--Row 3+-->
+                <Button Grid.Row="3"
+                    Text="Course 1"
                         x:Name="Course1Button"
                     Clicked="Course1Btn_Clicked"
                     Margin="10"/>
-                <Button Text="Course 2" 
+                <Button Grid.Row="4" 
+                    Text="Course 2" 
                     Clicked="Course2Btn_Clicked"
                     Margin="10"/>
-                <Button Text="Course 3" 
+                <Button Grid.Row="5"
+                    Text="Course 3" 
                     Clicked="Course3Btn_Clicked"
                     Margin="10"/>
-                <Button Text="Course 4" 
+                <Button Grid.Row="3"
+                        Grid.Column="1"
+                    Text="Course 4" 
                     Clicked="Course4Btn_Clicked"
                     Margin="10"/>
-                <Button Text="Course 5" 
+                <Button Grid.Row="4"
+                        Grid.Column="1"
+                    Text="Course 5" 
                     Clicked="Course5Btn_Clicked"
                     Margin="10"/>
-                <Button Text="Course 6" 
+                <Button Grid.Row="5" 
+                        Grid.Column="1"
+                    Text="Course 6" 
                     Clicked="Course6Btn_Clicked"
                     Margin="10"/>
-            </StackLayout>
+            </Grid>
+            <!--</StackLayout>-->
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>
