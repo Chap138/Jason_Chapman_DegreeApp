@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Jason_Chapman_MobileDev_C971.Term2Page"
+             Title="Term 2">
+    <ContentPage.Content>
+        <StackLayout>
+            <!--<Label Text="Term 2"
+                   FontSize="30"
+                   Margin="10"
+                HorizontalOptions="Start" 
+                   />-->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

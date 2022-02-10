@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Jason_Chapman_MobileDev_C971.Term1Page"
+             Title="Term 1" >
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Margin="20">
+                <Label Text="Start: Sept 1, 2021"
+                   FontAttributes="Bold"
+                   FontSize="20"
+                   HorizontalTextAlignment="End"
+                   Margin="10"/>
+                <Label Text="End: Feb 28, 2022"
+                   FontAttributes="Bold"
+                   FontSize="20"
+                   HorizontalTextAlignment="End"
+                   Margin="10"/>
+
+                <Button Text="Course 1"
+                        x:Name="Course1Button"
+                    Clicked="Course1Btn_Clicked"
+                    Margin="10"/>
+                <Button Text="Course 2" 
+                    Clicked="Course2Btn_Clicked"
+                    Margin="10"/>
+                <Button Text="Course 3" 
+                    Clicked="Course3Btn_Clicked"
+                    Margin="10"/>
+                <Button Text="Course 4" 
+                    Clicked="Course4Btn_Clicked"
+                    Margin="10"/>
+                <Button Text="Course 5" 
+                    Clicked="Course5Btn_Clicked"
+                    Margin="10"/>
+                <Button Text="Course 6" 
+                    Clicked="Course6Btn_Clicked"
+                    Margin="10"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
