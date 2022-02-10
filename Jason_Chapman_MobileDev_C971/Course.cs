@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Jason_Chapman_MobDev_C971
+namespace Jason_Chapman_MobileDev_C971
 {
     public class Course
     {
