@@ -9,10 +9,10 @@
             <!--<StackLayout Margin="30">-->
             <Grid>
                 <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="25" />
-            </Grid.RowDefinitions>
+                <RowDefinition Height="1.5*" />
+                <RowDefinition Height="1.5*" />
+                <RowDefinition Height="5" />
+                </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition />
@@ -62,7 +62,8 @@
                             TextColor="White"/>
 
                 <!--Row 3+-->
-                <Button Grid.Row="3"
+                <Button Grid.ColumnSpan="2"
+                    Grid.Row="3"
                     Text="Course 1"
                         FontSize="20"
                         FontAttributes="Bold"
@@ -70,38 +71,40 @@
                     Clicked="Course1Btn_Clicked"
                     Margin="10"
                         BackgroundColor="White"/>
-                <Button Grid.Row="4" 
+                <Button Grid.ColumnSpan="2"
+                    Grid.Row="4" 
                     Text="Course 2" 
                         FontSize="20"
                         FontAttributes="Bold"
                     Clicked="Course2Btn_Clicked"
                     Margin="10"
                         BackgroundColor="White"/>
-                <Button Grid.Row="5"
+                <Button Grid.ColumnSpan="2"
+                    Grid.Row="5"
                     Text="Course 3" 
                         FontSize="20"
                         FontAttributes="Bold"
                     Clicked="Course3Btn_Clicked"
                     Margin="10"
                         BackgroundColor="White"/>
-                <Button Grid.Row="3"
-                        Grid.Column="1"
+                <Button Grid.ColumnSpan="2"
+                    Grid.Row="6"
                     Text="Course 4" 
                         FontSize="20"
                         FontAttributes="Bold"
                     Clicked="Course4Btn_Clicked"
                     Margin="10"
                         BackgroundColor="White"/>
-                <Button Grid.Row="4"
-                        Grid.Column="1"
+                <Button Grid.ColumnSpan="2"
+                    Grid.Row="7"
                     Text="Course 5" 
                         FontSize="20"
                         FontAttributes="Bold"
                     Clicked="Course5Btn_Clicked"
                     Margin="10"
                         BackgroundColor="White"/>
-                <Button Grid.Row="5" 
-                        Grid.Column="1"
+                <Button Grid.ColumnSpan="2"
+                    Grid.Row="8" 
                     Text="Course 6" 
                         FontSize="20"
                         FontAttributes="Bold"
