@@ -12,12 +12,8 @@ namespace Jason_Chapman_MobileDev_C971
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Term1Page : ContentPage
     {
-        private string title1;
-        public string Title1
-        {
-            get { return title1; }
-            set { value = title1; }
-        }
+        private string Title1 { get; set; }
+       
         public Term1Page()
         {
             InitializeComponent();

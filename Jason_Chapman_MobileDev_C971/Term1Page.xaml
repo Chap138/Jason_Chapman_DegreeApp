@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Jason_Chapman_MobileDev_C971.Term1Page"
-             Title="Term 1" >
+             x:Class="Jason_Chapman_MobileDev_C971.Term1Page" 
+             BackgroundColor="Black">
 
     <ContentPage.Content>
         <ScrollView>
@@ -21,14 +21,14 @@
                 <!--Row 1/2-->
             <!--Title-->
             <Label Text="Term 1"
-                   TextColor="Black"
+                   TextColor="White"
                    Margin="20,15,0,0"
                    FontSize="30"
                    FontAttributes="Bold"/>
                 <!--Start-->
                 <Label Grid.Column="1"
                    Text="Start Date"
-                   TextColor="Black"
+                   TextColor="White"
                    FontAttributes="Bold"
                    FontSize="20"
                    HorizontalTextAlignment="End"
@@ -40,12 +40,13 @@
                             MaximumDate="12/31/2018"
                             Date="06/21/2018"
                             HorizontalOptions="End"
-                            Margin="10"/>
+                            Margin="10"
+                            TextColor="White"/>
                 <!--End-->
                 <Label Grid.Column="1"
                        Grid.Row="1"
                        Text="End Date"
-                       TextColor="Black"
+                       TextColor="White"
                        FontAttributes="Bold"
                        FontSize="20"
                        HorizontalTextAlignment="End"
@@ -57,38 +58,56 @@
                             MaximumDate="12/31/2030"
                             Date="02/9/2022"
                             HorizontalOptions="End"
-                            Margin="10"/>
+                            Margin="10"
+                            TextColor="White"/>
 
-                
                 <!--Row 3+-->
                 <Button Grid.Row="3"
                     Text="Course 1"
+                        FontSize="20"
+                        FontAttributes="Bold"
                         x:Name="Course1Button"
                     Clicked="Course1Btn_Clicked"
-                    Margin="10"/>
+                    Margin="10"
+                        BackgroundColor="White"/>
                 <Button Grid.Row="4" 
                     Text="Course 2" 
+                        FontSize="20"
+                        FontAttributes="Bold"
                     Clicked="Course2Btn_Clicked"
-                    Margin="10"/>
+                    Margin="10"
+                        BackgroundColor="White"/>
                 <Button Grid.Row="5"
                     Text="Course 3" 
+                        FontSize="20"
+                        FontAttributes="Bold"
                     Clicked="Course3Btn_Clicked"
-                    Margin="10"/>
+                    Margin="10"
+                        BackgroundColor="White"/>
                 <Button Grid.Row="3"
                         Grid.Column="1"
                     Text="Course 4" 
+                        FontSize="20"
+                        FontAttributes="Bold"
                     Clicked="Course4Btn_Clicked"
-                    Margin="10"/>
+                    Margin="10"
+                        BackgroundColor="White"/>
                 <Button Grid.Row="4"
                         Grid.Column="1"
                     Text="Course 5" 
+                        FontSize="20"
+                        FontAttributes="Bold"
                     Clicked="Course5Btn_Clicked"
-                    Margin="10"/>
+                    Margin="10"
+                        BackgroundColor="White"/>
                 <Button Grid.Row="5" 
                         Grid.Column="1"
                     Text="Course 6" 
+                        FontSize="20"
+                        FontAttributes="Bold"
                     Clicked="Course6Btn_Clicked"
-                    Margin="10"/>
+                    Margin="10"
+                        BackgroundColor="White"/>
             </Grid>
             <!--</StackLayout>-->
         </ScrollView>
