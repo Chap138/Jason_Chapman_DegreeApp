@@ -20,7 +20,8 @@
                 
                 <!--Row 1/2-->
             <!--Title-->
-            <Label Text="Term 1"
+            <Label x:Name="TitleLabel"
+                   Text="Term 1"
                    TextColor="White"
                    Margin="20,15,0,0"
                    FontSize="30"
@@ -62,16 +63,17 @@
                             TextColor="White"/>
 
                 <!--Row 3+-->
-                <Button Grid.ColumnSpan="2"
+                <Button x:Name="Course1Button"
+                    Grid.ColumnSpan="2"
                     Grid.Row="3"
                     Text="Course 1"
                         FontSize="20"
                         FontAttributes="Bold"
-                        x:Name="Course1Button"
                     Clicked="Course1Btn_Clicked"
                     Margin="10"
                         BackgroundColor="White"/>
-                <Button Grid.ColumnSpan="2"
+                <Button x:Name="Course2Button"
+                    Grid.ColumnSpan="2"
                     Grid.Row="4" 
                     Text="Course 2" 
                         FontSize="20"
@@ -79,7 +81,8 @@
                     Clicked="Course2Btn_Clicked"
                     Margin="10"
                         BackgroundColor="White"/>
-                <Button Grid.ColumnSpan="2"
+                <Button x:Name="Course3Button"
+                    Grid.ColumnSpan="2"
                     Grid.Row="5"
                     Text="Course 3" 
                         FontSize="20"
@@ -87,7 +90,8 @@
                     Clicked="Course3Btn_Clicked"
                     Margin="10"
                         BackgroundColor="White"/>
-                <Button Grid.ColumnSpan="2"
+                <Button x:Name="Course4Button"
+                    Grid.ColumnSpan="2"
                     Grid.Row="6"
                     Text="Course 4" 
                         FontSize="20"
@@ -95,7 +99,8 @@
                     Clicked="Course4Btn_Clicked"
                     Margin="10"
                         BackgroundColor="White"/>
-                <Button Grid.ColumnSpan="2"
+                <Button x:Name="Course5Button"
+                    Grid.ColumnSpan="2"
                     Grid.Row="7"
                     Text="Course 5" 
                         FontSize="20"
@@ -103,7 +108,8 @@
                     Clicked="Course5Btn_Clicked"
                     Margin="10"
                         BackgroundColor="White"/>
-                <Button Grid.ColumnSpan="2"
+                <Button x:Name="Course6Button"
+                    Grid.ColumnSpan="2"
                     Grid.Row="8" 
                     Text="Course 6" 
                         FontSize="20"

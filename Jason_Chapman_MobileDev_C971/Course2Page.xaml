@@ -4,7 +4,9 @@
              x:Class="Jason_Chapman_MobileDev_C971.Course2Page">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Course 2!!!"
+            <Label x:Name="Course2"
+                   FontSize="50"
+                   FontAttributes="Bold"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
         </StackLayout>

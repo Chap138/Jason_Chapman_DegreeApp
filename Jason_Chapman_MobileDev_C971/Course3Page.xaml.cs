@@ -15,6 +15,8 @@ namespace Jason_Chapman_MobileDev_C971
         public Course3Page()
         {
             InitializeComponent();
+            Term1Page term1 = new Term1Page();
+            Course3.Text = term1.term1List[2].CourseTitle;
         }
     }
 }

@@ -9,6 +9,10 @@ namespace Jason_Chapman_MobileDev_C971
         public AppShell()
         {
             InitializeComponent();
+
+            
         }
+
+
     }
 }

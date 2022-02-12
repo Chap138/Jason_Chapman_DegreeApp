@@ -4,6 +4,13 @@
        xmlns:views="clr-namespace:Jason_Chapman_MobileDev_C971"
        x:Class="Jason_Chapman_MobileDev_C971.AppShell">
 
+    <FlyoutItem Title="Home"
+                Icon="icon_feed.png">
+        <Tab>
+            <ShellContent  ContentTemplate="{DataTemplate views:HomePage}" />
+        </Tab>
+    </FlyoutItem>
+    
     <FlyoutItem Title="Term 1"
                 Icon="icon_feed.png">
         <Tab>
@@ -17,6 +24,7 @@
             <ShellContent ContentTemplate="{DataTemplate views:Term2Page}" />
         </Tab>
     </FlyoutItem>
+     
 </Shell>
 <!-- 
         When the Flyout is visible this defines the content to display in the flyout.

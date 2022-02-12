@@ -9,6 +9,7 @@ namespace Jason_Chapman_MobileDev_C971
     {
         [PrimaryKey, AutoIncrement]
         public int CourseID { get; set; }
+        public int Term { get; set; }
         public string CourseTitle { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
@@ -17,8 +18,9 @@ namespace Jason_Chapman_MobileDev_C971
         public string InstructorPhone { get; set; }
         public string InstructorEmail { get; set; }
 
-        public Course(string title, DateTime start, DateTime end, string prog, string name, string phone, string email)
+        public Course(int term, string title, DateTime start, DateTime end, string prog, string name, string phone, string email)
         {
+            Term = term;
             CourseTitle = title;
             StartDate = start;
             EndDate = end;
