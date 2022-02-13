@@ -56,7 +56,11 @@ namespace Jason_Chapman_MobileDev_C971
 
             BindingContext = this;
             Title1Entry.Completed += (sender, e) => Title1Entry_Completed(sender, e);
-
+        }
+        private void Title1Entry_Completed(object sender, EventArgs e)
+        {
+            Title1Entry.IsVisible = false;
+            Term1Label.TextColor = Color.White;
         }
 
         //Change Title
@@ -66,24 +70,8 @@ namespace Jason_Chapman_MobileDev_C971
             Title1Entry.IsVisible = true;
             Term1Label.TextColor = Color.Black;
             Title1Entry.Focus();
-        }
-
-        //private void Title1EditButton_Clicked(object sender, EventArgs e)
-        //{
-        //    Title1Entry.IsVisible = true;
-        //    Title1Entry.Focus();
-        //}
-
-        private void Title1Entry_Completed(object sender, EventArgs e)
-        {
-            Title1Entry.IsVisible = false;
-            Term1Label.TextColor = Color.White;
-        }
-
-//        SfButton button = new SfButton();
-//        button.Text = "Button";
-//button.CornerRadius = 3;
-
+        }//end ChangeTerm1Title
+        
 
         private async void Course1Btn_Clicked(object sender, EventArgs e)
         {
@@ -113,6 +101,18 @@ namespace Jason_Chapman_MobileDev_C971
         {
             await Navigation.PushAsync(new Course6Page());
         }
+
+
+        //        SfButton button = new SfButton();
+        //        button.Text = "Button";
+        //button.CornerRadius = 3;
+
+
+        //private void Title1EditButton_Clicked(object sender, EventArgs e)
+        //{
+        //    Title1Entry.IsVisible = true;
+        //    Title1Entry.Focus();
+        //}
 
     }
 }
