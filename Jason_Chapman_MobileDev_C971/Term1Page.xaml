@@ -20,13 +20,40 @@
                 
                 <!--Row 1/2-->
             <!--Title-->
-            <Label x:Name="TitleLabel"
-                   Text="Term 1"
+                <Label x:Name="Term1Label"
+                   Text="{Binding Title1}"
                    TextColor="White"
                    Margin="20,15,0,0"
                    FontSize="30"
-                   FontAttributes="Bold"/>
-                <!--Start-->
+                   FontAttributes="Bold">
+
+                    <!--Tap on Title to change-->
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Term1Label_Clicked}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+
+                <Entry x:Name="Title1Entry"
+                    Text="{Binding Title1}"
+                       TextColor="White"
+                       FontSize="30"
+                       FontAttributes="Bold"
+                       Margin="20,15,0,0"
+                       Grid.Column="0"
+                       Grid.Row="0" IsVisible="False" IsTextPredictionEnabled="False" InputTransparent="False" ReturnType="Done"
+                       VerticalTextAlignment="Start"
+                       HorizontalTextAlignment="Start"/>
+                <!--<Button x:Name="Title1EditButton"
+                        Text="Edit"
+                        TextColor="White"
+                        BackgroundColor="Black"
+                        Clicked="Title1EditButton_Clicked"
+                        Grid.Row="0"
+                        WidthRequest="60"
+                        HeightRequest=".5"
+                        HorizontalOptions="End"/>-->
+                <!--StartDate-->
                 <Label Grid.Column="1"
                    Text="Start Date"
                    TextColor="White"
@@ -43,7 +70,7 @@
                             HorizontalOptions="End"
                             Margin="10"
                             TextColor="White"/>
-                <!--End-->
+                <!--EndDate-->
                 <Label Grid.Column="1"
                        Grid.Row="1"
                        Text="End Date"
@@ -62,7 +89,7 @@
                             Margin="10"
                             TextColor="White"/>
 
-                <!--Row 3+-->
+                <!--Course buttons-->
                 <Button x:Name="Course1Button"
                     Grid.ColumnSpan="2"
                     Grid.Row="3"

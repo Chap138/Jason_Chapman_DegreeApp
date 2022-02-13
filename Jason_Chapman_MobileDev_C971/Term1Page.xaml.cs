@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,8 +12,25 @@ namespace Jason_Chapman_MobileDev_C971
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Term1Page : ContentPage
     {
-        private string Title1 { get; set; }
-        
+        private string title1 = "Term 1";
+        public string Title1 //{ get; set; } = "Term 1";
+        {
+            get { return title1; }
+            set
+            {
+                //title1 = value;
+                {
+                    if (value == title1)
+                        return;
+                    title1 = value;
+                    OnPropertyChanged();//Handles (nameof(Title1)) automatically
+                }
+            }
+        }
+
+
+
+
         public List<Course> term1List = new List<Course>
         {
             new Course (1, "Math 101", DateTime.Today, DateTime.Today, "In Progress", "Mr. Mackey",  "555-3508", "mackey@hotmail.com" ),
@@ -37,20 +54,35 @@ namespace Jason_Chapman_MobileDev_C971
             Course5Button.Text = term1List[4].CourseTitle;
             Course6Button.Text = term1List[5].CourseTitle;
 
+            BindingContext = this;
+            Title1Entry.Completed += (sender, e) => Title1Entry_Completed(sender, e);
+
         }
 
-        //private static string course1BtnText = "Math201";
-        //public static string Course1Title //property for course1BtnText
+        //Change Title
+        public ICommand Term1Label_Clicked => new Command(ChangeTerm1Title);
+        private void ChangeTerm1Title()
+        {
+            Title1Entry.IsVisible = true;
+            Term1Label.TextColor = Color.Black;
+            Title1Entry.Focus();
+        }
+
+        //private void Title1EditButton_Clicked(object sender, EventArgs e)
         //{
-        //    get { return course1BtnText; }
-        //    set { course1BtnText = value; }
-        //    //{
-        //    //    if (value == course1BtnText)
-        //    //        return;
-        //    //    course1BtnText = value;
-        //    //    //OnPropertyChanged();
-        //    //}
+        //    Title1Entry.IsVisible = true;
+        //    Title1Entry.Focus();
         //}
+
+        private void Title1Entry_Completed(object sender, EventArgs e)
+        {
+            Title1Entry.IsVisible = false;
+            Term1Label.TextColor = Color.White;
+        }
+
+//        SfButton button = new SfButton();
+//        button.Text = "Button";
+//button.CornerRadius = 3;
 
 
         private async void Course1Btn_Clicked(object sender, EventArgs e)
@@ -59,8 +91,6 @@ namespace Jason_Chapman_MobileDev_C971
             await Navigation.PushAsync(new Course1Page());
             //((Button)sender).Text = "Math 101";
             //this.TitleLabel.Text = "Term 87978";
-
-
         }
 
         private async void Course2Btn_Clicked(object sender, EventArgs e)
