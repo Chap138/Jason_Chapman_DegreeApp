@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,10 +29,9 @@ namespace Jason_Chapman_MobileDev_C971
             }
         }
 
+        private int termID;
 
-
-
-        public List<Course> term1List = new List<Course>
+        public List<Course> term1List = new List<Course>//Create by reading from DB
         {
             new Course (1, "Math 101", DateTime.Today, DateTime.Today, "In Progress", "Mr. Mackey",  "555-3508", "mackey@hotmail.com" ),
             new Course (1, "English 201", DateTime.Today, DateTime.Today, "Completed", "Mrs. Streibel", "555-0241", "streibel@hotmail.com" ),
@@ -41,12 +41,21 @@ namespace Jason_Chapman_MobileDev_C971
             new Course (1, "Astronomy", DateTime.Today, DateTime.Today, "In Progress", "Mr. Garrison", "555-7637", "garrison@hotmail.com" )
         };
 
-        public Term1Page()
+        public Term1Page(int termId)
         {
             InitializeComponent();
-            //var title1 = new Label { Text = "Term 1", TextDecorations = TextDecorations.Underline };
-            //var editor = new Editor { Text = "Term 1" ;
 
+            //Read Database
+            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            {
+                conn.CreateTable<Course>();
+            }
+
+
+
+
+            termID = termId;
+         
             Course1Button.Text = term1List[0].CourseTitle;
             Course2Button.Text = term1List[1].CourseTitle;
             Course3Button.Text = term1List[2].CourseTitle;
@@ -55,13 +64,30 @@ namespace Jason_Chapman_MobileDev_C971
             Course6Button.Text = term1List[5].CourseTitle;
 
             BindingContext = this;
+            //Allows user to change title by clicking on it
             Title1Entry.Completed += (sender, e) => Title1Entry_Completed(sender, e);
+
         }
+
+
+        //Example of how to change the value of an object whenever the user comes back to a page
+        //private int count = 1;
+        //protected override void OnAppearing()
+        //{
+        //    //base.OnAppearing();
+        //    Title1 = count.ToString();
+        //    count++;
+        //}
+
+
+
+
         private void Title1Entry_Completed(object sender, EventArgs e)
         {
             Title1Entry.IsVisible = false;
             Term1Label.TextColor = Color.White;
         }
+
 
         //Change Title
         public ICommand Term1Label_Clicked => new Command(ChangeTerm1Title);
@@ -71,7 +97,14 @@ namespace Jason_Chapman_MobileDev_C971
             Term1Label.TextColor = Color.Black;
             Title1Entry.Focus();
         }//end ChangeTerm1Title
+
+
+
         
+
+       
+
+
 
         private async void Course1Btn_Clicked(object sender, EventArgs e)
         {
@@ -103,6 +136,8 @@ namespace Jason_Chapman_MobileDev_C971
         }
 
 
+        //int count = 5555;
+
         //        SfButton button = new SfButton();
         //        button.Text = "Button";
         //button.CornerRadius = 3;
@@ -113,6 +148,20 @@ namespace Jason_Chapman_MobileDev_C971
         //    Title1Entry.IsVisible = true;
         //    Title1Entry.Focus();
         //}
+
+        //count++;
+        //Label testLabel = new Label
+        //{
+        //    TextColor = Color.White,
+        //    HorizontalOptions = LayoutOptions.Center,
+        //    FontSize = 50,
+        //    Text = count.ToString()
+        //};
+
+        //Term1Label.Text = count.ToString();
+
+        //var title1 = new Label { Text = "Term 1", TextDecorations = TextDecorations.Underline };
+        //var editor = new Editor { Text = "Term 1" ;
 
     }
 }
