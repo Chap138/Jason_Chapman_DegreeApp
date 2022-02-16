@@ -24,7 +24,7 @@ namespace Jason_Chapman_MobileDev_C971.Droid
             string completePath = Path.Combine(folderPath, fileName);
             LoadApplication(new App(completePath));
 
-            LoadApplication(new App());
+            //LoadApplication(new App());
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {

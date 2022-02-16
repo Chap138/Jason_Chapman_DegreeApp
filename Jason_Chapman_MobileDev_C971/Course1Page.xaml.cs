@@ -15,8 +15,8 @@ namespace Jason_Chapman_MobileDev_C971
         public Course1Page()
         {
             InitializeComponent();
-            Term1Page term1 = new Term1Page();
-            Course1.Text = term1.term1List[0].CourseTitle;
+            //Term1Page term1 = new Term1Page();
+            //Course1.Text = term1.term1List[0].CourseTitle;
            
                     
         }

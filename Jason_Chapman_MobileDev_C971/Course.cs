@@ -18,16 +18,16 @@ namespace Jason_Chapman_MobileDev_C971
         public string InstructorPhone { get; set; }
         public string InstructorEmail { get; set; }
 
-        public Course(int termID, string title, DateTime start, DateTime end, string prog, string name, string phone, string email)
-        {
-            TermID = termID;
-            CourseTitle = title;
-            StartDate = start;
-            EndDate = end;
-            Progress = prog;
-            InstructorName = name;
-            InstructorPhone = phone;
-            InstructorEmail = email;
-        }
+        //public Course(int termID, string title, DateTime start, DateTime end, string prog, string name, string phone, string email)
+        //{
+        //    TermID = termID;
+        //    CourseTitle = title;
+        //    StartDate = start;
+        //    EndDate = end;
+        //    Progress = prog;
+        //    InstructorName = name;
+        //    InstructorPhone = phone;
+        //    InstructorEmail = email;
+        //}
     }
 }

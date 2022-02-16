@@ -30,42 +30,91 @@ namespace Jason_Chapman_MobileDev_C971
         }
 
         private int termID;
+        private List<Course> courseList;//Made from the DB
 
-        public List<Course> term1List = new List<Course>//Create by reading from DB
-        {
-            new Course (1, "Math 101", DateTime.Today, DateTime.Today, "In Progress", "Mr. Mackey",  "555-3508", "mackey@hotmail.com" ),
-            new Course (1, "English 201", DateTime.Today, DateTime.Today, "Completed", "Mrs. Streibel", "555-0241", "streibel@hotmail.com" ),
-            new Course (1, "History", DateTime.Today, DateTime.Today, "Plan to take", "Mr. Adler", "555-8824", "adler@hotmail.com" ),
-            new Course (1, "Sociology", DateTime.Today, DateTime.Today, "Completed", "Mr. Derp", "555-7600", "derp@hotmail.com" ),
-            new Course (1, "Basketweaving", DateTime.Today, DateTime.Today, "Dropped", "Ms. Bronski", "555-2855", "bronski@hotmail.com" ),
-            new Course (1, "Astronomy", DateTime.Today, DateTime.Today, "In Progress", "Mr. Garrison", "555-7637", "garrison@hotmail.com" )
-        };
+        //public List<Course> courseList;
+
+        //public List<Course> term1List; //Create by reading from DB
+        //{
+        //    //new Course (1, "Math 101", DateTime.Today, DateTime.Today, "In Progress", "Mr. Mackey",  "555-3508", "mackey@hotmail.com" ),
+        //    //new Course (1, "English 201", DateTime.Today, DateTime.Today, "Completed", "Mrs. Streibel", "555-0241", "streibel@hotmail.com" ),
+        //    //new Course (1, "History", DateTime.Today, DateTime.Today, "Plan to take", "Mr. Adler", "555-8824", "adler@hotmail.com" ),
+        //    //new Course (1, "Sociology", DateTime.Today, DateTime.Today, "Completed", "Mr. Derp", "555-7600", "derp@hotmail.com" ),
+        //    //new Course (1, "Basketweaving", DateTime.Today, DateTime.Today, "Dropped", "Ms. Bronski", "555-2855", "bronski@hotmail.com" ),
+        //    //new Course (1, "Astronomy", DateTime.Today, DateTime.Today, "In Progress", "Mr. Garrison", "555-7637", "garrison@hotmail.com" )
+        //};
 
         public Term1Page(int termId)
         {
             InitializeComponent();
 
-            //Read Database
-            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
-            {
-                conn.CreateTable<Course>();
-            }
-
-
-
-
             termID = termId;
-         
-            Course1Button.Text = term1List[0].CourseTitle;
-            Course2Button.Text = term1List[1].CourseTitle;
-            Course3Button.Text = term1List[2].CourseTitle;
-            Course4Button.Text = term1List[3].CourseTitle;
-            Course5Button.Text = term1List[4].CourseTitle;
-            Course6Button.Text = term1List[5].CourseTitle;
+           // Course1Button.Text = courseList[0].CourseTitle;
+            //Course2Button.Text = term1List[1].CourseTitle;
+            //Course3Button.Text = term1List[2].CourseTitle;
+            //Course4Button.Text = term1List[3].CourseTitle;
+            //Course5Button.Text = term1List[4].CourseTitle;
+            //Course6Button.Text = term1List[5].CourseTitle;
 
             BindingContext = this;
             //Allows user to change title by clicking on it
             Title1Entry.Completed += (sender, e) => Title1Entry_Completed(sender, e);
+
+            //OnAppearing();
+
+            //using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            //{
+            //    courseList = conn.Table<Course>().ToList(); //courses = new List<Course>();
+            //}
+
+            //Course1Button.Text = courseList[0].CourseTitle;
+            //Course1Button.Text = "Wtf";
+            //Course1Button.TextColor = Color.Black;
+
+        }//Overloaded constructor
+        public Term1Page()
+        {
+            InitializeComponent();
+            BindingContext = this;
+            //Allows user to change title by clicking on it
+            Title1Entry.Completed += (sender, e) => Title1Entry_Completed(sender, e);
+
+            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            {
+                courseList = conn.Table<Course>().ToList(); //courses = new List<Course>();
+            }
+
+            Course1Button.Text = courseList[0].CourseTitle;
+            //Course1Button.Text = "Wtf";
+            //Course1Button.TextColor = Color.Black;
+        }//end Ter1Page constructor
+
+        //<Button x:Name="Course1Button"
+        //            Grid.ColumnSpan="2"
+        //            Grid.Row="3"
+        //            Text="Course 1"
+        //                FontSize="20"
+        //                FontAttributes="Bold"
+        //            Clicked="Course1Btn_Clicked"
+        //            Margin="10"
+        //                BackgroundColor="White"/>
+
+        protected override void OnAppearing()
+        {
+            //base.OnAppearing();
+
+            //using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            //{
+            //    courseList = conn.Table<Course>().ToList(); //courses = new List<Course>();
+            //}
+            //Read Database
+            //using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            //{
+            //    conn.CreateTable<Course>();
+            //    var courses = conn.Table<Course>().ToList(); //courses = new List<Course>();
+
+            //    courseList = courses;
+            //}
 
         }
 
@@ -78,6 +127,7 @@ namespace Jason_Chapman_MobileDev_C971
         //    Title1 = count.ToString();
         //    count++;
         //}
+
 
 
 
