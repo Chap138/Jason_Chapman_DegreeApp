@@ -50,7 +50,7 @@ namespace Jason_Chapman_MobileDev_C971
             InitializeComponent();
 
             termID = termId;
-           // Course1Button.Text = courseList[0].CourseTitle;
+           //Course1Button.Text = courseList[0].CourseTitle;
             //Course2Button.Text = term1List[1].CourseTitle;
             //Course3Button.Text = term1List[2].CourseTitle;
             //Course4Button.Text = term1List[3].CourseTitle;
