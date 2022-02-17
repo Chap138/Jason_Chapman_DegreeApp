@@ -61,7 +61,7 @@ namespace Jason_Chapman_MobileDev_C971
             TermLabel.TextColor = Color.Black;
             TitleEntry.Focus();
         }//end ChangeTermTitle
-        private void TitleEntry_Completed(object sender, EventArgs e)
+        private void TitleEntry_Completed(object sender, EventArgs e)//Use to update TermTitle in DB
         {
             TitleEntry.IsVisible = false;
             TermLabel.TextColor = Color.White;
