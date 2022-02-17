@@ -6,7 +6,6 @@ namespace Jason_Chapman_MobileDev_C971
     public partial class App : Application
     {
         public static string FilePath;
-        private int testCount;
 
         public App()
         {
@@ -20,14 +19,19 @@ namespace Jason_Chapman_MobileDev_C971
 
             FilePath = filePath;
 
-            testCount = 22;
+            //For testing
+            Term termTest = new Term()
+            {
+                TermTitle = "Term 1",
+                CreateDate = System.DateTime.Now
+            };
             Course courseTest = new Course()
             {
                 TermID = 1,
-                CourseTitle = "CourseTes" + " " + testCount,
+                CourseTitle = "Course",
                 StartDate = System.DateTime.Now,
                 EndDate = System.DateTime.Today,
-                Progress = "Compelted",
+                Progress = "Completed",
                 InstructorName = "Mr.Mackey",
                 InstructorPhone = "555-5559",
                 InstructorEmail = "mackey@gmail.com"
@@ -36,8 +40,13 @@ namespace Jason_Chapman_MobileDev_C971
 
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
             {
+                conn.CreateTable<Term>();
+                conn.Insert(termTest);
+                //int termAddedTest = conn.Insert(termTest);
+
                 conn.CreateTable<Course>();
-                //int addedTest = conn.Insert(courseTest);
+                conn.Insert(courseTest);
+                //int crsAddedTest = conn.Insert(courseTest);
                 //conn.Insert()
 
                 //Course coursePrepop; {

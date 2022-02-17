@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Jason_Chapman_MobileDev_C971.TermPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Label x:Name="TermLabel"
+                   Text="{Binding Title1}"
+                   TextColor="White"
+                   Margin="20,15,0,0"
+                   FontSize="30"
+                   FontAttributes="Bold">
+
+                    <!--Tap on Title to change-->
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding TermLabel_Clicked}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Entry x:Name="TitleEntry"
+                    Text="{Binding Title1}"
+                       TextColor="White"
+                       FontSize="30"
+                       FontAttributes="Bold"
+                       Margin="20,15,0,0"
+                       VerticalTextAlignment="Start"
+                       HorizontalTextAlignment="Start"/>
+
+                <Button x:Name="GoToCourseButton"
+                    Text="Werk"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                    Clicked="GoToCourseBtn_Clicked"
+                    Margin="10"
+                        BackgroundColor="White"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

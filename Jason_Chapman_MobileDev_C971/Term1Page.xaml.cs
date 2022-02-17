@@ -30,6 +30,7 @@ namespace Jason_Chapman_MobileDev_C971
         }
 
         private int termID;
+        private List<Term> termList;
         private List<Course> courseList;//Made from the DB
 
         //public List<Course> courseList;
@@ -81,10 +82,17 @@ namespace Jason_Chapman_MobileDev_C971
 
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
             {
+                termList = conn.Table<Term>().ToList();
                 courseList = conn.Table<Course>().ToList(); //courses = new List<Course>();
             }
 
             Course1Button.Text = courseList[0].CourseTitle;
+
+            //ListView view = new ListView();
+
+            //view.ItemsSource = courseList;
+
+
             //Course1Button.Text = "Wtf";
             //Course1Button.TextColor = Color.Black;
         }//end Ter1Page constructor
@@ -103,10 +111,10 @@ namespace Jason_Chapman_MobileDev_C971
         {
             //base.OnAppearing();
 
-            //using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
-            //{
-            //    courseList = conn.Table<Course>().ToList(); //courses = new List<Course>();
-            //}
+            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            {
+                courseList = conn.Table<Course>().ToList(); //courses = new List<Course>();
+            }
             //Read Database
             //using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
             //{
