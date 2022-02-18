@@ -16,5 +16,17 @@ namespace Jason_Chapman_MobileDev_C971
         {
             InitializeComponent();
         }
+
+        private void AddTermBtn_Clicked(object sender, EventArgs e)
+        {
+            AddTermEntry.IsVisible = true;
+            AddTermSaveBtn.IsVisible = true;
+        }//end AddTermBtn_Clicked
+
+        private void AddTermSaveBtn_Clicked(object sender, EventArgs e)
+        {
+
+        //    AddTermEntry.Text
+        }
     }
 }

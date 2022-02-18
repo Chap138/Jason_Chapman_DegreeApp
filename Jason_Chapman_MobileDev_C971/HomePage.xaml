@@ -5,18 +5,8 @@
              BackgroundColor="Black">
     
     <ContentPage.Content>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1.5*" />
-                <RowDefinition Height="1.5*" />
-                <RowDefinition Height="400" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-
-            <!--Row 1/2-->
+        <StackLayout>
+            
             <!--Title-->
             <Label x:Name="HomeLabel"
                    Text="Home"
@@ -24,15 +14,24 @@
                    Margin="20,15,0,0"
                    FontSize="30"
                    FontAttributes="Bold"/>
-            <!--Start-->
-            <Button Grid.Column="1"
-                   Grid.Row="0"
+            
+            <Button x:Name="AddTermBtn"
+                    Clicked="AddTermBtn_Clicked"
                    Text="Add Term"
                    TextColor="Black"
                    FontAttributes="Bold"
                    FontSize="20"
                    Margin="10"
                    BackgroundColor="White"/>
-        </Grid>
+            <Entry x:Name="AddTermEntry"
+                    Placeholder="Term Titles"
+                   PlaceholderColor="White"
+                   IsVisible="false"/>
+            <Button x:Name="AddTermSaveBtn"
+                    Text="Save"
+                    Clicked="AddTermSaveBtn_Clicked"
+                    IsVisible="false"/>
+
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
