@@ -13,12 +13,50 @@ namespace Jason_Chapman_MobileDev_C971
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HomePage : ContentPage
     {
+        private List<Term> termList;
 
         //StackLayout parent = new StackLayout();
         public HomePage()
         {
             InitializeComponent();
+            //BindingContext = this;
+            //Layout.BindingContext = this;
+            addTermBtnForTest();
+
         }
+
+        private void addTermBtnForTest()
+        {
+            Term termTest = new Term()
+            {
+                TermTitle = "Term 52", //Make it so you get this from DB
+                CreateDate = System.DateTime.Now
+            };
+
+            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            {
+                conn.CreateTable<Term>();
+                conn.Insert(termTest);
+                termList = conn.Table<Term>().ToList();
+                //parent = new StackLayout();
+            }
+
+            Button testBtn = new Button()
+            {
+                //Text = "Term 1" , //Make it so you get this from DB
+                TextColor = Color.Black,
+                FontAttributes = FontAttributes.Bold,
+                FontSize = 20,
+                Margin = 30,
+                BackgroundColor = Color.White
+            };
+            //Layout.BindingContext = this;
+            testBtn.SetBinding(Button.TextProperty, "Text");// termList[30].TermTitle
+            /*testBtn.SetBinding(Button.TextProperty, "TermTitle");*///termTest.TermTitle
+            //testBtn.SetBinding(Button.TextColorProperty, Color.Red);//termTest.TermTitle
+
+            Layout.Children.Add(testBtn);
+        }//end addTermBtnForTest
 
         private void AddTermBtn_Clicked(object sender, EventArgs e)
         {
@@ -32,7 +70,7 @@ namespace Jason_Chapman_MobileDev_C971
             AddTermEntry.IsVisible = false;
             AddTermSaveBtn.IsVisible = false;
 
-            Term termTest = new Term()
+            Term term = new Term()
             {
                 TermTitle = AddTermEntry.Text,
                 CreateDate = System.DateTime.Now
@@ -41,7 +79,7 @@ namespace Jason_Chapman_MobileDev_C971
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
             {
                 conn.CreateTable<Term>();
-                conn.Insert(termTest);
+                conn.Insert(term);
             }
 
             Button newTab = new Button()
@@ -54,38 +92,10 @@ namespace Jason_Chapman_MobileDev_C971
                 BackgroundColor = Color.White
             };
 
-            // Creating a binding
-            //newTab.SetBinding(FlyoutItem.TitleProperty, new Binding("ViewModelProperty"));
-            //newTab.SetBinding(FlyoutItem.TitleProperty, "Title");
-
-
-            // Set the binding context after SetBinding method calls for performance reasons
-            //newTab.BindingContext = new { Title = AddTermEntry.Text };
-
-            // Set StackLayout in XAML to the class field
-            // parent = layout;
-
-            // Add the new button to the StackLayout
             Layout.Children.Add(newTab);
 
         }//end AddTermSaveBtn_Clicked
 
-        //public void Addbutton(object sender, EventArgs e)
-        //{
-        //    // Define a new button
-        //    Button newButton = new Button { Text = "New Button" };
-
-        //    // Creating a binding
-        //    newButton.SetBinding(Button.CommandProperty, new Binding("ViewModelProperty"));
-
-        //    // Set the binding context after SetBinding method calls for performance reasons
-        //    newButton.BindingContext = viewModel;
-
-        //    // Set StackLayout in XAML to the class field
-        //    parent = layout;
-
-        //    // Add the new button to the StackLayout
-        //    parent.Children.Add(newButton);
-        //}
+       
     }
 }
