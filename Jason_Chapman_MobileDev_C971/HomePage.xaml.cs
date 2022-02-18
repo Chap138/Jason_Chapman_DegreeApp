@@ -19,7 +19,7 @@ namespace Jason_Chapman_MobileDev_C971
         public HomePage()
         {
             InitializeComponent();
-            //BindingContext = this;
+            BindingContext = this;
             //Layout.BindingContext = this;
             addTermBtnForTest();
 
@@ -50,8 +50,8 @@ namespace Jason_Chapman_MobileDev_C971
                 Margin = 30,
                 BackgroundColor = Color.White
             };
-            //Layout.BindingContext = this;
-            testBtn.SetBinding(Button.TextProperty, "Text");// termList[30].TermTitle
+            testBtn.BindingContext = termTest;
+            testBtn.SetBinding(Button.TextProperty, "TermTitle");// termList[30].TermTitle
             /*testBtn.SetBinding(Button.TextProperty, "TermTitle");*///termTest.TermTitle
             //testBtn.SetBinding(Button.TextColorProperty, Color.Red);//termTest.TermTitle
 
