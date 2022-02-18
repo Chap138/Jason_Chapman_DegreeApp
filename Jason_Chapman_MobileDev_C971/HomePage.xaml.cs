@@ -20,13 +20,15 @@ namespace Jason_Chapman_MobileDev_C971
         private void AddTermBtn_Clicked(object sender, EventArgs e)
         {
             AddTermEntry.IsVisible = true;
+            AddTermEntry.Focus();
             AddTermSaveBtn.IsVisible = true;
         }//end AddTermBtn_Clicked
 
         private void AddTermSaveBtn_Clicked(object sender, EventArgs e)
         {
-
-        //    AddTermEntry.Text
+            AddTermEntry.IsVisible = false;
+            AddTermSaveBtn.IsVisible = false;
+         AddTermEntry.Text
         }
     }
 }

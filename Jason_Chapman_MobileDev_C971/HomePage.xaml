@@ -11,7 +11,7 @@
             <Label x:Name="HomeLabel"
                    Text="Home"
                    TextColor="White"
-                   Margin="20,15,0,0"
+                   Margin="30,15,0,0"
                    FontSize="30"
                    FontAttributes="Bold"/>
             
@@ -21,16 +21,21 @@
                    TextColor="Black"
                    FontAttributes="Bold"
                    FontSize="20"
-                   Margin="10"
+                   Margin="30"
                    BackgroundColor="White"/>
             <Entry x:Name="AddTermEntry"
                     Placeholder="Term Titles"
                    PlaceholderColor="White"
+                   TextColor="White"
                    IsVisible="false"/>
             <Button x:Name="AddTermSaveBtn"
                     Text="Save"
                     Clicked="AddTermSaveBtn_Clicked"
-                    IsVisible="false"/>
+                    IsVisible="false"
+                    FontSize="20"
+                    Margin="30"
+                    FontAttributes="Bold"
+                    BackgroundColor="White"/>
 
         </StackLayout>
     </ContentPage.Content>
