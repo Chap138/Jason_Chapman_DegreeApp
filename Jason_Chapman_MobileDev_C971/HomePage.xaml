@@ -5,7 +5,7 @@
              BackgroundColor="Black">
     
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout x:Name="Layout">
             
             <!--Title-->
             <Label x:Name="HomeLabel"

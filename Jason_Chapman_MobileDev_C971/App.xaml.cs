@@ -20,32 +20,32 @@ namespace Jason_Chapman_MobileDev_C971
             FilePath = filePath;
 
             //For testing
-            Term termTest = new Term()
-            {
-                TermTitle = "Term 1",
-                CreateDate = System.DateTime.Now
-            };
-            Course courseTest = new Course()
-            {
-                TermID = 1,
-                CourseTitle = "Course",
-                StartDate = System.DateTime.Now,
-                EndDate = System.DateTime.Today,
-                Progress = "Completed",
-                InstructorName = "Mr.Mackey",
-                InstructorPhone = "555-5559",
-                InstructorEmail = "mackey@gmail.com"
+            //Term termTest = new Term()
+            //{
+            //    TermTitle = "Term 1",
+            //    CreateDate = System.DateTime.Now
+            //};
+            //Course courseTest = new Course()
+            //{
+            //    TermID = 1,
+            //    CourseTitle = "Course",
+            //    StartDate = System.DateTime.Now,
+            //    EndDate = System.DateTime.Today,
+            //    Progress = "Completed",
+            //    InstructorName = "Mr.Mackey",
+            //    InstructorPhone = "555-5559",
+            //    InstructorEmail = "mackey@gmail.com"
 
-            };
+            //};
 
-            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
-            {
-                conn.CreateTable<Term>();
-                conn.Insert(termTest);
-                //int termAddedTest = conn.Insert(termTest);
+            //using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            //{
+            //    conn.CreateTable<Term>();
+            //    conn.Insert(termTest);
+            //    //int termAddedTest = conn.Insert(termTest);
 
-                conn.CreateTable<Course>();
-                conn.Insert(courseTest);
+            //    conn.CreateTable<Course>();
+            //    conn.Insert(courseTest);
                 //int crsAddedTest = conn.Insert(courseTest);
                 //conn.Insert()
 
@@ -57,7 +57,7 @@ namespace Jason_Chapman_MobileDev_C971
                 //new Course(1, "Basketweaving", DateTime.Today, DateTime.Today, "Dropped", "Ms. Bronski", "555-2855", "bronski@hotmail.com" ),
                 //new Course(1, "Astronomy", DateTime.Today, DateTime.Today, "In Progress", "Mr. Garrison", "555-7637", "garrison@hotmail.com"
                 //};
-            }//end conn
+            //}//end conn
 
 
         }//end overloaded Constructor
