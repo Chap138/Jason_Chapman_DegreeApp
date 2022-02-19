@@ -23,14 +23,49 @@ namespace Jason_Chapman_MobileDev_C971
             InitializeComponent();
             BindingContext = this;
             //Layout.BindingContext = this;
-            // addTermBtnForTest();
+             addTermBtnForTest();
             //OnAppearing();
 
         }
         protected override void OnAppearing()//Creates all Term buttons from DB info
         {
-            addTermBtnForTest();
+            addTermBtnFromDB();
         }//end OnAppearing
+
+        private void addTermBtnFromDB()
+        {
+            //Term termTest = new Term()
+            //{
+            //    TermTitle = "Term 1", //Needs to get this from DB because it tests ability to change 'TermTitle'
+            //    CreateDate = System.DateTime.Now
+            //};
+
+            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            {
+                //conn.Table<Term>
+                //crrntTerm = termTest.TermID.ToString();
+                termList = conn.Table<Term>().ToList();
+
+                for(int i = 0; i < 0; i++)
+                {
+                    termList[i].TermTitle
+                }
+            }
+
+            Button testBtn = new Button()
+            {
+                TextColor = Color.Black,
+                FontAttributes = FontAttributes.Bold,
+                FontSize = 20,
+                Margin = 30,
+                BackgroundColor = Color.White
+            };
+            testBtn.Clicked += (sender, args) => GoToTermButton_Clicked(sender, args);
+            testBtn.BindingContext = termTest;
+            testBtn.SetBinding(Button.TextProperty, "TermTitle");
+
+            layout.Children.Add(testBtn);
+        }//end addTermBtnFromDB
 
         private void addTermBtnForTest()
         {
@@ -94,17 +129,19 @@ namespace Jason_Chapman_MobileDev_C971
                 conn.Insert(term);
             }
 
-            Button newTab = new Button()
+            Button testBtn = new Button()
             {
-                Text = AddTermEntry.Text,
                 TextColor = Color.Black,
                 FontAttributes = FontAttributes.Bold,
                 FontSize = 20,
                 Margin = 30,
                 BackgroundColor = Color.White
             };
+            testBtn.Clicked += (s, a) => GoToTermButton_Clicked(s, a);
+            testBtn.BindingContext = term;
+            testBtn.SetBinding(Button.TextProperty, "TermTitle");
 
-            layout.Children.Add(newTab);
+            layout.Children.Add(testBtn);
 
         }//end AddTermSaveBtn_Clicked
 
