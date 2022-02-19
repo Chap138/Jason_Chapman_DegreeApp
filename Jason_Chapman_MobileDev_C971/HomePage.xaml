@@ -5,7 +5,8 @@
              BackgroundColor="Black">
     
     <ContentPage.Content>
-        <StackLayout x:Name="Layout">
+        <ScrollView>
+        <StackLayout x:Name="layout">
             
             <!--Title-->
             <Label x:Name="HomeLabel"
@@ -38,5 +39,6 @@
                     BackgroundColor="White"/>
 
         </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

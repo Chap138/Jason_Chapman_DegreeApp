@@ -11,5 +11,7 @@ namespace Jason_Chapman_MobileDev_C971
         public int TermID { get; set; }
         public string TermTitle { get; set; }
         public DateTime CreateDate { get; set; }
+
+        public string CurrentTerm { get; set; }
     }
 }

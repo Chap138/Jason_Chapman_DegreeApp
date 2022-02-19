@@ -158,12 +158,6 @@ namespace Jason_Chapman_MobileDev_C971
 
 
 
-        
-
-       
-
-
-
         private async void Course1Btn_Clicked(object sender, EventArgs e)
         {
             //Course1Button.Text = Course1Title;

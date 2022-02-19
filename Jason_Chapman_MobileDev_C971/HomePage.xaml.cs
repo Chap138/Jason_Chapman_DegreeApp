@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -13,7 +13,9 @@ namespace Jason_Chapman_MobileDev_C971
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HomePage : ContentPage
     {
+        private string crrntTerm;
         private List<Term> termList;
+        //public event EventHandler Clicked;
 
         //StackLayout parent = new StackLayout();
         public HomePage()
@@ -27,9 +29,10 @@ namespace Jason_Chapman_MobileDev_C971
 
         private void addTermBtnForTest()
         {
+
             Term termTest = new Term()
             {
-                TermTitle = "Term 52", //Make it so you get this from DB
+                TermTitle = "Term 1", //Needs to get this from DB because it tests ability to change 'TermTitle'
                 CreateDate = System.DateTime.Now
             };
 
@@ -37,9 +40,11 @@ namespace Jason_Chapman_MobileDev_C971
             {
                 conn.CreateTable<Term>();
                 conn.Insert(termTest);
+                crrntTerm = termTest.TermID.ToString();
                 termList = conn.Table<Term>().ToList();
                 //parent = new StackLayout();
             }
+
 
             Button testBtn = new Button()
             {
@@ -50,13 +55,25 @@ namespace Jason_Chapman_MobileDev_C971
                 Margin = 30,
                 BackgroundColor = Color.White
             };
+            testBtn.Clicked += (sender, args) => GoToTermButton_Clicked(sender, args);
             testBtn.BindingContext = termTest;
-            testBtn.SetBinding(Button.TextProperty, "TermTitle");// termList[30].TermTitle
-            /*testBtn.SetBinding(Button.TextProperty, "TermTitle");*///termTest.TermTitle
-            //testBtn.SetBinding(Button.TextColorProperty, Color.Red);//termTest.TermTitle
+            //testBtn.SetBinding(Button.XProperty, "CurrentTerm");
+            testBtn.SetBinding(Button.TextProperty, "TermTitle");
 
-            Layout.Children.Add(testBtn);
+            //(Button)sender;
+            //termTest.CurrentTerm = crrntTerm;
+
+            // public ICommand Term1Label_Clicked => new Command(ChangeTerm1Title);
+
+            layout.Children.Add(testBtn);
         }//end addTermBtnForTest
+
+        private async void GoToTermButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new TermPage());
+            await DisplayAlert("Title", "Werks!!!", "Git!!!");
+           
+        }
 
         private void AddTermBtn_Clicked(object sender, EventArgs e)
         {
@@ -92,10 +109,10 @@ namespace Jason_Chapman_MobileDev_C971
                 BackgroundColor = Color.White
             };
 
-            Layout.Children.Add(newTab);
+            layout.Children.Add(newTab);
 
         }//end AddTermSaveBtn_Clicked
 
-       
+
     }
 }
