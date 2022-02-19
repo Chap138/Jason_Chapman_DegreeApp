@@ -23,13 +23,17 @@ namespace Jason_Chapman_MobileDev_C971
             InitializeComponent();
             BindingContext = this;
             //Layout.BindingContext = this;
-            addTermBtnForTest();
+            // addTermBtnForTest();
+            //OnAppearing();
 
         }
+        protected override void OnAppearing()//Creates all Term buttons from DB info
+        {
+            addTermBtnForTest();
+        }//end OnAppearing
 
         private void addTermBtnForTest()
         {
-
             Term termTest = new Term()
             {
                 TermTitle = "Term 1", //Needs to get this from DB because it tests ability to change 'TermTitle'
@@ -42,13 +46,10 @@ namespace Jason_Chapman_MobileDev_C971
                 conn.Insert(termTest);
                 crrntTerm = termTest.TermID.ToString();
                 termList = conn.Table<Term>().ToList();
-                //parent = new StackLayout();
             }
-
 
             Button testBtn = new Button()
             {
-                //Text = "Term 1" , //Make it so you get this from DB
                 TextColor = Color.Black,
                 FontAttributes = FontAttributes.Bold,
                 FontSize = 20,
@@ -57,20 +58,14 @@ namespace Jason_Chapman_MobileDev_C971
             };
             testBtn.Clicked += (sender, args) => GoToTermButton_Clicked(sender, args);
             testBtn.BindingContext = termTest;
-            //testBtn.SetBinding(Button.XProperty, "CurrentTerm");
             testBtn.SetBinding(Button.TextProperty, "TermTitle");
-
-            //(Button)sender;
-            //termTest.CurrentTerm = crrntTerm;
-
-            // public ICommand Term1Label_Clicked => new Command(ChangeTerm1Title);
 
             layout.Children.Add(testBtn);
         }//end addTermBtnForTest
 
         private async void GoToTermButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new TermPage());
+            //await Navigation.PushAsync(new TermPage());
             await DisplayAlert("Title", "Werks!!!", "Git!!!");
            
         }
@@ -113,6 +108,6 @@ namespace Jason_Chapman_MobileDev_C971
 
         }//end AddTermSaveBtn_Clicked
 
-
+        
     }
 }
