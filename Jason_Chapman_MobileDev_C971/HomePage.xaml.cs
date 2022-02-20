@@ -21,8 +21,10 @@ namespace Jason_Chapman_MobileDev_C971
             BindingContext = this;
             //addTermBtnForTest(); //FOR TESTING ///////////////////////
             //OnAppearing(); Not needed in Constructor
+            //deleteTermRows(); //DELETES EVERYTHIGN FROM THE TERM TABLE
             addTermFromDB();
         }
+
         protected override void OnAppearing()//Creates all Term buttons from DB info
         {
             //addTermFromDB();//Creates Buttons for all Terms in DB
@@ -95,6 +97,7 @@ namespace Jason_Chapman_MobileDev_C971
         private async void GoToTermButton_Clicked(object sender, EventArgs e, int id)//Navigate to appropriate term
         {
             await Navigation.PushAsync(new TermPage(id));
+            await DisplayAlert(id.ToString(), "Werks", "Git!!!");//DELETE For testing 
         }//end GoToTermButton_Clicked
 
         private void AddTermBtn_Clicked(object sender, EventArgs e)//Initiates Term creation 
@@ -104,6 +107,13 @@ namespace Jason_Chapman_MobileDev_C971
             AddTermSaveBtn.IsVisible = true;
         }//end AddTermBtn_Clicked
 
+        public void deleteTermRows()
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            {
+                conn.DeleteAll<Term>();
+            }
+        }
         private void addTermBtnForTest()//FOR TESTING/////////////////////////
         {
             Term termTest = new Term()
