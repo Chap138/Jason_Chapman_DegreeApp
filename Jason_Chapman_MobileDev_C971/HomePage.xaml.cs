@@ -23,8 +23,9 @@ namespace Jason_Chapman_MobileDev_C971
             InitializeComponent();
             BindingContext = this;
             //Layout.BindingContext = this;
-            addTermBtnForTest(); //FOR TESTING ///////////////////////
+            //addTermBtnForTest(); //FOR TESTING ///////////////////////
             //OnAppearing(); Don't need this in Constructor
+            addTermFromDB();
 
         }
         protected override void OnAppearing()//Creates all Term buttons from DB info
@@ -39,7 +40,8 @@ namespace Jason_Chapman_MobileDev_C971
             //    TermTitle = "Term 1", //Needs to get this from DB because it tests ability to change 'TermTitle'
             //    CreateDate = System.DateTime.Now
             //};
-            int termID = 0;
+            //int termID = 0;
+            string btnTitle;
 
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
             {
@@ -47,25 +49,44 @@ namespace Jason_Chapman_MobileDev_C971
                 //crrntTerm = termTest.TermID.ToString();
                 termList = conn.Table<Term>().ToList();
                 
-                for (int i = 0; i < 0; i++)
+                for (int i = 0; i < termList.Count; i++)
                 {
-                    termID = termList[i].TermID;
+                    int termID = termList[i].TermID;
+                    btnTitle = termList[i].TermTitle;
+
+                    Button testBtn = new Button()
+                    {
+                        //Text = "KJHKg",
+                        TextColor = Color.Black,
+                        FontAttributes = FontAttributes.Bold,
+                        FontSize = 20,
+                        Margin = 30,
+                        BackgroundColor = Color.White
+                    };
+
+                    testBtn.Clicked += (sender, args) => GoToTermButton_Clicked(sender, args, termID);
+                    testBtn.BindingContext = termList;
+                    testBtn.SetBinding(Button.TextProperty, "TermTitle");
+
+                    layout.Children.Add(testBtn);
                 }
             }
 
-            Button testBtn = new Button()
-            {
-                TextColor = Color.Black,
-                FontAttributes = FontAttributes.Bold,
-                FontSize = 20,
-                Margin = 30,
-                BackgroundColor = Color.White
-            };
-            testBtn.Clicked += (sender, args) => GoToTermButton_Clicked(sender, args, termID);
-            //testBtn.BindingContext = termTest;
-            testBtn.SetBinding(Button.TextProperty, "TermTitle");
+            //Button testBtn = new Button()
+            //{
+            //    Text = "KJHKg",
+            //    TextColor = Color.Black,
+            //    FontAttributes = FontAttributes.Bold,
+            //    FontSize = 20,
+            //    Margin = 30,
+            //    BackgroundColor = Color.White
+            //};
 
-            layout.Children.Add(testBtn);
+            //testBtn.Clicked += (sender, args) => GoToTermButton_Clicked(sender, args, termID);
+            //testBtn.BindingContext = termList;
+            //testBtn.SetBinding(Button.TextProperty, "TermTitle");
+
+            //layout.Children.Add(testBtn);
         }//end addTermBtnFromDB
 
 
