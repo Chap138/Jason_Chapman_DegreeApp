@@ -13,7 +13,7 @@ namespace Jason_Chapman_MobileDev_C971
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HomePage : ContentPage
     {
-        private int crrntTerm;
+        //private int crrntTerm;
         private List<Term> termList;
         public HomePage()
         {
@@ -94,7 +94,7 @@ namespace Jason_Chapman_MobileDev_C971
 
         private async void GoToTermButton_Clicked(object sender, EventArgs e, int id)//Navigate to appropriate term
         {
-            await Navigation.PushAsync(new TermPage(crrntTerm));
+            await Navigation.PushAsync(new TermPage(id));
         }//end GoToTermButton_Clicked
 
         private void AddTermBtn_Clicked(object sender, EventArgs e)//Initiates Term creation 

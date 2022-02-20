@@ -3,28 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Jason_Chapman_MobileDev_C971.HomePage"
              BackgroundColor="Black">
-    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="AddTermBtn"
+                     Clicked="AddTermBtn_Clicked"
+                     Text="Add Term"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <ScrollView>
-        <StackLayout x:Name="layout">
+            <StackLayout x:Name="layout">
             
             <!--Title-->
-            <Label x:Name="HomeLabel"
+                <Label x:Name="HomeLabel"
                    Text="Home"
                    TextColor="White"
                    Margin="30,15,0,0"
                    FontSize="30"
                    FontAttributes="Bold"/>
-            
-            <Button x:Name="AddTermBtn"
-                    Clicked="AddTermBtn_Clicked"
-                   Text="Add Term"
-                   TextColor="Black"
-                   FontAttributes="Bold"
-                   FontSize="20"
-                   Margin="30"
-                   BackgroundColor="White"/>
-            <Entry x:Name="AddTermEntry"
+                <Entry x:Name="AddTermEntry"
                     Placeholder="Term Titles"
                    PlaceholderColor="White"
                    TextColor="White"
@@ -35,6 +30,7 @@
                     IsVisible="false"
                     FontSize="20"
                     Margin="30"
+                    HorizontalOptions="End"
                     FontAttributes="Bold"
                     BackgroundColor="White"/>
 
