@@ -23,13 +23,13 @@ namespace Jason_Chapman_MobileDev_C971
             InitializeComponent();
             BindingContext = this;
             //Layout.BindingContext = this;
-            //addTermBtnForTest(); //FOR TESTING ///////////////////////
+            addTermBtnForTest(); //FOR TESTING ///////////////////////
             //OnAppearing(); Don't need this in Constructor
 
         }
         protected override void OnAppearing()//Creates all Term buttons from DB info
         {
-            addTermFromDB();//Creates Buttons for all Terms in DB
+            //addTermFromDB();//Creates Buttons for all Terms in DB
         }//end OnAppearing
 
         private void addTermFromDB()//Creates Buttons for all Terms in DB
@@ -39,17 +39,18 @@ namespace Jason_Chapman_MobileDev_C971
             //    TermTitle = "Term 1", //Needs to get this from DB because it tests ability to change 'TermTitle'
             //    CreateDate = System.DateTime.Now
             //};
+            int termID = 0;
 
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
             {
                 //conn.Table<Term>
                 //crrntTerm = termTest.TermID.ToString();
                 termList = conn.Table<Term>().ToList();
-
-                //for(int i = 0; i < 0; i++)
-                //{
-                //    termList[i].TermTitle
-                //}
+                
+                for (int i = 0; i < 0; i++)
+                {
+                    termID = termList[i].TermID;
+                }
             }
 
             Button testBtn = new Button()
@@ -60,7 +61,7 @@ namespace Jason_Chapman_MobileDev_C971
                 Margin = 30,
                 BackgroundColor = Color.White
             };
-            testBtn.Clicked += (sender, args) => GoToTermButton_Clicked(sender, args);
+            testBtn.Clicked += (sender, args) => GoToTermButton_Clicked(sender, args, termID);
             //testBtn.BindingContext = termTest;
             testBtn.SetBinding(Button.TextProperty, "TermTitle");
 
@@ -93,7 +94,9 @@ namespace Jason_Chapman_MobileDev_C971
                 Margin = 30,
                 BackgroundColor = Color.White
             };
-            testBtn.Clicked += (s, a) => GoToTermButton_Clicked(s, a);
+
+            int termID = term.TermID;
+            testBtn.Clicked += (s, a) => GoToTermButton_Clicked(s, a, termID);
             testBtn.BindingContext = term;
             testBtn.SetBinding(Button.TextProperty, "TermTitle");
 
@@ -101,10 +104,11 @@ namespace Jason_Chapman_MobileDev_C971
 
         }//end AddTermSaveBtn_Clicked
 
-        private async void GoToTermButton_Clicked(object sender, EventArgs e)//Navigate to appropriate term
+        private async void GoToTermButton_Clicked(object sender, EventArgs e, int id)//Navigate to appropriate term
         {
             //await Navigation.PushAsync(new TermPage());
-            await DisplayAlert("Title", "Werks!!!", "Git!!!");
+            
+            await DisplayAlert(id.ToString(), "Werks!!!", "Git!!!");
 
         }//end GoToTermButton_Clicked
 
@@ -113,13 +117,15 @@ namespace Jason_Chapman_MobileDev_C971
 
 
 
-        private void addTermBtnForTest()
+        private void addTermBtnForTest()//FOR TESTING/////////////////////////
         {
             Term termTest = new Term()
             {
                 TermTitle = "Term 1", //Needs to get this from DB because it tests ability to change 'TermTitle'
                 CreateDate = System.DateTime.Now
             };
+
+            int termID = termTest.TermID;
 
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
             {
@@ -135,13 +141,17 @@ namespace Jason_Chapman_MobileDev_C971
                 FontAttributes = FontAttributes.Bold,
                 FontSize = 20,
                 Margin = 30,
-                BackgroundColor = Color.White
+                BackgroundColor = Color.White,
+                //CommandParameter = termTest.TermID
+                ClassId = termTest.TermID.ToString()
             };
-            testBtn.Clicked += (sender, args) => GoToTermButton_Clicked(sender, args);
+            testBtn.Clicked += (sender, args) => GoToTermButton_Clicked(sender, args, termID);
             testBtn.BindingContext = termTest;
             testBtn.SetBinding(Button.TextProperty, "TermTitle");
-
+            //testBtn.SetValue(Button.ClassIdProperty, termTest.TermID);
+            //int termID = termTest.TermID;
             layout.Children.Add(testBtn);
+
         }//end addTermBtnForTest FOR TESTING///////////////
 
         private void AddTermBtn_Clicked(object sender, EventArgs e)//Initiates Term creation 
