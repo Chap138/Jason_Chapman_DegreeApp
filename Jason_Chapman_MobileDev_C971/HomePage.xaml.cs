@@ -23,16 +23,16 @@ namespace Jason_Chapman_MobileDev_C971
             InitializeComponent();
             BindingContext = this;
             //Layout.BindingContext = this;
-             addTermBtnForTest();
-            //OnAppearing();
+            //addTermBtnForTest(); //FOR TESTING ///////////////////////
+            //OnAppearing(); Don't need this in Constructor
 
         }
         protected override void OnAppearing()//Creates all Term buttons from DB info
         {
-            addTermBtnFromDB();
+            addTermFromDB();//Creates Buttons for all Terms in DB
         }//end OnAppearing
 
-        private void addTermBtnFromDB()
+        private void addTermFromDB()//Creates Buttons for all Terms in DB
         {
             //Term termTest = new Term()
             //{
@@ -46,10 +46,10 @@ namespace Jason_Chapman_MobileDev_C971
                 //crrntTerm = termTest.TermID.ToString();
                 termList = conn.Table<Term>().ToList();
 
-                for(int i = 0; i < 0; i++)
-                {
-                    termList[i].TermTitle
-                }
+                //for(int i = 0; i < 0; i++)
+                //{
+                //    termList[i].TermTitle
+                //}
             }
 
             Button testBtn = new Button()
@@ -61,56 +61,12 @@ namespace Jason_Chapman_MobileDev_C971
                 BackgroundColor = Color.White
             };
             testBtn.Clicked += (sender, args) => GoToTermButton_Clicked(sender, args);
-            testBtn.BindingContext = termTest;
+            //testBtn.BindingContext = termTest;
             testBtn.SetBinding(Button.TextProperty, "TermTitle");
 
             layout.Children.Add(testBtn);
         }//end addTermBtnFromDB
 
-        private void addTermBtnForTest()
-        {
-            Term termTest = new Term()
-            {
-                TermTitle = "Term 1", //Needs to get this from DB because it tests ability to change 'TermTitle'
-                CreateDate = System.DateTime.Now
-            };
-
-            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
-            {
-                conn.CreateTable<Term>();
-                conn.Insert(termTest);
-                crrntTerm = termTest.TermID.ToString();
-                termList = conn.Table<Term>().ToList();
-            }
-
-            Button testBtn = new Button()
-            {
-                TextColor = Color.Black,
-                FontAttributes = FontAttributes.Bold,
-                FontSize = 20,
-                Margin = 30,
-                BackgroundColor = Color.White
-            };
-            testBtn.Clicked += (sender, args) => GoToTermButton_Clicked(sender, args);
-            testBtn.BindingContext = termTest;
-            testBtn.SetBinding(Button.TextProperty, "TermTitle");
-
-            layout.Children.Add(testBtn);
-        }//end addTermBtnForTest
-
-        private async void GoToTermButton_Clicked(object sender, EventArgs e)
-        {
-            //await Navigation.PushAsync(new TermPage());
-            await DisplayAlert("Title", "Werks!!!", "Git!!!");
-           
-        }
-
-        private void AddTermBtn_Clicked(object sender, EventArgs e)
-        {
-            AddTermEntry.IsVisible = true;
-            AddTermEntry.Focus();
-            AddTermSaveBtn.IsVisible = true;
-        }//end AddTermBtn_Clicked
 
         private void AddTermSaveBtn_Clicked(object sender, EventArgs e)
         {
@@ -145,6 +101,55 @@ namespace Jason_Chapman_MobileDev_C971
 
         }//end AddTermSaveBtn_Clicked
 
+        private async void GoToTermButton_Clicked(object sender, EventArgs e)//Navigate to appropriate term
+        {
+            //await Navigation.PushAsync(new TermPage());
+            await DisplayAlert("Title", "Werks!!!", "Git!!!");
+
+        }//end GoToTermButton_Clicked
+
+
+
+
+
+
+        private void addTermBtnForTest()
+        {
+            Term termTest = new Term()
+            {
+                TermTitle = "Term 1", //Needs to get this from DB because it tests ability to change 'TermTitle'
+                CreateDate = System.DateTime.Now
+            };
+
+            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            {
+                conn.CreateTable<Term>();
+                conn.Insert(termTest);
+                crrntTerm = termTest.TermID.ToString();
+                termList = conn.Table<Term>().ToList();
+            }
+
+            Button testBtn = new Button()
+            {
+                TextColor = Color.Black,
+                FontAttributes = FontAttributes.Bold,
+                FontSize = 20,
+                Margin = 30,
+                BackgroundColor = Color.White
+            };
+            testBtn.Clicked += (sender, args) => GoToTermButton_Clicked(sender, args);
+            testBtn.BindingContext = termTest;
+            testBtn.SetBinding(Button.TextProperty, "TermTitle");
+
+            layout.Children.Add(testBtn);
+        }//end addTermBtnForTest FOR TESTING///////////////
+
+        private void AddTermBtn_Clicked(object sender, EventArgs e)//Initiates Term creation 
+        {
+            AddTermEntry.IsVisible = true;
+            AddTermEntry.Focus();
+            AddTermSaveBtn.IsVisible = true;
+        }//end AddTermBtn_Clicked
         
     }
 }
