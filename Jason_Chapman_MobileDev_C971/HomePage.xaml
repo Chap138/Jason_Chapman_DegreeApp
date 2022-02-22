@@ -20,7 +20,7 @@
                    FontSize="30"
                    FontAttributes="Bold"/>
                 <Entry x:Name="AddTermEntry"
-                    Placeholder="Term Titles"
+                    Placeholder="Enter Term Title"
                    PlaceholderColor="White"
                    TextColor="White"
                    IsVisible="false"/>
@@ -33,8 +33,30 @@
                     HorizontalOptions="End"
                     FontAttributes="Bold"
                     BackgroundColor="White"/>
+                <Label x:Name="StartDateLabel"
+                       Text="Start Date"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       FontSize="25"
+                       IsVisible="false"/>
+                <DatePicker x:Name="StartDatePicker"
+                            TextColor="White"
+                            FontSize="20"
+                            IsVisible="false"
+                            Margin="0,0,0,30"/>
 
-        </StackLayout>
+                <Label x:Name="EndDateLabel"
+                       Text="End Date"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       FontSize="25"
+                       IsVisible="false"/>
+                <DatePicker x:Name="EndDatePicker"
+                            TextColor="White"
+                            FontSize="20"
+                            IsVisible="false"/>
+                
+            </StackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

@@ -28,7 +28,7 @@
                        HorizontalTextAlignment="Start"/>
 
                 <Button x:Name="GoToCourseButton"
-                    Text="Werk"
+                    Text="GoToCOurseButton"
                         FontSize="20"
                         FontAttributes="Bold"
                     Clicked="GoToCourseBtn_Clicked"

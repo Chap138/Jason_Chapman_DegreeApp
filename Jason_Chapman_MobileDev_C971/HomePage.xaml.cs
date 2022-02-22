@@ -19,10 +19,10 @@ namespace Jason_Chapman_MobileDev_C971
         {
             InitializeComponent();
             BindingContext = this;
-            //addTermBtnForTest(); //FOR TESTING ///////////////////////
+            //AddTermBtnForTest(); //FOR TESTING ///////////////////////
             //OnAppearing(); Not needed in Constructor
-            //deleteTermRows(); //DELETES EVERYTHIGN FROM THE TERM TABLE
-            addTermFromDB();
+            //DeleteTermRows(); //DELETES EVERYTHING FROM THE TERM TABLE
+            AddTermFromDB();
         }
 
         protected override void OnAppearing()//Creates all Term buttons from DB info
@@ -30,7 +30,7 @@ namespace Jason_Chapman_MobileDev_C971
             //addTermFromDB();//Creates Buttons for all Terms in DB
         }//end OnAppearing
 
-        private void addTermFromDB()//Creates Buttons for all Terms in DB
+        private void AddTermFromDB()//Creates Buttons for all Terms in DB
         {
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
             {
@@ -63,10 +63,16 @@ namespace Jason_Chapman_MobileDev_C971
         {
             AddTermEntry.IsVisible = false;
             AddTermSaveBtn.IsVisible = false;
+            StartDatePicker.IsVisible = false;
+            StartDateLabel.IsVisible = false;
+            EndDatePicker.IsVisible = false;
+            EndDateLabel.IsVisible = false;
 
             Term term = new Term()
             {
                 TermTitle = AddTermEntry.Text,
+                Start = StartDatePicker.Date,
+                End = EndDatePicker.Date,
                 CreateDate = System.DateTime.Now
             };
 
@@ -91,6 +97,7 @@ namespace Jason_Chapman_MobileDev_C971
             testBtn.SetBinding(Button.TextProperty, "TermTitle");
 
             layout.Children.Add(testBtn);
+            AddTermEntry.Placeholder = "Enter Term Title";
 
         }//end AddTermSaveBtn_Clicked
 
@@ -104,17 +111,23 @@ namespace Jason_Chapman_MobileDev_C971
         {
             AddTermEntry.IsVisible = true;
             AddTermEntry.Focus();
+            StartDateLabel.IsVisible = true;
+            StartDatePicker.IsVisible = true;
+            EndDatePicker.IsVisible = true;
+            EndDateLabel.IsVisible = true;
             AddTermSaveBtn.IsVisible = true;
+            AddTermEntry.Text = null;
+            
         }//end AddTermBtn_Clicked
 
-        public void deleteTermRows()
+        public void DeleteTermRows()
         {
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
             {
                 conn.DeleteAll<Term>();
             }
         }
-        private void addTermBtnForTest()//FOR TESTING/////////////////////////
+        private void AddTermBtnForTest()//FOR TESTING/////////////////////////
         {
             Term termTest = new Term()
             {
