@@ -63,6 +63,7 @@ namespace Jason_Chapman_MobileDev_C971
         {
             AddTermEntry.IsVisible = false;
             AddTermSaveBtn.IsVisible = false;
+            AddTermCancelBtn.IsVisible = false;
             StartDatePicker.IsVisible = false;
             StartDateLabel.IsVisible = false;
             EndDatePicker.IsVisible = false;
@@ -116,6 +117,7 @@ namespace Jason_Chapman_MobileDev_C971
             EndDatePicker.IsVisible = true;
             EndDateLabel.IsVisible = true;
             AddTermSaveBtn.IsVisible = true;
+            AddTermCancelBtn.IsVisible = true;
             AddTermEntry.Text = null;
             
         }//end AddTermBtn_Clicked
@@ -162,6 +164,17 @@ namespace Jason_Chapman_MobileDev_C971
             layout.Children.Add(testBtn);
 
         }//end addTermBtnForTest FOR TESTING
-        
+
+        private void AddTermCancelBtn_Clicked(object sender, EventArgs e)
+        {
+            AddTermEntry.IsVisible = false;
+            StartDateLabel.IsVisible = false;
+            StartDatePicker.IsVisible = false;
+            EndDatePicker.IsVisible = false;
+            EndDateLabel.IsVisible = false;
+            AddTermSaveBtn.IsVisible = false;
+            AddTermCancelBtn.IsVisible = false;
+            AddTermEntry.Text = null;
+        }
     }
 }
