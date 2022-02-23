@@ -4,7 +4,7 @@
              x:Class="Jason_Chapman_MobileDev_C971.TermPage">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout>
+            <StackLayout BackgroundColor="Black">
                 <Label x:Name="TermLabel"
                    Text="{Binding Title1}"
                    TextColor="White"

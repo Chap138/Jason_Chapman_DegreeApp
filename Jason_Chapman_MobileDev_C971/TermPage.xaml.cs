@@ -13,7 +13,7 @@ namespace Jason_Chapman_MobileDev_C971
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TermPage : ContentPage
     {
-       // private int termId;
+        // private int termId;
         private List<Term> termList;//From the DB
         private List<Course> courseList;//From the DB
         private int CurrentTermID;
@@ -47,9 +47,14 @@ namespace Jason_Chapman_MobileDev_C971
             //Allows user to change title by clicking on it
             TitleEntry.Completed += (sender, e) => TitleEntry_Completed(sender, e);
 
-            GetTerm();
 
         }//end constructor
+        protected override void OnAppearing()
+        {
+            GetTerm();
+        }//end OnAppearing
+
+
 
         public void GetTerm()
         {
@@ -59,40 +64,45 @@ namespace Jason_Chapman_MobileDev_C971
                 //conn.Table<Term>().Select(termList ,CurrentTermID)
             }
 
-            foreach(Term row in termList)
+            foreach (Term row in termList)
             {
-                if(row.TermID == CurrentTermID)
+                if (row.TermID == CurrentTermID)
                 {
                     CurrentTermTitle = row.TermTitle;
                     CurrentTermStart = row.Start;
                     CurrentTermEnd = row.End;
-
-    }
+                }
             }
-            //CurrentTermTitle = termList[1].TermID();
+            TermLabel.Text = CurrentTermTitle;
             DisplayAlert(CurrentTermTitle, CurrentTermStart.ToString(), CurrentTermEnd.ToString());//Test to display CurrentTerm properties 
-        }
+        }//end GetTerm()
 
-        //protected override void OnAppearing()
-        //{
-        //    using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
-        //    {
-        //        courseList = conn.Table<Course>().ToList(); //courses = new List<Course>();
-        //    }
-        //}//end OnAppearing
-
-        //Change Title by tapping on it//////////////////////
+        ////Change Title by tapping on it//////////////////////
         public ICommand TermLabel_Clicked => new Command(ChangeTermTitle);
         private void ChangeTermTitle()
         {
             TitleEntry.IsVisible = true;
-            TermLabel.TextColor = Color.Black;
+            TermLabel.TextColor = Color.White;
             TitleEntry.Focus();
         }//end ChangeTermTitle
         private void TitleEntry_Completed(object sender, EventArgs e)//Use to update TermTitle in DB
         {
             TitleEntry.IsVisible = false;
             TermLabel.TextColor = Color.White;
+            TermLabel.Text = TitleEntry.Text;
+
+            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            {
+                //int rows = conn.Update(termList);
+                //conn.Table<Term>().Select(termList,CurrentTermID)
+                var query = termList.Where(t => t.TermID == CurrentTermID);
+                foreach (Term row in query)
+                {
+                    row.TermTitle = TermLabel.Text;
+                    conn.Update(termList);
+                }
+
+            }
 
         }//end TitleEntry_Completed/////////////////////////
 
