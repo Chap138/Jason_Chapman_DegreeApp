@@ -13,9 +13,13 @@ namespace Jason_Chapman_MobileDev_C971
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TermPage : ContentPage
     {
-        private int termId;
+       // private int termId;
         private List<Term> termList;//From the DB
         private List<Course> courseList;//From the DB
+        private int CurrentTermID;
+        private string CurrentTermTitle;
+        private DateTime CurrentTermStart;
+        private DateTime CurrentTermEnd;
 
         private int currentCourse;//CourseID to pass into GoToCourseBtn_Clicked() for navigating to appropriate coursePage
         private string title = "Term Title";
@@ -32,26 +36,50 @@ namespace Jason_Chapman_MobileDev_C971
                     OnPropertyChanged();//Handles (nameof(Title1)) automatically
                 }
             }
-        }
+        }//end TrmTitle
 
 
         public TermPage(int termID)
         {
             InitializeComponent();
-            termId = termID;
+            CurrentTermID = termID;
             BindingContext = this;
             //Allows user to change title by clicking on it
             TitleEntry.Completed += (sender, e) => TitleEntry_Completed(sender, e);
+
+            GetTerm();
+
         }//end constructor
 
-        protected override void OnAppearing()
+        public void GetTerm()
         {
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
             {
-                courseList = conn.Table<Course>().ToList(); //courses = new List<Course>();
+                termList = conn.Table<Term>().ToList();
+                //conn.Table<Term>().Select(termList ,CurrentTermID)
             }
+
+            foreach(Term row in termList)
+            {
+                if(row.TermID == CurrentTermID)
+                {
+                    CurrentTermTitle = row.TermTitle;
+                    CurrentTermStart = row.Start;
+                    CurrentTermEnd = row.End;
+
+    }
+            }
+            //CurrentTermTitle = termList[1].TermID();
+            DisplayAlert(CurrentTermTitle, CurrentTermStart.ToString(), CurrentTermEnd.ToString());//Test to display CurrentTerm properties 
         }
 
+        //protected override void OnAppearing()
+        //{
+        //    using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+        //    {
+        //        courseList = conn.Table<Course>().ToList(); //courses = new List<Course>();
+        //    }
+        //}//end OnAppearing
 
         //Change Title by tapping on it//////////////////////
         public ICommand TermLabel_Clicked => new Command(ChangeTermTitle);
@@ -69,12 +97,15 @@ namespace Jason_Chapman_MobileDev_C971
         }//end TitleEntry_Completed/////////////////////////
 
 
+
+
+
         private async void GoToCourseBtn_Clicked(object sender, EventArgs e)
         {
 
-            //await Navigation.PushAsync(new CoursePage(currentCourse));//USE WHEN READY TO ADD COURSES
+            await Navigation.PushAsync(new CoursePage(currentCourse));//USE WHEN READY TO ADD COURSES
 
-            await Navigation.PushAsync(new Course1Page());//TEST TEST TEST delete when ready to add courses
+            //await Navigation.PushAsync(new Course1Page());//TEST TEST TEST delete when ready to add courses
 
         }//end GoToCourseBtn_Clicked
 

@@ -105,7 +105,7 @@ namespace Jason_Chapman_MobileDev_C971
         private async void GoToTermButton_Clicked(object sender, EventArgs e, int id)//Navigate to appropriate term
         {
             await Navigation.PushAsync(new TermPage(id));
-            await DisplayAlert(id.ToString(), "Werks", "Git!!!");//DELETE For testing 
+            //await DisplayAlert(id.ToString(), "Werks", "Git!!!");//DELETE For testing 
         }//end GoToTermButton_Clicked
 
         private void AddTermBtn_Clicked(object sender, EventArgs e)//Initiates Term creation 

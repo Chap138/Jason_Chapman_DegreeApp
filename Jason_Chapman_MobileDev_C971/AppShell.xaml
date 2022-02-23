@@ -11,7 +11,7 @@
         </Tab>
     </FlyoutItem>
     
-    <FlyoutItem Title="Term 1"
+    <!--<FlyoutItem Title="Term 1"
                 Icon="icon_feed.png">
         <Tab>
             <ShellContent  ContentTemplate="{DataTemplate views:Term1Page}" />
@@ -30,7 +30,7 @@
         <Tab>
             <ShellContent  ContentTemplate="{DataTemplate views:Display}" />
         </Tab>
-    </FlyoutItem>
+    </FlyoutItem>-->
 
 </Shell>
 <!-- 
