@@ -7,8 +7,9 @@ namespace Jason_Chapman_MobileDev_C971
 {
     public class Term
     {
-        [SQLite.PrimaryKey, SQLite.AutoIncrement]
-        public int TermID { get; set; }
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
+        [MaxLength(30)]
         public string TermTitle { get; set; }
         public DateTime CreateDate { get; set; }
 

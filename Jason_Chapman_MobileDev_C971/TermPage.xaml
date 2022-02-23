@@ -24,6 +24,7 @@
                        FontSize="30"
                        FontAttributes="Bold"
                        Margin="20,15,0,0"
+                       IsVisible="false"
                        VerticalTextAlignment="Start"
                        HorizontalTextAlignment="Start"/>
 

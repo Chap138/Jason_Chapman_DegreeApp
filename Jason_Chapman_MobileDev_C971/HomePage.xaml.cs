@@ -22,7 +22,17 @@ namespace Jason_Chapman_MobileDev_C971
             //AddTermBtnForTest(); //FOR TESTING ///////////////////////
             //OnAppearing(); Not needed in Constructor
             //DeleteTermRows(); //DELETES EVERYTHING FROM THE TERM TABLE
+            //DropTermTable();
+            CreateTermTable();
             AddTermFromDB();
+        }
+
+        private void CreateTermTable()
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            {
+                conn.CreateTable<Term>();
+            }
         }
 
         protected override void OnAppearing()//Creates all Term buttons from DB info
@@ -35,10 +45,10 @@ namespace Jason_Chapman_MobileDev_C971
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
             {
                 termList = conn.Table<Term>().ToList();
-                
+
                 for (int i = 0; i < termList.Count; i++)
                 {
-                    int termID = termList[i].TermID;
+                    int termID = termList[i].ID;
                     string btnTitle = termList[i].TermTitle;
 
                     Button testBtn = new Button()
@@ -92,7 +102,7 @@ namespace Jason_Chapman_MobileDev_C971
                 BackgroundColor = Color.White
             };
 
-            int termID = term.TermID;
+            int termID = term.ID;
             testBtn.Clicked += (s, a) => GoToTermButton_Clicked(s, a, termID);
             testBtn.BindingContext = term;
             testBtn.SetBinding(Button.TextProperty, "TermTitle");
@@ -119,7 +129,7 @@ namespace Jason_Chapman_MobileDev_C971
             AddTermSaveBtn.IsVisible = true;
             AddTermCancelBtn.IsVisible = true;
             AddTermEntry.Text = null;
-            
+
         }//end AddTermBtn_Clicked
 
         public void DeleteTermRows()
@@ -127,6 +137,13 @@ namespace Jason_Chapman_MobileDev_C971
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
             {
                 conn.DeleteAll<Term>();
+            }
+        }
+        public void DropTermTable()
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            {
+                conn.DropTable<Term>();
             }
         }
         private void AddTermBtnForTest()//FOR TESTING/////////////////////////
@@ -137,7 +154,7 @@ namespace Jason_Chapman_MobileDev_C971
                 CreateDate = System.DateTime.Now
             };
 
-            int termID = termTest.TermID;
+            int termID = termTest.ID;
 
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
             {
@@ -154,9 +171,9 @@ namespace Jason_Chapman_MobileDev_C971
                 Margin = 30,
                 BackgroundColor = Color.White,
                 //CommandParameter = termTest.TermID
-                ClassId = termTest.TermID.ToString()
+                ClassId = termTest.ID.ToString()
             };
-            testBtn.Clicked += (sender, args) => GoToTermButton_Clicked(sender, args, termID);
+            //testBtn.Clicked += (sender, args) => GoToTermButton_Clicked(sender, args, termID);
             testBtn.BindingContext = termTest;
             testBtn.SetBinding(Button.TextProperty, "TermTitle");
             //testBtn.SetValue(Button.ClassIdProperty, termTest.TermID);
