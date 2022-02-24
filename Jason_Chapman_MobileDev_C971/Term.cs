@@ -5,9 +5,10 @@ using System.Text;
 
 namespace Jason_Chapman_MobileDev_C971
 {
+    [Table("Term")]
     public class Term
     {
-        [PrimaryKey, AutoIncrement]
+        [SQLite.PrimaryKey,SQLite. AutoIncrement]
         public int ID { get; set; }
         [MaxLength(30)]
         public string TermTitle { get; set; }

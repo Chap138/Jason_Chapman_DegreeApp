@@ -14,8 +14,9 @@ namespace Jason_Chapman_MobileDev_C971
     public partial class TermPage : ContentPage
     {
         // private int termId;
-        private List<Term> termList;//From the DB
+
         private List<Course> courseList;//From the DB
+        private List<Term> termList;//From the DB
         private int CurrentTermID;
         private string CurrentTermTitle;
         private DateTime CurrentTermStart;
@@ -129,6 +130,7 @@ namespace Jason_Chapman_MobileDev_C971
         private void EditTerm_Clicked(object sender, EventArgs e)
         {
             TitleEntry.IsVisible = true;
+            TitleEntry.Focus();
         }
 
         private void EditTermSaveBtn_Clicked(object sender, EventArgs e)
@@ -136,6 +138,7 @@ namespace Jason_Chapman_MobileDev_C971
             TitleEntry.IsVisible = false;
             using(SQLiteConnection conn = new SQLiteConnection(App.FilePath))
             {
+                conn.CreateTable<Term>();
                 foreach(Term row in termList)
                 {
                     if(row.ID == CurrentTermID)
@@ -143,11 +146,10 @@ namespace Jason_Chapman_MobileDev_C971
                         row.TermTitle = TitleEntry.Text;
                     }
                 }
-                conn.Update(termList);
+                int rows = conn.Update(termList);
             }
            
-        }//end EditTermSaveBtn_Clicked5
+        }//end EditTermSaveBtn_Clicked
     }
-
 
 }

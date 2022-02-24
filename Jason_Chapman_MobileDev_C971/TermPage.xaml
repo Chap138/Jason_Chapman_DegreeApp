@@ -52,8 +52,9 @@
                        HorizontalTextAlignment="Start"/>-->
                 <Entry x:Name="TitleEntry"
                        TextColor="White"
-                       FontSize="30"
-                       FontAttributes="Bold"
+                       Placeholder="Edit Term Title"
+                       PlaceholderColor="White"
+                       FontSize="20"
                        Margin="20,15,0,0"
                        IsVisible="false"
                        VerticalTextAlignment="Start"
