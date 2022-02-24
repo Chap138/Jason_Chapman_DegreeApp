@@ -2,23 +2,46 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Jason_Chapman_MobileDev_C971.TermPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="EditTerm"
+                     Clicked="EditTerm_Clicked"
+                     Text="Edit Term"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <ScrollView>
             <StackLayout BackgroundColor="Black">
                 <Label x:Name="TermLabel"
-                   Text="{Binding Title1}"
                    TextColor="White"
-                   Margin="20,15,0,0"
-                   FontSize="30"
+                   Margin="20,15,0,30"
+                   FontSize="35"
                    FontAttributes="Bold">
+                    <!--Text="{Binding Title1}">-->
 
                     <!--Tap on Title to change-->
-                    <Label.GestureRecognizers>
+                    <!--<Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding TermLabel_Clicked}"/>
-                    </Label.GestureRecognizers>
+                    </Label.GestureRecognizers>-->
                 </Label>
+                <Label x:Name="TermPageStartDateLabel"
+                       Text="Start Date"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       FontSize="25"/>
+                <DatePicker x:Name="StartDate"
+                            TextColor="White"
+                            FontSize="20"
+                            Margin="0,0,0,10"/>
+                <Label x:Name="TermPageEndDateLabel"
+                       Text="End Date"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       FontSize="25"/>
+                <DatePicker x:Name="EndDate"
+                            TextColor="White"
+                            FontSize="20"
+                            Margin="0,0,0,30"/>
 
-                <Entry x:Name="TitleEntry"
+                <!--<Entry x:Name="TitleEntry"
                     Text="{Binding Title1}"
                        TextColor="White"
                        FontSize="30"
@@ -26,7 +49,22 @@
                        Margin="20,15,0,0"
                        IsVisible="false"
                        VerticalTextAlignment="Start"
+                       HorizontalTextAlignment="Start"/>-->
+                <Entry x:Name="TitleEntry"
+                       TextColor="White"
+                       FontSize="30"
+                       FontAttributes="Bold"
+                       Margin="20,15,0,0"
+                       IsVisible="false"
+                       VerticalTextAlignment="Start"
                        HorizontalTextAlignment="Start"/>
+                <Button x:Name="EditTermSaveBtn"
+                        Text="Save"
+                        Clicked="EditTermSaveBtn_Clicked"/>
+
+
+
+
 
                 <Button x:Name="GoToCourseButton"
                     Text="GoToCOurseButton"

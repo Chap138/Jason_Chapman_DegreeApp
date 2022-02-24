@@ -29,6 +29,8 @@ namespace Jason_Chapman_MobileDev_C971
             InitializeComponent();
             CurrentTermID = termID;
             BindingContext = this;
+            //TermLabel.Text = CurrentTermTitle;
+
 
         }//end constructor
 
@@ -37,7 +39,7 @@ namespace Jason_Chapman_MobileDev_C971
             GetTerm();
         }//end OnAppearing
 
-        public void GetTerm()
+        public void GetTerm()//Update term info when page appears
         {
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
             {
@@ -55,6 +57,8 @@ namespace Jason_Chapman_MobileDev_C971
                 }
             }
             TermLabel.Text = CurrentTermTitle;
+            StartDate.Date = CurrentTermStart;
+            EndDate.Date = CurrentTermEnd;
             //DisplayAlert(CurrentTermTitle, CurrentTermStart.ToString(), CurrentTermEnd.ToString());//Test to display CurrentTerm properties 
         }//end GetTerm()
 
@@ -122,6 +126,27 @@ namespace Jason_Chapman_MobileDev_C971
 
         }//end GoToCourseBtn_Clicked
 
+        private void EditTerm_Clicked(object sender, EventArgs e)
+        {
+            TitleEntry.IsVisible = true;
+        }
+
+        private void EditTermSaveBtn_Clicked(object sender, EventArgs e)
+        {
+            TitleEntry.IsVisible = false;
+            using(SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            {
+                foreach(Term row in termList)
+                {
+                    if(row.ID == CurrentTermID)
+                    {
+                        row.TermTitle = TitleEntry.Text;
+                    }
+                }
+                conn.Update(termList);
+            }
+           
+        }//end EditTermSaveBtn_Clicked5
     }
 
 

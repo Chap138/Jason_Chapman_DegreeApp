@@ -17,7 +17,7 @@
                    Text="Home"
                    TextColor="White"
                    Margin="30,15,0,0"
-                   FontSize="30"
+                   FontSize="35"
                    FontAttributes="Bold"/>
                 <Entry x:Name="AddTermEntry"
                     Placeholder="Enter Term Title"

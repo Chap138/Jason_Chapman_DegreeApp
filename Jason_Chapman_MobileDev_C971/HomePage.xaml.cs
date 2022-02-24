@@ -21,9 +21,9 @@ namespace Jason_Chapman_MobileDev_C971
             BindingContext = this;
             //AddTermBtnForTest(); //FOR TESTING ///////////////////////
             //OnAppearing(); Not needed in Constructor
-            //DeleteTermRows(); //DELETES EVERYTHING FROM THE TERM TABLE
+            DeleteTermRows(); //DELETES EVERYTHING FROM THE TERM TABLE
             //DropTermTable();
-            CreateTermTable();
+            //CreateTermTable();
             AddTermFromDB();
         }
 
@@ -35,10 +35,15 @@ namespace Jason_Chapman_MobileDev_C971
             }
         }
 
-        protected override void OnAppearing()//Creates all Term buttons from DB info
-        {
-            //addTermFromDB();//Creates Buttons for all Terms in DB
-        }//end OnAppearing
+        //protected override void OnAppearing()//Creates all Term buttons from DB info
+        //{
+        //    //addTermFromDB();//Creates Buttons for all Terms in DB
+
+        //    //foreach (Term row in termList)
+        //    //{
+        //    //    DisplayAlert(row.ID.ToString(), row.TermTitle, row.CreateDate.ToString());
+        //    //}
+        //}//end OnAppearing
 
         private void AddTermFromDB()//Creates Buttons for all Terms in DB
         {
