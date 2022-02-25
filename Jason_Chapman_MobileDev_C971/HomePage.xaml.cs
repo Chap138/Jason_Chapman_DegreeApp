@@ -37,7 +37,7 @@ namespace Jason_Chapman_MobileDev_C971
 
         protected override void OnAppearing()//Creates all Term buttons from DB info
         {
-            //AddTermFromDB();
+            AddTermFromDB();
         }//end OnAppearing
 
         private void AddTermFromDB()//Creates Buttons for all Terms in DB

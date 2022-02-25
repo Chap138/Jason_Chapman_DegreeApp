@@ -32,7 +32,6 @@ namespace Jason_Chapman_MobileDev_C971
             BindingContext = this;
             //TermLabel.Text = CurrentTermTitle;
 
-
         }//end constructor
 
         protected override void OnAppearing()
@@ -58,65 +57,10 @@ namespace Jason_Chapman_MobileDev_C971
                 }
             }
             TermLabel.Text = CurrentTermTitle;
-            StartDate.Date = CurrentTermStart;
-            EndDate.Date = CurrentTermEnd;
+            StartDatePicker.Date = CurrentTermStart;
+            EndDatePicker.Date = CurrentTermEnd;
             //DisplayAlert(CurrentTermTitle, CurrentTermStart.ToString(), CurrentTermEnd.ToString());//Test to display CurrentTerm properties 
         }//end GetTerm()
-
-
-        //PART OF TAPPING TITLE TO CHANGE
-        //TitleEntry.Completed += (sender, e) => TitleEntry_Completed(sender, e);//THIS LINE GOES IN CONSTRUCTOR
-
-        //TrmTitle property goes up top
-        //public string TrmTitle
-        //{
-        //    get { return title; }
-        //    set
-        //    {
-        //        //title1 = value;
-        //        {
-        //            if (value == title)
-        //                return;
-        //            title = value;
-        //            OnPropertyChanged();//Handles (nameof(Title1)) automatically
-        //        }
-        //    }
-        //}//end TrmTitle
-
-        //public ICommand TermLabel_Clicked => new Command(ChangeTermTitle);
-        //private void ChangeTermTitle()
-        //{
-        //    TitleEntry.IsVisible = true;
-        //    TermLabel.TextColor = Color.White;
-        //    TitleEntry.Focus();
-        //}//end ChangeTermTitle
-
-        //PART OF TAPPING TITLE TO CHANGE
-        //private void TitleEntry_Completed(object sender, EventArgs e)//Use to update TermTitle in DB
-        //{
-        //    TitleEntry.IsVisible = false;
-        //    TermLabel.TextColor = Color.White;
-        //    TermLabel.Text = TitleEntry.Text;
-
-        //    using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
-        //    {
-        //        conn.CreateTable<Term>();
-        //        int rows = conn.Update(termList);
-
-
-        //        ////int rows = conn.Update(termList);
-        //        ////conn.Table<Term>().Select(termList,CurrentTermID)
-        //        ///
-        //        //var query = termList.Where(t => t.TermID == CurrentTermID);
-        //        //foreach (Term row in query)
-        //        //{
-        //        //    row.TermTitle = TermLabel.Text;
-        //        //    conn.Update(termList);
-        //        //}
-
-        //    }
-
-        //}//end TitleEntry_Completed/////////////////////////
 
         private async void GoToCourseBtn_Clicked(object sender, EventArgs e)
         {
@@ -133,19 +77,26 @@ namespace Jason_Chapman_MobileDev_C971
             TitleEntry.IsVisible = true;
             TitleEntry.Focus();
             EditTermSaveBtn.IsVisible = true;
+            EditTermCancelBtn.IsVisible = true;
         }//end EditTerm_Clicked
-
-
 
         private void EditTermSaveBtn_Clicked(object sender, EventArgs e)
         {
             TitleEntry.IsVisible = false;
-            //conn.CreateTable<Term>();
+            EditTermSaveBtn.IsVisible = false;
+            EditTermCancelBtn.IsVisible = false;
+
             foreach (Term row in termList)
             {
                 if (row.ID == CurrentTermID)
                 {
-                    row.TermTitle = TitleEntry.Text;
+                    if (TitleEntry.Text == null)
+                    {
+                        row.TermTitle = CurrentTermTitle;
+                    }else row.TermTitle = TitleEntry.Text;
+
+                    row.Start = StartDatePicker.Date;
+                    row.End = EndDatePicker.Date;
 
                     using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
                     {
@@ -156,6 +107,67 @@ namespace Jason_Chapman_MobileDev_C971
             }
 
         }//end EditTermSaveBtn_Clicked
+
+        private void EditTermCancelBtn_Clicked(object sender, EventArgs e)
+        {
+            TitleEntry.IsVisible = false;
+            EditTermSaveBtn.IsVisible = false;
+            EditTermCancelBtn.IsVisible = false;
+        }//end EditTermCancelBtn_Clicked
     }
+
+    //PART OF TAPPING TITLE TO CHANGE
+    //TitleEntry.Completed += (sender, e) => TitleEntry_Completed(sender, e);//THIS LINE GOES IN CONSTRUCTOR
+
+    //TrmTitle property goes up top
+    //public string TrmTitle
+    //{
+    //    get { return title; }
+    //    set
+    //    {
+    //        //title1 = value;
+    //        {
+    //            if (value == title)
+    //                return;
+    //            title = value;
+    //            OnPropertyChanged();//Handles (nameof(Title1)) automatically
+    //        }
+    //    }
+    //}//end TrmTitle
+
+    //public ICommand TermLabel_Clicked => new Command(ChangeTermTitle);
+    //private void ChangeTermTitle()
+    //{
+    //    TitleEntry.IsVisible = true;
+    //    TermLabel.TextColor = Color.White;
+    //    TitleEntry.Focus();
+    //}//end ChangeTermTitle
+
+    //PART OF TAPPING TITLE TO CHANGE
+    //private void TitleEntry_Completed(object sender, EventArgs e)//Use to update TermTitle in DB
+    //{
+    //    TitleEntry.IsVisible = false;
+    //    TermLabel.TextColor = Color.White;
+    //    TermLabel.Text = TitleEntry.Text;
+
+    //    using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+    //    {
+    //        conn.CreateTable<Term>();
+    //        int rows = conn.Update(termList);
+
+
+    //        ////int rows = conn.Update(termList);
+    //        ////conn.Table<Term>().Select(termList,CurrentTermID)
+    //        ///
+    //        //var query = termList.Where(t => t.TermID == CurrentTermID);
+    //        //foreach (Term row in query)
+    //        //{
+    //        //    row.TermTitle = TermLabel.Text;
+    //        //    conn.Update(termList);
+    //        //}
+
+    //    }
+
+    //}//end TitleEntry_Completed/////////////////////////
 
 }

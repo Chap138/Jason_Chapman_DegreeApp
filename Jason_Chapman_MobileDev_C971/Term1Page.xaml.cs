@@ -161,30 +161,9 @@ namespace Jason_Chapman_MobileDev_C971
         private async void Course1Btn_Clicked(object sender, EventArgs e)
         {
             //Course1Button.Text = Course1Title;
-            await Navigation.PushAsync(new Course1Page());
+            //await Navigation.PushAsync(new Course1Page());
             //((Button)sender).Text = "Math 101";
             //this.TitleLabel.Text = "Term 87978";
-        }
-
-        private async void Course2Btn_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new Course2Page());
-        }
-        private async void Course3Btn_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new Course3Page());
-        }
-        private async void Course4Btn_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new Course4Page());
-        }
-        private async void Course5Btn_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new Course5Page());
-        }
-        private async void Course6Btn_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new Course6Page());
         }
 
 

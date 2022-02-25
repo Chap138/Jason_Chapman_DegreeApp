@@ -22,24 +22,71 @@
                         <TapGestureRecognizer Command="{Binding TermLabel_Clicked}"/>
                     </Label.GestureRecognizers>-->
                 </Label>
+                
+                <!--StartDatePicker-->
                 <Label x:Name="TermPageStartDateLabel"
                        Text="Start Date"
                        FontAttributes="Bold"
                        TextColor="White"
                        FontSize="25"/>
-                <DatePicker x:Name="StartDate"
+                <DatePicker x:Name="StartDatePicker"
                             TextColor="White"
-                            FontSize="20"
-                            Margin="0,0,0,10"/>
+                            FontAttributes="Bold"
+                            FontSize="25"
+                            Margin="0,0,100,10"
+                            HorizontalOptions="StartAndExpand"/>
+                
+                <!--EndDatePicker-->
                 <Label x:Name="TermPageEndDateLabel"
                        Text="End Date"
                        FontAttributes="Bold"
                        TextColor="White"
                        FontSize="25"/>
-                <DatePicker x:Name="EndDate"
+                <DatePicker x:Name="EndDatePicker"
                             TextColor="White"
-                            FontSize="20"
-                            Margin="0,0,0,30"/>
+                            FontAttributes="Bold"
+                            FontSize="25"
+                            Margin="0,0,100,10"
+                            HorizontalOptions="StartAndExpand"/>
+
+                <!--TitleEntry-->
+                <Entry x:Name="TitleEntry"
+                       TextColor="White"
+                       Placeholder="Edit Term Title"
+                       PlaceholderColor="White"
+                       FontSize="20"
+                       Margin="20,15,0,0"
+                       IsVisible="false"
+                       VerticalTextAlignment="Start"
+                       HorizontalTextAlignment="Start"/>
+                
+                <!--EditTermSaveBtn-->
+                <Button x:Name="EditTermSaveBtn"
+                        Text="Save"
+                        IsVisible="false"
+                        Clicked="EditTermSaveBtn_Clicked"
+                        FontSize="20"
+                        HorizontalOptions="EndAndExpand"
+                        FontAttributes="Bold"
+                        BackgroundColor="White"/>
+
+                <Button x:Name="EditTermCancelBtn"
+                        Text="Cancel"
+                        IsVisible="false"
+                        Clicked="EditTermCancelBtn_Clicked"
+                        FontSize="20"
+                        HorizontalOptions="EndAndExpand"
+                        FontAttributes="Bold"
+                        BackgroundColor="White"/>
+
+                <!--GotoCourseButton-->
+                <Button x:Name="GoToCourseButton"
+                        Text="GoToCOurseButton"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        Clicked="GoToCourseBtn_Clicked"
+                        Margin="30"
+                        BackgroundColor="White"/>
 
                 <!--<Entry x:Name="TitleEntry"
                     Text="{Binding Title1}"
@@ -50,31 +97,7 @@
                        IsVisible="false"
                        VerticalTextAlignment="Start"
                        HorizontalTextAlignment="Start"/>-->
-                <Entry x:Name="TitleEntry"
-                       TextColor="White"
-                       Placeholder="Edit Term Title"
-                       PlaceholderColor="White"
-                       FontSize="20"
-                       Margin="20,15,0,0"
-                       IsVisible="false"
-                       VerticalTextAlignment="Start"
-                       HorizontalTextAlignment="Start"/>
-                <Button x:Name="EditTermSaveBtn"
-                        Text="Save"
-                        IsVisible="false"
-                        Clicked="EditTermSaveBtn_Clicked"/>
 
-
-
-
-
-                <Button x:Name="GoToCourseButton"
-                    Text="GoToCOurseButton"
-                        FontSize="20"
-                        FontAttributes="Bold"
-                    Clicked="GoToCourseBtn_Clicked"
-                    Margin="10"
-                        BackgroundColor="White"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
