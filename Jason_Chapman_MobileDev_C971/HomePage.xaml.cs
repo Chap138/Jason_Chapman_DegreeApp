@@ -15,6 +15,7 @@ namespace Jason_Chapman_MobileDev_C971
     {
         //private int crrntTerm;
         private List<Term> termList;
+        
         public HomePage()
         {
             InitializeComponent();
@@ -24,7 +25,7 @@ namespace Jason_Chapman_MobileDev_C971
             //DeleteTermRows(); //DELETES EVERYTHING FROM THE TERM TABLE
             //DropTermTable();
             CreateTermTable();
-            //AddTermFromDB();
+            AddTermFromDB();
         }
 
         private void CreateTermTable()
@@ -37,8 +38,10 @@ namespace Jason_Chapman_MobileDev_C971
 
         protected override void OnAppearing()//Creates all Term buttons from DB info
         {
-            AddTermFromDB();
+            //DeleteButtons();
+            
         }//end OnAppearing
+
 
         private void AddTermFromDB()//Creates Buttons for all Terms in DB
         {
@@ -106,7 +109,6 @@ namespace Jason_Chapman_MobileDev_C971
             testBtn.Clicked += (s, a) => GoToTermButton_Clicked(s, a, termID);
             testBtn.BindingContext = term;
             testBtn.SetBinding(Button.TextProperty, "TermTitle");
-
             layout.Children.Add(testBtn);
             AddTermEntry.Placeholder = "Enter Term Title";
 
