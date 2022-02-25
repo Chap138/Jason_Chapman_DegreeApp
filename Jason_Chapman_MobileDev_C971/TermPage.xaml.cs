@@ -93,7 +93,12 @@ namespace Jason_Chapman_MobileDev_C971
                     if (TitleEntry.Text == null)
                     {
                         row.TermTitle = CurrentTermTitle;
-                    }else row.TermTitle = TitleEntry.Text;
+                    }
+                    else
+                    {
+                        row.TermTitle = TitleEntry.Text;
+                        TermLabel.Text = TitleEntry.Text;
+                    }
 
                     row.Start = StartDatePicker.Date;
                     row.End = EndDatePicker.Date;

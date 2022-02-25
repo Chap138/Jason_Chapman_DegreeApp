@@ -28,50 +28,6 @@ namespace Jason_Chapman_MobileDev_C971
             AddTermFromDB();
         }
 
-        private void CreateTermTable()
-        {
-            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
-            {
-                conn.CreateTable<Term>();
-            }
-        }
-
-        protected override void OnAppearing()//Creates all Term buttons from DB info
-        {
-            //DeleteButtons();
-            
-        }//end OnAppearing
-
-
-        private void AddTermFromDB()//Creates Buttons for all Terms in DB
-        {
-            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
-            {
-                termList = conn.Table<Term>().ToList();
-
-                for (int i = 0; i < termList.Count; i++)
-                {
-                    int termID = termList[i].ID;
-                    string btnTitle = termList[i].TermTitle;
-
-                    Button testBtn = new Button()
-                    {
-                        TextColor = Color.Black,
-                        FontAttributes = FontAttributes.Bold,
-                        FontSize = 20,
-                        Margin = 30,
-                        BackgroundColor = Color.White
-                    };
-
-                    testBtn.Clicked += (sender, args) => GoToTermButton_Clicked(sender, args, termID);
-                    testBtn.BindingContext = termList[i];
-                    testBtn.SetBinding(Button.TextProperty, "TermTitle");
-
-                    layout.Children.Add(testBtn);
-                }
-            }
-        }//end addTermFromDB
-
         private void AddTermSaveBtn_Clicked(object sender, EventArgs e)
         {
             AddTermEntry.IsVisible = false;
@@ -182,7 +138,7 @@ namespace Jason_Chapman_MobileDev_C971
             //int termID = termTest.TermID;
             layout.Children.Add(testBtn);
 
-        }//end addTermBtnForTest FOR TESTING
+        }//end AddTermBtnForTest FOR TESTING
 
         private void AddTermCancelBtn_Clicked(object sender, EventArgs e)
         {
@@ -194,6 +150,48 @@ namespace Jason_Chapman_MobileDev_C971
             AddTermSaveBtn.IsVisible = false;
             AddTermCancelBtn.IsVisible = false;
             AddTermEntry.Text = null;
-        }
+        }//end AddTermCancelBtn_Clicked
+
+        private void CreateTermTable()
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            {
+                conn.CreateTable<Term>();
+            }
+        }//end CreateTermTable
+        protected override void OnAppearing()//Creates all Term buttons from DB info
+        {
+            //DeleteButtons();
+
+        }//end OnAppearing
+        private void AddTermFromDB()//Creates Buttons for all Terms in DB
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            {
+                termList = conn.Table<Term>().ToList();
+
+                for (int i = 0; i < termList.Count; i++)
+                {
+                    int termID = termList[i].ID;
+                    string btnTitle = termList[i].TermTitle;
+
+                    Button testBtn = new Button()
+                    {
+                        TextColor = Color.Black,
+                        FontAttributes = FontAttributes.Bold,
+                        FontSize = 20,
+                        Margin = 30,
+                        BackgroundColor = Color.White
+                    };
+
+                    testBtn.Clicked += (sender, args) => GoToTermButton_Clicked(sender, args, termID);
+                    testBtn.BindingContext = termList[i];
+                    testBtn.SetBinding(Button.TextProperty, "TermTitle");
+
+                    layout.Children.Add(testBtn);
+                }
+            }
+        }//end addTermFromDB
+
     }
 }
