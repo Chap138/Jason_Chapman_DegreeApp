@@ -24,7 +24,7 @@ namespace Jason_Chapman_MobileDev_C971
             //DeleteTermRows(); //DELETES EVERYTHING FROM THE TERM TABLE
             //DropTermTable();
             CreateTermTable();
-            AddTermFromDB();
+            //AddTermFromDB();
         }
 
         private void CreateTermTable()
@@ -35,15 +35,10 @@ namespace Jason_Chapman_MobileDev_C971
             }
         }
 
-        //protected override void OnAppearing()//Creates all Term buttons from DB info
-        //{
-        //    //addTermFromDB();//Creates Buttons for all Terms in DB
-
-        //    //foreach (Term row in termList)
-        //    //{
-        //    //    DisplayAlert(row.ID.ToString(), row.TermTitle, row.CreateDate.ToString());
-        //    //}
-        //}//end OnAppearing
+        protected override void OnAppearing()//Creates all Term buttons from DB info
+        {
+            //AddTermFromDB();
+        }//end OnAppearing
 
         private void AddTermFromDB()//Creates Buttons for all Terms in DB
         {

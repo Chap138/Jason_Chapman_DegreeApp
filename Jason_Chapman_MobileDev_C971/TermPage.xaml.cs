@@ -129,26 +129,32 @@ namespace Jason_Chapman_MobileDev_C971
 
         private void EditTerm_Clicked(object sender, EventArgs e)
         {
+            //Navigation.PushAsync(new EditTermPage(CurrentTermID));
             TitleEntry.IsVisible = true;
             TitleEntry.Focus();
-        }
+            EditTermSaveBtn.IsVisible = true;
+        }//end EditTerm_Clicked
+
+
 
         private void EditTermSaveBtn_Clicked(object sender, EventArgs e)
         {
             TitleEntry.IsVisible = false;
-            using(SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            //conn.CreateTable<Term>();
+            foreach (Term row in termList)
             {
-                conn.CreateTable<Term>();
-                foreach(Term row in termList)
+                if (row.ID == CurrentTermID)
                 {
-                    if(row.ID == CurrentTermID)
+                    row.TermTitle = TitleEntry.Text;
+
+                    using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
                     {
-                        row.TermTitle = TitleEntry.Text;
+                        int rows = conn.Update(row);
                     }
+                    break;
                 }
-                int rows = conn.Update(termList);
             }
-           
+
         }//end EditTermSaveBtn_Clicked
     }
 

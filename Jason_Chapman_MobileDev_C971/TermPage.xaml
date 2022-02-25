@@ -61,6 +61,7 @@
                        HorizontalTextAlignment="Start"/>
                 <Button x:Name="EditTermSaveBtn"
                         Text="Save"
+                        IsVisible="false"
                         Clicked="EditTermSaveBtn_Clicked"/>
 
 
