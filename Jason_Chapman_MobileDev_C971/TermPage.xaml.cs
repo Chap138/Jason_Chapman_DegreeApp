@@ -47,6 +47,8 @@ namespace Jason_Chapman_MobileDev_C971
             CourseInstructorName.IsVisible = true;
             CourseInstructorPhone.IsVisible = true;
             CourseInstructorEmail.IsVisible = true;
+            CourseStatusLabel.IsVisible = true;
+            CourseProgressPicker.IsVisible = true;
             CourseStartDateLabel.IsVisible = true;
             CourseStartDatePicker.IsVisible = true;
             CourseEndDatePicker.IsVisible = true;
@@ -57,6 +59,11 @@ namespace Jason_Chapman_MobileDev_C971
         }
         private void AddCourseSaveBtn_Clicked(object sender, EventArgs e)
         {
+            TermPageStartDateLabel.IsVisible = true;
+            StartDatePicker.IsVisible = true;
+            EndDatePicker.IsVisible = true;
+            TermPageEndDateLabel.IsVisible = true;
+
             AddCourseEntry.IsVisible = false;
             CourseInstructorName.IsVisible = false;
             CourseInstructorPhone.IsVisible = false;
@@ -67,10 +74,13 @@ namespace Jason_Chapman_MobileDev_C971
             CourseStartDateLabel.IsVisible = false;
             CourseEndDatePicker.IsVisible = false;
             CourseEndDateLabel.IsVisible = false;
+            CourseStatusLabel.IsVisible = false;
             CourseProgressPicker.IsVisible = false;
+            CourseProgressPicker.SelectedItem = null;
 
             Course course = new Course()
             {
+                TermID = CurrentTermID,
                 CourseTitle = AddCourseEntry.Text,
                 InstructorName = CourseInstructorName.Text,
                 InstructorPhone = CourseInstructorPhone.Text,
@@ -120,6 +130,7 @@ namespace Jason_Chapman_MobileDev_C971
             CourseStartDateLabel.IsVisible = false;
             CourseEndDatePicker.IsVisible = false;
             CourseEndDateLabel.IsVisible = false;
+            CourseStatusLabel.IsVisible = false;
             CourseProgressPicker.IsVisible = false;
         }
         protected override void OnAppearing()

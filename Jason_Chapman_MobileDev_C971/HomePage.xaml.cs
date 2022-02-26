@@ -58,8 +58,7 @@ namespace Jason_Chapman_MobileDev_C971
             {
                 TermTitle = AddTermEntry.Text,
                 Start = StartDatePicker.Date,
-                End = EndDatePicker.Date,
-                CreateDate = System.DateTime.Now
+                End = EndDatePicker.Date
             };
 
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
@@ -125,7 +124,7 @@ namespace Jason_Chapman_MobileDev_C971
             Term termTest = new Term()
             {
                 TermTitle = "Term 1", //Needs to get this from DB because it tests ability to change 'TermTitle'
-                CreateDate = System.DateTime.Now
+                //CreateDate = System.DateTime.Now
             };
 
             int termID = termTest.ID;

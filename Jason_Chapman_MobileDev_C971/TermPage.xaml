@@ -130,12 +130,13 @@
                             HorizontalOptions="StartAndExpand"
                             IsVisible="false"/>
                 <Label x:Name="CourseStatusLabel"
-                       Text="End Date"
+                       Text="Course Status"
                        FontAttributes="Bold"
                        TextColor="White"
                        FontSize="25"
                        IsVisible="false"/>
                 <Picker x:Name="CourseProgressPicker"
+                        BackgroundColor="White"
                         TextColor="White"
                         FontSize="20"
                         IsVisible="false">

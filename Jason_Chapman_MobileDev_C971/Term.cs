@@ -12,7 +12,6 @@ namespace Jason_Chapman_MobileDev_C971
         public int ID { get; set; }
         [MaxLength(30)]
         public string TermTitle { get; set; }
-        public DateTime CreateDate { get; set; }
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
 
