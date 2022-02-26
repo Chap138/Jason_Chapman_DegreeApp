@@ -137,7 +137,7 @@
                        IsVisible="false"/>
                 <Picker x:Name="CourseProgressPicker"
                         BackgroundColor="White"
-                        TextColor="White"
+                        TextColor="Black"
                         FontSize="20"
                         IsVisible="false">
                     <Picker.Items>

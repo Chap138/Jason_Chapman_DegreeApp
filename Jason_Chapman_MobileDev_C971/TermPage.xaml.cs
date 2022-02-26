@@ -30,6 +30,7 @@ namespace Jason_Chapman_MobileDev_C971
             InitializeComponent();
             CurrentTermID = termID;
             BindingContext = this;
+            AddCourseFromDB();
             //TermLabel.Text = CurrentTermTitle;
 
         }//end constructor
@@ -56,7 +57,8 @@ namespace Jason_Chapman_MobileDev_C971
             AddCourseSaveBtn.IsVisible = true;
             AddCourseCancelBtn.IsVisible = true;
             AddCourseEntry.Text = null;
-        }
+        }//end AddCourse_Clicked
+
         private void AddCourseSaveBtn_Clicked(object sender, EventArgs e)
         {
             TermPageStartDateLabel.IsVisible = true;
@@ -76,7 +78,7 @@ namespace Jason_Chapman_MobileDev_C971
             CourseEndDateLabel.IsVisible = false;
             CourseStatusLabel.IsVisible = false;
             CourseProgressPicker.IsVisible = false;
-            CourseProgressPicker.SelectedItem = null;
+            //CourseProgressPicker.SelectedItem = null;
 
             Course course = new Course()
             {
@@ -111,31 +113,51 @@ namespace Jason_Chapman_MobileDev_C971
             testBtn.SetBinding(Button.TextProperty, "CourseTitle");
             layout.Children.Add(testBtn);
             AddCourseEntry.Placeholder = "Enter Course Title";
-        }
+        }//end AddCourseSaveBtn_Clicked
 
-        private void AddCourseCancelBtn_Clicked(object sender, EventArgs e)
+        private void AddCourseFromDB()//Creates Buttons for all Terms in DB
         {
-            TermPageStartDateLabel.IsVisible = true;
-            StartDatePicker.IsVisible = true;
-            EndDatePicker.IsVisible = true;
-            TermPageEndDateLabel.IsVisible = true;
+            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            {
+                courseList = conn.Table<Course>().ToList();
 
-            AddCourseEntry.IsVisible = false;
-            CourseInstructorName.IsVisible = false;
-            CourseInstructorPhone.IsVisible = false;
-            CourseInstructorEmail.IsVisible = false;
-            AddCourseSaveBtn.IsVisible = false;
-            AddCourseCancelBtn.IsVisible = false;
-            CourseStartDatePicker.IsVisible = false;
-            CourseStartDateLabel.IsVisible = false;
-            CourseEndDatePicker.IsVisible = false;
-            CourseEndDateLabel.IsVisible = false;
-            CourseStatusLabel.IsVisible = false;
-            CourseProgressPicker.IsVisible = false;
-        }
+                for (int i = 0; i < courseList.Count; i++)
+                {
+                    int courseID = courseList[i].CourseID;
+                    string btnTitle = courseList[i].CourseTitle;
+
+                    Button testBtn = new Button()
+                    {
+                        TextColor = Color.Black,
+                        FontAttributes = FontAttributes.Bold,
+                        FontSize = 20,
+                        Margin = 30,
+                        BackgroundColor = Color.White
+                    };
+
+                    testBtn.Clicked += (sender, args) => GoToCourseBtn_Clicked(sender, args, courseID);
+                    testBtn.BindingContext = courseList[i];
+                    testBtn.SetBinding(Button.TextProperty, "CourseTitle");
+
+                    layout.Children.Add(testBtn);
+                }
+            }
+        }//end AddCourseFromDB
+
+        private void DeleteButtons()//Delete buttons to replace refreshed
+        {
+            for (int i = 8; i < layout.Children.Count;)
+            {
+                layout.Children.RemoveAt(i);
+            }
+        }//end DeleteButtons
+
+       
         protected override void OnAppearing()
         {
             GetTerm();
+            DeleteButtons();
+            AddCourseFromDB();
         }//end OnAppearing
 
         public void GetTerm()//Update term info when page appears
@@ -218,6 +240,26 @@ namespace Jason_Chapman_MobileDev_C971
             EditTermSaveBtn.IsVisible = false;
             EditTermCancelBtn.IsVisible = false;
         }//end EditTermCancelBtn_Clicked
+        private void AddCourseCancelBtn_Clicked(object sender, EventArgs e)
+        {
+            TermPageStartDateLabel.IsVisible = true;
+            StartDatePicker.IsVisible = true;
+            EndDatePicker.IsVisible = true;
+            TermPageEndDateLabel.IsVisible = true;
+
+            AddCourseEntry.IsVisible = false;
+            CourseInstructorName.IsVisible = false;
+            CourseInstructorPhone.IsVisible = false;
+            CourseInstructorEmail.IsVisible = false;
+            AddCourseSaveBtn.IsVisible = false;
+            AddCourseCancelBtn.IsVisible = false;
+            CourseStartDatePicker.IsVisible = false;
+            CourseStartDateLabel.IsVisible = false;
+            CourseEndDatePicker.IsVisible = false;
+            CourseEndDateLabel.IsVisible = false;
+            CourseStatusLabel.IsVisible = false;
+            CourseProgressPicker.IsVisible = false;
+        }
 
     }
 

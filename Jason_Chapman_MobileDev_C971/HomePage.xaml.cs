@@ -25,7 +25,6 @@ namespace Jason_Chapman_MobileDev_C971
             //DeleteTermRows(); //DELETES EVERYTHING FROM THE TERM TABLE
             //DropTermTable();
             //CreateTermTable();
-
             AddTermFromDb();
         }
 
@@ -202,7 +201,7 @@ namespace Jason_Chapman_MobileDev_C971
                     layout.Children.Add(testBtn);
                 }
             }
-        }//end addTermFromDB
+        }//end AddTermFromDB
 
     }
 }
