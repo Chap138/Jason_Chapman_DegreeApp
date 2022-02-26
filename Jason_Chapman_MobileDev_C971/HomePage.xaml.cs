@@ -25,6 +25,7 @@ namespace Jason_Chapman_MobileDev_C971
             //DeleteTermRows(); //DELETES EVERYTHING FROM THE TERM TABLE
             //DropTermTable();
             //CreateTermTable();
+
             AddTermFromDb();
         }
 
