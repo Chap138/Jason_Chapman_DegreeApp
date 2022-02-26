@@ -21,7 +21,6 @@ namespace Jason_Chapman_MobileDev_C971
         private string CurrentTermTitle;
         private DateTime CurrentTermStart;
         private DateTime CurrentTermEnd;
-
         private int currentCourse;//CourseID to pass into GoToCourseBtn_Clicked() for navigating to appropriate coursePage
         private string title = "Term Title";
 
@@ -34,30 +33,12 @@ namespace Jason_Chapman_MobileDev_C971
             //TermLabel.Text = CurrentTermTitle;
 
         }//end constructor
-
-
-        private void AddCourse_Clicked(object sender, EventArgs e)//ADD COURSES
+        protected override void OnAppearing()
         {
-            TermPageStartDateLabel.IsVisible = false;
-            StartDatePicker.IsVisible = false;
-            EndDatePicker.IsVisible = false;
-            TermPageEndDateLabel.IsVisible = false;
-
-            AddCourseEntry.IsVisible = true;
-            AddCourseEntry.Focus();
-            CourseInstructorName.IsVisible = true;
-            CourseInstructorPhone.IsVisible = true;
-            CourseInstructorEmail.IsVisible = true;
-            CourseStatusLabel.IsVisible = true;
-            CourseProgressPicker.IsVisible = true;
-            CourseStartDateLabel.IsVisible = true;
-            CourseStartDatePicker.IsVisible = true;
-            CourseEndDatePicker.IsVisible = true;
-            CourseEndDateLabel.IsVisible = true;
-            AddCourseSaveBtn.IsVisible = true;
-            AddCourseCancelBtn.IsVisible = true;
-            AddCourseEntry.Text = null;
-        }//end AddCourse_Clicked
+            GetTerm();
+            DeleteButtons();
+            AddCourseFromDB();
+        }//end OnAppearing
 
         private void AddCourseSaveBtn_Clicked(object sender, EventArgs e)
         {
@@ -146,19 +127,11 @@ namespace Jason_Chapman_MobileDev_C971
 
         private void DeleteButtons()//Delete buttons to replace refreshed
         {
-            for (int i = 8; i < layout.Children.Count;)
+            for (int i = 20; i < layout.Children.Count;)
             {
                 layout.Children.RemoveAt(i);
             }
         }//end DeleteButtons
-
-       
-        protected override void OnAppearing()
-        {
-            GetTerm();
-            DeleteButtons();
-            AddCourseFromDB();
-        }//end OnAppearing
 
         public void GetTerm()//Update term info when page appears
         {
@@ -260,6 +233,28 @@ namespace Jason_Chapman_MobileDev_C971
             CourseStatusLabel.IsVisible = false;
             CourseProgressPicker.IsVisible = false;
         }
+        private void AddCourse_Clicked(object sender, EventArgs e)//ADD COURSES
+        {
+            TermPageStartDateLabel.IsVisible = false;
+            StartDatePicker.IsVisible = false;
+            EndDatePicker.IsVisible = false;
+            TermPageEndDateLabel.IsVisible = false;
+
+            AddCourseEntry.IsVisible = true;
+            AddCourseEntry.Focus();
+            CourseInstructorName.IsVisible = true;
+            CourseInstructorPhone.IsVisible = true;
+            CourseInstructorEmail.IsVisible = true;
+            CourseStatusLabel.IsVisible = true;
+            CourseProgressPicker.IsVisible = true;
+            CourseStartDateLabel.IsVisible = true;
+            CourseStartDatePicker.IsVisible = true;
+            CourseEndDatePicker.IsVisible = true;
+            CourseEndDateLabel.IsVisible = true;
+            AddCourseSaveBtn.IsVisible = true;
+            AddCourseCancelBtn.IsVisible = true;
+            AddCourseEntry.Text = null;
+        }//end AddCourse_Clicked
 
     }
 

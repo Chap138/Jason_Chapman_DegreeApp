@@ -14,13 +14,13 @@
         <ScrollView>
             <StackLayout x:Name="layout" 
                 BackgroundColor="Black">
+
                 <Label x:Name="TermLabel"
                    TextColor="White"
                    Margin="20,15,0,30"
                    FontSize="35"
                    FontAttributes="Bold">
                 </Label>
-
                 <!--StartDatePicker-->
                 <Label x:Name="TermPageStartDateLabel"
                        Text="Start Date"
