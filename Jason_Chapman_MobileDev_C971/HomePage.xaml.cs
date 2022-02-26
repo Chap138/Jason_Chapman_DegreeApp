@@ -24,8 +24,23 @@ namespace Jason_Chapman_MobileDev_C971
             //OnAppearing(); Not needed in Constructor
             //DeleteTermRows(); //DELETES EVERYTHING FROM THE TERM TABLE
             //DropTermTable();
-            CreateTermTable();
-            AddTermFromDB();
+            //CreateTermTable();
+            AddTermFromDb();
+        }
+
+        protected override void OnAppearing()//Creates all Term buttons from DB info
+        {
+            DeleteButtons();//Delete buttons already on page
+            AddTermFromDb();//Create updated buttons to replace
+
+        }//end OnAppearing
+
+        private void DeleteButtons()//Delete buttons to replace refreshed
+        {
+            for (int i = 8; i < layout.Children.Count;)
+            {
+                layout.Children.RemoveAt(i);
+            }
         }
 
         private void AddTermSaveBtn_Clicked(object sender, EventArgs e)
@@ -159,13 +174,9 @@ namespace Jason_Chapman_MobileDev_C971
                 conn.CreateTable<Term>();
             }
         }//end CreateTermTable
-        protected override void OnAppearing()//Creates all Term buttons from DB info
+        private void AddTermFromDb()//Creates Buttons for all Terms in DB
         {
-            //DeleteButtons();
-
-        }//end OnAppearing
-        private void AddTermFromDB()//Creates Buttons for all Terms in DB
-        {
+            
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
             {
                 termList = conn.Table<Term>().ToList();
