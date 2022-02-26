@@ -34,6 +34,94 @@ namespace Jason_Chapman_MobileDev_C971
 
         }//end constructor
 
+
+        private void AddCourse_Clicked(object sender, EventArgs e)//ADD COURSES
+        {
+            TermPageStartDateLabel.IsVisible = false;
+            StartDatePicker.IsVisible = false;
+            EndDatePicker.IsVisible = false;
+            TermPageEndDateLabel.IsVisible = false;
+
+            AddCourseEntry.IsVisible = true;
+            AddCourseEntry.Focus();
+            CourseInstructorName.IsVisible = true;
+            CourseInstructorPhone.IsVisible = true;
+            CourseInstructorEmail.IsVisible = true;
+            CourseStartDateLabel.IsVisible = true;
+            CourseStartDatePicker.IsVisible = true;
+            CourseEndDatePicker.IsVisible = true;
+            CourseEndDateLabel.IsVisible = true;
+            AddCourseSaveBtn.IsVisible = true;
+            AddCourseCancelBtn.IsVisible = true;
+            AddCourseEntry.Text = null;
+        }
+        private void AddCourseSaveBtn_Clicked(object sender, EventArgs e)
+        {
+            AddCourseEntry.IsVisible = false;
+            CourseInstructorName.IsVisible = false;
+            CourseInstructorPhone.IsVisible = false;
+            CourseInstructorEmail.IsVisible = false;
+            AddCourseSaveBtn.IsVisible = false;
+            AddCourseCancelBtn.IsVisible = false;
+            CourseStartDatePicker.IsVisible = false;
+            CourseStartDateLabel.IsVisible = false;
+            CourseEndDatePicker.IsVisible = false;
+            CourseEndDateLabel.IsVisible = false;
+            CourseProgressPicker.IsVisible = false;
+
+            Course course = new Course()
+            {
+                CourseTitle = AddCourseEntry.Text,
+                InstructorName = CourseInstructorName.Text,
+                InstructorPhone = CourseInstructorPhone.Text,
+                InstructorEmail = CourseInstructorEmail.Text,
+                CourseStatus = CourseProgressPicker.SelectedItem.ToString(),
+                StartDate = CourseStartDatePicker.Date,
+                EndDate = CourseEndDatePicker.Date
+            };
+
+            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            {
+                conn.CreateTable<Course>();
+                conn.Insert(course);
+            }
+
+            Button testBtn = new Button()
+            {
+                TextColor = Color.Black,
+                FontAttributes = FontAttributes.Bold,
+                FontSize = 20,
+                Margin = 30,
+                BackgroundColor = Color.White
+            };
+
+            int courseID = course.CourseID;
+            testBtn.Clicked += (s, a) => GoToCourseBtn_Clicked(s, a, courseID);
+            testBtn.BindingContext = course;
+            testBtn.SetBinding(Button.TextProperty, "CourseTitle");
+            layout.Children.Add(testBtn);
+            AddCourseEntry.Placeholder = "Enter Course Title";
+        }
+
+        private void AddCourseCancelBtn_Clicked(object sender, EventArgs e)
+        {
+            TermPageStartDateLabel.IsVisible = true;
+            StartDatePicker.IsVisible = true;
+            EndDatePicker.IsVisible = true;
+            TermPageEndDateLabel.IsVisible = true;
+
+            AddCourseEntry.IsVisible = false;
+            CourseInstructorName.IsVisible = false;
+            CourseInstructorPhone.IsVisible = false;
+            CourseInstructorEmail.IsVisible = false;
+            AddCourseSaveBtn.IsVisible = false;
+            AddCourseCancelBtn.IsVisible = false;
+            CourseStartDatePicker.IsVisible = false;
+            CourseStartDateLabel.IsVisible = false;
+            CourseEndDatePicker.IsVisible = false;
+            CourseEndDateLabel.IsVisible = false;
+            CourseProgressPicker.IsVisible = false;
+        }
         protected override void OnAppearing()
         {
             GetTerm();
@@ -62,10 +150,10 @@ namespace Jason_Chapman_MobileDev_C971
             //DisplayAlert(CurrentTermTitle, CurrentTermStart.ToString(), CurrentTermEnd.ToString());//Test to display CurrentTerm properties 
         }//end GetTerm()
 
-        private async void GoToCourseBtn_Clicked(object sender, EventArgs e)
+        private async void GoToCourseBtn_Clicked(object sender, EventArgs e, int id)
         {
 
-            await Navigation.PushAsync(new CoursePage(currentCourse));//USE WHEN READY TO ADD COURSES
+            await Navigation.PushAsync(new CoursePage(id));//USE WHEN READY TO ADD COURSES
 
             //await Navigation.PushAsync(new Course1Page());//TEST TEST TEST delete when ready to add courses
 
@@ -119,6 +207,7 @@ namespace Jason_Chapman_MobileDev_C971
             EditTermSaveBtn.IsVisible = false;
             EditTermCancelBtn.IsVisible = false;
         }//end EditTermCancelBtn_Clicked
+
     }
 
     //PART OF TAPPING TITLE TO CHANGE

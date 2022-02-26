@@ -6,17 +6,21 @@
         <ToolbarItem x:Name="EditTerm"
                      Clicked="EditTerm_Clicked"
                      Text="Edit Term"/>
+        <ToolbarItem x:Name="AddCourse"
+                     Clicked="AddCourse_Clicked"  
+                     Text="Add Course"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout BackgroundColor="Black">
+            <StackLayout x:Name="layout" 
+                BackgroundColor="Black">
                 <Label x:Name="TermLabel"
                    TextColor="White"
                    Margin="20,15,0,30"
                    FontSize="35"
                    FontAttributes="Bold">
                 </Label>
-                
+
                 <!--StartDatePicker-->
                 <Label x:Name="TermPageStartDateLabel"
                        Text="Start Date"
@@ -29,7 +33,7 @@
                             FontSize="25"
                             Margin="0,0,100,10"
                             HorizontalOptions="StartAndExpand"/>
-                
+
                 <!--EndDatePicker-->
                 <Label x:Name="TermPageEndDateLabel"
                        Text="End Date"
@@ -53,7 +57,7 @@
                        IsVisible="false"
                        VerticalTextAlignment="Start"
                        HorizontalTextAlignment="Start"/>
-                
+
                 <!--EditTermSaveBtn-->
                 <Button x:Name="EditTermSaveBtn"
                         Text="Save"
@@ -72,25 +76,93 @@
                         HorizontalOptions="EndAndExpand"
                         FontAttributes="Bold"
                         BackgroundColor="White"/>
-
-                <!--GotoCourseButton-->
-                <Button x:Name="GoToCourseButton"
-                        Text="GoToCOurseButton"
-                        FontSize="20"
-                        FontAttributes="Bold"
-                        Clicked="GoToCourseBtn_Clicked"
-                        Margin="30"
-                        BackgroundColor="White"/>
-
-                <!--<Entry x:Name="TitleEntry"
-                    Text="{Binding Title1}"
-                       TextColor="White"
-                       FontSize="30"
+                <!--ADD COURSES-->
+                <!--ADD COURSES-->
+                <!--ADD COURSES-->
+                <!--ADD COURSES-->
+                <!--ADD COURSES-->
+                <!--ADD COURSES-->
+                <Entry x:Name="AddCourseEntry"
+                    Placeholder="Enter Term Title"
+                   PlaceholderColor="White"
+                   TextColor="White"
+                   IsVisible="false"/>
+                <Entry x:Name="CourseInstructorName"
+                    Placeholder="Enter instructor name"
+                   PlaceholderColor="White"
+                   TextColor="White"
+                   IsVisible="false"/>
+                <Entry x:Name="CourseInstructorPhone"
+                    Placeholder="Enter instructor phone number"
+                   PlaceholderColor="White"
+                   TextColor="White"
+                   IsVisible="false"/>
+                <Entry x:Name="CourseInstructorEmail"
+                    Placeholder="Enter instructor email"
+                   PlaceholderColor="White"
+                   TextColor="White"
+                   IsVisible="false"/>
+                <Label x:Name="CourseStartDateLabel"
+                       Text="Start Date"
                        FontAttributes="Bold"
-                       Margin="20,15,0,0"
-                       IsVisible="false"
-                       VerticalTextAlignment="Start"
-                       HorizontalTextAlignment="Start"/>-->
+                       TextColor="White"
+                       FontSize="25"
+                       IsVisible="false"/>
+                <DatePicker x:Name="CourseStartDatePicker"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            FontSize="25"
+                            Margin="0,0,100,10"
+                            HorizontalOptions="StartAndExpand"
+                            IsVisible="false"/>
+
+                <Label x:Name="CourseEndDateLabel"
+                       Text="End Date"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       FontSize="25"
+                       IsVisible="false"/>
+                <DatePicker x:Name="CourseEndDatePicker"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            FontSize="25"
+                            Margin="0,0,100,10"
+                            HorizontalOptions="StartAndExpand"
+                            IsVisible="false"/>
+                <Label x:Name="CourseStatusLabel"
+                       Text="End Date"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       FontSize="25"
+                       IsVisible="false"/>
+                <Picker x:Name="CourseProgressPicker"
+                        TextColor="White"
+                        FontSize="20"
+                        IsVisible="false">
+                    <Picker.Items>
+                        <x:String>In Progress</x:String>
+                        <x:String>Completed</x:String>
+                        <x:String>Dropped</x:String>
+                        <x:String>Plan To Take</x:String>
+                    </Picker.Items>
+                </Picker>
+                <Button x:Name="AddCourseSaveBtn"
+                    Text="Save"
+                    Clicked="AddCourseSaveBtn_Clicked"
+                    IsVisible="false"
+                    FontSize="20"
+                    Margin="0,5,0,10"
+                    HorizontalOptions="EndAndExpand"
+                    FontAttributes="Bold"
+                    BackgroundColor="White"/>
+                <Button x:Name="AddCourseCancelBtn"
+                    Text="Cancel"
+                    Clicked="AddCourseCancelBtn_Clicked"
+                    IsVisible="false"
+                    FontSize="20"
+                    HorizontalOptions="EndAndExpand"
+                    FontAttributes="Bold"
+                    BackgroundColor="White"/>
 
             </StackLayout>
         </ScrollView>
