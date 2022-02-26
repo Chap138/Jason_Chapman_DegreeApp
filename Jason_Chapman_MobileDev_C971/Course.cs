@@ -13,7 +13,7 @@ namespace Jason_Chapman_MobileDev_C971
         public string CourseTitle { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public string Progress { get; set; }//In Progress, Completed, Dropped, Plan to Take 
+        public string CourseStatus { get; set; }//In Progress, Completed, Dropped, Plan to Take 
         public string InstructorName { get; set; }
         public string InstructorPhone { get; set; }
         public string InstructorEmail { get; set; }

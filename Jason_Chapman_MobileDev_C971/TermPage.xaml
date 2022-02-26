@@ -15,12 +15,6 @@
                    Margin="20,15,0,30"
                    FontSize="35"
                    FontAttributes="Bold">
-                    <!--Text="{Binding Title1}">-->
-
-                    <!--Tap on Title to change-->
-                    <!--<Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding TermLabel_Clicked}"/>
-                    </Label.GestureRecognizers>-->
                 </Label>
                 
                 <!--StartDatePicker-->

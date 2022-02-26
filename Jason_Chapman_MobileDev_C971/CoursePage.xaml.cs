@@ -16,5 +16,15 @@ namespace Jason_Chapman_MobileDev_C971
         {
             InitializeComponent();
         }
+
+        private void EditCourseSaveBtn_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EditCourseCancelBtn_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }

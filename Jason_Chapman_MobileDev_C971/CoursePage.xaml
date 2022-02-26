@@ -3,10 +3,81 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Jason_Chapman_MobileDev_C971.CoursePage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView>
+            <StackLayout BackgroundColor="Black">
+                <Label x:Name="CourseLabel"
+                   TextColor="White"
+                   Margin="20,15,0,30"
+                   FontSize="35"
+                   FontAttributes="Bold">
+                </Label>
+
+                <!--StartDatePicker-->
+                <Label x:Name="CoursePageStartDateLabel"
+                       Text="Start Date"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       FontSize="25"/>
+                <DatePicker x:Name="StartDatePicker"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            FontSize="25"
+                            Margin="0,0,100,10"
+                            HorizontalOptions="StartAndExpand"/>
+
+                <!--EndDatePicker-->
+                <Label x:Name="CoursePageEndDateLabel"
+                       Text="End Date"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       FontSize="25"/>
+                <DatePicker x:Name="EndDatePicker"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            FontSize="25"
+                            Margin="0,0,100,10"
+                            HorizontalOptions="StartAndExpand"/>
+
+                <!--TitleEntry-->
+                <Entry x:Name="TitleEntry"
+                       TextColor="White"
+                       Placeholder="Edit Term Title"
+                       PlaceholderColor="White"
+                       FontSize="20"
+                       Margin="20,15,0,0"
+                       IsVisible="false"
+                       VerticalTextAlignment="Start"
+                       HorizontalTextAlignment="Start"/>
+
+                <!--EditTermSaveBtn-->
+                <Button x:Name="EditCourseSaveBtn"
+                        Text="Save"
+                        IsVisible="false"
+                        Clicked="EditCourseSaveBtn_Clicked"
+                        FontSize="20"
+                        HorizontalOptions="EndAndExpand"
+                        FontAttributes="Bold"
+                        BackgroundColor="White"/>
+
+                <Button x:Name="EditCourseCancelBtn"
+                        Text="Cancel"
+                        IsVisible="false"
+                        Clicked="EditCourseCancelBtn_Clicked"
+                        FontSize="20"
+                        HorizontalOptions="EndAndExpand"
+                        FontAttributes="Bold"
+                        BackgroundColor="White"/>
+
+                <!--GotoCourseButton--><!--
+                <Button x:Name="GoToCourseButton"
+                        Text="GoToCOurseButton"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        Clicked="GoToCourseBtn_Clicked"
+                        Margin="30"
+                        BackgroundColor="White"/>-->
+
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
