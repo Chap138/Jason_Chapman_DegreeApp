@@ -23,6 +23,7 @@ namespace Jason_Chapman_MobileDev_C971
         private DateTime CurrentTermEnd;
         private int currentCourse;//CourseID to pass into GoToCourseBtn_Clicked() for navigating to appropriate coursePage
         private string title = "Term Title";
+        private bool courseSaveValid;
 
         public TermPage(int termID)
         {
@@ -42,58 +43,75 @@ namespace Jason_Chapman_MobileDev_C971
 
         private void AddCourseSaveBtn_Clicked(object sender, EventArgs e)
         {
-            TermPageStartDateLabel.IsVisible = true;
-            StartDatePicker.IsVisible = true;
-            EndDatePicker.IsVisible = true;
-            TermPageEndDateLabel.IsVisible = true;
-
-            AddCourseEntry.IsVisible = false;
-            CourseInstructorName.IsVisible = false;
-            CourseInstructorPhone.IsVisible = false;
-            CourseInstructorEmail.IsVisible = false;
-            AddCourseSaveBtn.IsVisible = false;
-            AddCourseCancelBtn.IsVisible = false;
-            CourseStartDatePicker.IsVisible = false;
-            CourseStartDateLabel.IsVisible = false;
-            CourseEndDatePicker.IsVisible = false;
-            CourseEndDateLabel.IsVisible = false;
-            CourseStatusLabel.IsVisible = false;
-            CourseProgressPicker.IsVisible = false;
-            //CourseProgressPicker.SelectedItem = null;
-
-            Course course = new Course()
+            if (AddCourseEntry.Text == null ||
+                CourseInstructorName.Text == null ||
+                CourseInstructorPhone.Text == null ||
+                CourseInstructorEmail.Text == null ||
+                CourseProgressPicker.SelectedItem.ToString() == null)
             {
-                TermID = CurrentTermID,
-                CourseTitle = AddCourseEntry.Text,
-                InstructorName = CourseInstructorName.Text,
-                InstructorPhone = CourseInstructorPhone.Text,
-                InstructorEmail = CourseInstructorEmail.Text,
-                CourseStatus = CourseProgressPicker.SelectedItem.ToString(),
-                StartDate = CourseStartDatePicker.Date,
-                EndDate = CourseEndDatePicker.Date
-            };
-
-            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+                DisplayAlert(" ", "Please enter all fields.", "OK");
+            }
+            else
             {
-                conn.CreateTable<Course>();
-                conn.Insert(course);
+                TermPageStartDateLabel.IsVisible = true;
+                StartDatePicker.IsVisible = true;
+                EndDatePicker.IsVisible = true;
+                TermPageEndDateLabel.IsVisible = true;
+
+                AddCourseEntry.IsVisible = false;
+                CourseInstructorName.IsVisible = false;
+                CourseInstructorPhone.IsVisible = false;
+                CourseInstructorEmail.IsVisible = false;
+                AddCourseSaveBtn.IsVisible = false;
+                AddCourseCancelBtn.IsVisible = false;
+                CourseStartDatePicker.IsVisible = false;
+                CourseStartDateLabel.IsVisible = false;
+                CourseEndDatePicker.IsVisible = false;
+                CourseEndDateLabel.IsVisible = false;
+                CourseStatusLabel.IsVisible = false;
+                CourseProgressPicker.IsVisible = false;
+                //CourseProgressPicker.SelectedItem = null;
+
+                Course course = new Course()
+                {
+                    TermID = CurrentTermID,
+                    CourseTitle = AddCourseEntry.Text,
+                    InstructorName = CourseInstructorName.Text,
+                    InstructorPhone = CourseInstructorPhone.Text,
+                    InstructorEmail = CourseInstructorEmail.Text,
+                    CourseStatus = CourseProgressPicker.SelectedItem.ToString(),
+                    StartDate = CourseStartDatePicker.Date,
+                    EndDate = CourseEndDatePicker.Date
+                };
+
+                using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+                {
+                    conn.CreateTable<Course>();
+                    conn.Insert(course);
+                }
+
+                Button testBtn = new Button()
+                {
+                    TextColor = Color.Black,
+                    FontAttributes = FontAttributes.Bold,
+                    FontSize = 20,
+                    Margin = 30,
+                    BackgroundColor = Color.White
+                };
+
+                int courseID = course.CourseID;
+                testBtn.Clicked += (s, a) => GoToCourseBtn_Clicked(s, a, courseID);
+                testBtn.BindingContext = course;
+                testBtn.SetBinding(Button.TextProperty, "CourseTitle");
+                layout.Children.Add(testBtn);
+                AddCourseEntry.Placeholder = "Enter Course Title";
+
+                AddCourseEntry.Text = null;
+                CourseInstructorName.Text = null;
+                CourseInstructorPhone.Text = null;
+                CourseInstructorEmail.Text = null;
             }
 
-            Button testBtn = new Button()
-            {
-                TextColor = Color.Black,
-                FontAttributes = FontAttributes.Bold,
-                FontSize = 20,
-                Margin = 30,
-                BackgroundColor = Color.White
-            };
-
-            int courseID = course.CourseID;
-            testBtn.Clicked += (s, a) => GoToCourseBtn_Clicked(s, a, courseID);
-            testBtn.BindingContext = course;
-            testBtn.SetBinding(Button.TextProperty, "CourseTitle");
-            layout.Children.Add(testBtn);
-            AddCourseEntry.Placeholder = "Enter Course Title";
         }//end AddCourseSaveBtn_Clicked
 
         private void AddCourseFromDB()//Creates Buttons for all Terms in DB
