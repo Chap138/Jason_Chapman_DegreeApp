@@ -20,10 +20,7 @@ namespace Jason_Chapman_MobileDev_C971
         {
             InitializeComponent();
             BindingContext = this;
-            //AddTermBtnForTest(); //FOR TESTING ///////////////////////
-            //OnAppearing(); Not needed in Constructor
             //DeleteTermRows(); //DELETES EVERYTHING FROM THE TERM TABLE
-            //DropTermTable();
             //CreateTermTable();
             AddTermFromDb();
         }

@@ -24,20 +24,23 @@ namespace Jason_Chapman_MobileDev_C971
         private int currentCourse;//CourseID to pass into GoToCourseBtn_Clicked() for navigating to appropriate coursePage
         private string title = "Term Title";
         private bool courseSaveValid;
+        int numCourses;
 
         public TermPage(int termID)
         {
             InitializeComponent();
             CurrentTermID = termID;
             BindingContext = this;
+            //DeleteCourseRows();
             AddCourseFromDB();
-            //TermLabel.Text = CurrentTermTitle;
+            
 
         }//end constructor
+
         protected override void OnAppearing()
         {
             GetTerm();
-            DeleteButtons();
+            //DeleteButtons();
             AddCourseFromDB();
         }//end OnAppearing
 
@@ -253,27 +256,50 @@ namespace Jason_Chapman_MobileDev_C971
         }
         private void AddCourse_Clicked(object sender, EventArgs e)//ADD COURSES
         {
-            TermPageStartDateLabel.IsVisible = false;
-            StartDatePicker.IsVisible = false;
-            EndDatePicker.IsVisible = false;
-            TermPageEndDateLabel.IsVisible = false;
+            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            {
+                courseList = conn.Table<Course>().ToList();
+                for(int i = 0; i < courseList.Count; i++)
+                {
+                    if(courseList[i].TermID == CurrentTermID)
+                    {
+                        numCourses++;    
+                    }
+                }
+            }
 
-            AddCourseEntry.IsVisible = true;
-            AddCourseEntry.Focus();
-            CourseInstructorName.IsVisible = true;
-            CourseInstructorPhone.IsVisible = true;
-            CourseInstructorEmail.IsVisible = true;
-            CourseStatusLabel.IsVisible = true;
-            CourseProgressPicker.IsVisible = true;
-            CourseStartDateLabel.IsVisible = true;
-            CourseStartDatePicker.IsVisible = true;
-            CourseEndDatePicker.IsVisible = true;
-            CourseEndDateLabel.IsVisible = true;
-            AddCourseSaveBtn.IsVisible = true;
-            AddCourseCancelBtn.IsVisible = true;
-            AddCourseEntry.Text = null;
+            if (numCourses < 6)
+            {
+
+                TermPageStartDateLabel.IsVisible = false;
+                StartDatePicker.IsVisible = false;
+                EndDatePicker.IsVisible = false;
+                TermPageEndDateLabel.IsVisible = false;
+
+                AddCourseEntry.IsVisible = true;
+                AddCourseEntry.Focus();
+                CourseInstructorName.IsVisible = true;
+                CourseInstructorPhone.IsVisible = true;
+                CourseInstructorEmail.IsVisible = true;
+                CourseStatusLabel.IsVisible = true;
+                CourseProgressPicker.IsVisible = true;
+                CourseStartDateLabel.IsVisible = true;
+                CourseStartDatePicker.IsVisible = true;
+                CourseEndDatePicker.IsVisible = true;
+                CourseEndDateLabel.IsVisible = true;
+                AddCourseSaveBtn.IsVisible = true;
+                AddCourseCancelBtn.IsVisible = true;
+                AddCourseEntry.Text = null;
+            }
+            else DisplayAlert(" ", "Can not add more than 6 courses to this term.", "OK");
         }//end AddCourse_Clicked
-
+        private void DeleteCourseRows()
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            {
+                conn.DeleteAll<Course>();
+            }
+        }//end DeleteCourseRows
     }
 
     //PART OF TAPPING TITLE TO CHANGE
