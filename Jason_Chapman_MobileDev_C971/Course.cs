@@ -17,6 +17,8 @@ namespace Jason_Chapman_MobileDev_C971
         public string InstructorName { get; set; }
         public string InstructorPhone { get; set; }
         public string InstructorEmail { get; set; }
+        [MaxLength(250)]
+        public string CourseNotes { get; set; }
         
 
         //public Course(int termID, string title, DateTime start, DateTime end, string prog, string name, string phone, string email)

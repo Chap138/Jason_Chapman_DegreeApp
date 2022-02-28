@@ -31,9 +31,8 @@ namespace Jason_Chapman_MobileDev_C971
             InitializeComponent();
             CurrentTermID = termID;
             BindingContext = this;
-            DeleteCourseRows();
+            //DeleteCourseRows();
             AddCourseFromDB();
-            
 
         }//end constructor
 
@@ -50,6 +49,7 @@ namespace Jason_Chapman_MobileDev_C971
                 CourseInstructorName.Text == null ||
                 CourseInstructorPhone.Text == null ||
                 CourseInstructorEmail.Text == null ||
+                CourseNotesEditor.Text == null ||
                 CourseProgressPicker.SelectedItem.ToString() == null)
             {
                 DisplayAlert(" ", "Please enter all fields.", "OK");
@@ -73,6 +73,7 @@ namespace Jason_Chapman_MobileDev_C971
                 CourseEndDateLabel.IsVisible = false;
                 CourseStatusLabel.IsVisible = false;
                 CourseProgressPicker.IsVisible = false;
+                CourseNotesEditor.IsVisible = false;
                 //CourseProgressPicker.SelectedItem = null;
 
                 Course course = new Course()
@@ -84,8 +85,9 @@ namespace Jason_Chapman_MobileDev_C971
                     InstructorEmail = CourseInstructorEmail.Text,
                     CourseStatus = CourseProgressPicker.SelectedItem.ToString(),
                     StartDate = CourseStartDatePicker.Date,
-                    EndDate = CourseEndDatePicker.Date
-                };
+                    EndDate = CourseEndDatePicker.Date,
+                    CourseNotes = CourseNotesEditor.Text
+            };
 
                 using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
                 {
@@ -253,6 +255,7 @@ namespace Jason_Chapman_MobileDev_C971
             CourseEndDateLabel.IsVisible = false;
             CourseStatusLabel.IsVisible = false;
             CourseProgressPicker.IsVisible = false;
+            CourseNotesEditor.IsVisible = false;
         }
         private void AddCourse_Clicked(object sender, EventArgs e)//ADD COURSES
         {
@@ -260,11 +263,11 @@ namespace Jason_Chapman_MobileDev_C971
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
             {
                 courseList = conn.Table<Course>().ToList();
-                for(int i = 0; i < courseList.Count; i++)
+                for (int i = 0; i < courseList.Count; i++)
                 {
-                    if(courseList[i].TermID == CurrentTermID)
+                    if (courseList[i].TermID == CurrentTermID)
                     {
-                        numCourses++;    
+                        numCourses++;
                     }
                 }
             }
@@ -290,6 +293,7 @@ namespace Jason_Chapman_MobileDev_C971
                 CourseEndDateLabel.IsVisible = true;
                 AddCourseSaveBtn.IsVisible = true;
                 AddCourseCancelBtn.IsVisible = true;
+                CourseNotesEditor.IsVisible = true;
                 AddCourseEntry.Text = null;
             }
             else DisplayAlert(" ", "Can not add more than 6 courses to this term.", "OK");

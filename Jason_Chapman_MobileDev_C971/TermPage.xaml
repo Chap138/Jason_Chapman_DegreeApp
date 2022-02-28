@@ -102,6 +102,12 @@
                    PlaceholderColor="White"
                    TextColor="White"
                    IsVisible="false"/>
+                <Editor x:Name="CourseNotesEditor" 
+                        Placeholder="Enter notes"
+                   PlaceholderColor="White"
+                   TextColor="White"
+                   IsVisible="false"/>
+
                 <Label x:Name="CourseStartDateLabel"
                        Text="Start Date"
                        FontAttributes="Bold"
