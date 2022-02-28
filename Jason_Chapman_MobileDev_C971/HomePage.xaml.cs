@@ -69,7 +69,8 @@ namespace Jason_Chapman_MobileDev_C971
                 FontAttributes = FontAttributes.Bold,
                 FontSize = 20,
                 Margin = 30,
-                BackgroundColor = Color.White
+                BackgroundColor = Color.White,
+                CornerRadius = 10
             };
 
             int termID = term.ID;
@@ -188,7 +189,8 @@ namespace Jason_Chapman_MobileDev_C971
                         FontAttributes = FontAttributes.Bold,
                         FontSize = 20,
                         Margin = 30,
-                        BackgroundColor = Color.White
+                        BackgroundColor = Color.White,
+                        CornerRadius = 10
                     };
 
                     testBtn.Clicked += (sender, args) => GoToTermButton_Clicked(sender, args, termID);

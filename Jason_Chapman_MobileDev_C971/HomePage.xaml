@@ -54,7 +54,8 @@
                     Margin="0,5,0,10"
                     HorizontalOptions="EndAndExpand"
                     FontAttributes="Bold"
-                    BackgroundColor="White"/>
+                    BackgroundColor="White"
+                        CornerRadius="10"/>
                 <Button x:Name="AddTermCancelBtn"
                     Text="Cancel"
                     Clicked="AddTermCancelBtn_Clicked"
@@ -62,7 +63,8 @@
                     FontSize="20"
                     HorizontalOptions="EndAndExpand"
                     FontAttributes="Bold"
-                    BackgroundColor="White"/>
+                    BackgroundColor="White"
+                        CornerRadius="10"/>
 
             </StackLayout>
         </ScrollView>

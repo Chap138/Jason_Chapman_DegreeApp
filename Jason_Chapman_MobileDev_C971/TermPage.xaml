@@ -66,7 +66,8 @@
                         FontSize="20"
                         HorizontalOptions="EndAndExpand"
                         FontAttributes="Bold"
-                        BackgroundColor="White"/>
+                        BackgroundColor="White"
+                        CornerRadius="10"/>
 
                 <Button x:Name="EditTermCancelBtn"
                         Text="Cancel"
@@ -75,7 +76,9 @@
                         FontSize="20"
                         HorizontalOptions="EndAndExpand"
                         FontAttributes="Bold"
-                        BackgroundColor="White"/>
+                        BackgroundColor="White"
+                        CornerRadius="10"
+                        Margin="0,10,0,0"/>
                 <!--ADD COURSES-->
                 <!--ADD COURSES-->
                 <!--ADD COURSES-->
@@ -102,12 +105,11 @@
                    PlaceholderColor="White"
                    TextColor="White"
                    IsVisible="false"/>
-                <Editor x:Name="CourseNotesEditor" 
+                <Editor x:Name="CourseNotesEditor"
                         Placeholder="Enter notes"
-                   PlaceholderColor="White"
-                   TextColor="White"
-                   IsVisible="false"/>
-
+                        PlaceholderColor="White"
+                        TextColor="White"
+                        IsVisible="false"/>
                 <Label x:Name="CourseStartDateLabel"
                        Text="Start Date"
                        FontAttributes="Bold"
@@ -161,7 +163,8 @@
                     Margin="0,5,0,10"
                     HorizontalOptions="EndAndExpand"
                     FontAttributes="Bold"
-                    BackgroundColor="White"/>
+                    BackgroundColor="White"
+                        CornerRadius="10"/>
                 <Button x:Name="AddCourseCancelBtn"
                     Text="Cancel"
                     Clicked="AddCourseCancelBtn_Clicked"
@@ -169,7 +172,8 @@
                     FontSize="20"
                     HorizontalOptions="EndAndExpand"
                     FontAttributes="Bold"
-                    BackgroundColor="White"/>
+                    BackgroundColor="White"
+                        CornerRadius="10"/>
 
             </StackLayout>
         </ScrollView>

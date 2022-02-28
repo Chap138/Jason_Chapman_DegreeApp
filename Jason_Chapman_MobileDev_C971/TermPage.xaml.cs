@@ -39,7 +39,7 @@ namespace Jason_Chapman_MobileDev_C971
         protected override void OnAppearing()
         {
             GetTerm();
-            //DeleteButtons();
+            DeleteButtons();
             AddCourseFromDB();
         }//end OnAppearing
 
@@ -101,7 +101,8 @@ namespace Jason_Chapman_MobileDev_C971
                     FontAttributes = FontAttributes.Bold,
                     FontSize = 20,
                     Margin = 30,
-                    BackgroundColor = Color.White
+                    BackgroundColor = Color.White,
+                    CornerRadius = 10
                 };
 
                 int courseID = course.CourseID;
@@ -136,7 +137,8 @@ namespace Jason_Chapman_MobileDev_C971
                         FontAttributes = FontAttributes.Bold,
                         FontSize = 20,
                         Margin = 30,
-                        BackgroundColor = Color.White
+                        BackgroundColor = Color.White,
+                        CornerRadius = 10
                     };
 
                     testBtn.Clicked += (sender, args) => GoToCourseBtn_Clicked(sender, args, courseID);

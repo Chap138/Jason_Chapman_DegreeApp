@@ -57,7 +57,8 @@
                         FontSize="20"
                         HorizontalOptions="EndAndExpand"
                         FontAttributes="Bold"
-                        BackgroundColor="White"/>
+                        BackgroundColor="White"
+                        CornerRadius="10"/>
 
                 <Button x:Name="EditCourseCancelBtn"
                         Text="Cancel"
@@ -66,7 +67,8 @@
                         FontSize="20"
                         HorizontalOptions="EndAndExpand"
                         FontAttributes="Bold"
-                        BackgroundColor="White"/>
+                        BackgroundColor="White"
+                        CornerRadius="10"/>
 
                 <!--GotoCourseButton--><!--
                 <Button x:Name="GoToCourseButton"
