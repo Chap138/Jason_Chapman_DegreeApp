@@ -31,7 +31,7 @@ namespace Jason_Chapman_MobileDev_C971
             InitializeComponent();
             CurrentTermID = termID;
             BindingContext = this;
-            //DeleteCourseRows();
+            DeleteCourseRows();
             AddCourseFromDB();
             
 
@@ -256,6 +256,7 @@ namespace Jason_Chapman_MobileDev_C971
         }
         private void AddCourse_Clicked(object sender, EventArgs e)//ADD COURSES
         {
+            numCourses = 0;
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
             {
                 courseList = conn.Table<Course>().ToList();
