@@ -69,7 +69,13 @@
                         FontAttributes="Bold"
                         BackgroundColor="White"
                         CornerRadius="10"/>
-
+                
+                <!--SET ALERTS FOR START AND END DATES FOR COURSE-->
+                <Button x:Name="AlertTest"
+                        Text="+Alert Test"
+                        BackgroundColor="White"
+                        Clicked="AlertTest_Clicked"
+                        IsVisible="true"/>
                 <!--GotoCourseButton--><!--
                 <Button x:Name="GoToCourseButton"
                         Text="GoToCOurseButton"
