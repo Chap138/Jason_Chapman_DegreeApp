@@ -47,15 +47,15 @@ namespace Jason_Chapman_MobileDev_C971
 
             for (int i = 0; i < courseList.Count; i++)
             {
-                if(courseList[i].NotificationID > 0)
-                {
-                    CrossLocalNotifications.Current.Cancel(alertID);
-                }
                 if (courseList[i].CourseID == CurrentCourseID)
                 {
                     //alertID = courseList[i].NotificationID;
                     start = courseList[i].StartDate;
                     end = courseList[i].EndDate;
+                    if(courseList[i].NotificationID > 0)
+                    {
+                        CrossLocalNotifications.Current.Cancel(courseList[i].NotificationID);
+                    }
                     for (int j = 0; j < courseList.Count; j++)
                     {
                         if (courseList[j].NotificationID > 0)
@@ -66,6 +66,7 @@ namespace Jason_Chapman_MobileDev_C971
                     break;
                 }
             }//for i
+
             DisplayAlert(alertID.ToString(), "Notification set!\n + Start date: " + start.ToString()+ "\n" +" End date: "  + end.ToString(), "OK");//DELETE THIS except for 'Notification set!'
             CrossLocalNotifications.Current.Show(" ", "Start date: + " + start.ToString() + "\n" + "End date: + " + end.ToString(), alertID, start);
             //CrossLocalNotifications.Current.Show("Alert!!!", "End date: + " + end.ToString(), alertID, end);
