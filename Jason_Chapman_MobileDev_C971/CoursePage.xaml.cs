@@ -52,7 +52,7 @@ namespace Jason_Chapman_MobileDev_C971
                     //alertID = courseList[i].NotificationID;
                     start = courseList[i].StartDate;
                     end = courseList[i].EndDate;
-                    if(courseList[i].NotificationID > 0)
+                    if (courseList[i].NotificationID > 0)
                     {
                         CrossLocalNotifications.Current.Cancel(courseList[i].NotificationID);
                     }
@@ -67,8 +67,22 @@ namespace Jason_Chapman_MobileDev_C971
                 }
             }//for i
 
-            DisplayAlert(alertID.ToString(), "Notification set!\n + Start date: " + start.ToString()+ "\n" +" End date: "  + end.ToString(), "OK");//DELETE THIS except for 'Notification set!'
-            CrossLocalNotifications.Current.Show(" ", "Start date: + " + start.ToString() + "\n" + "End date: + " + end.ToString(), alertID, start);
+            foreach (Course row in courseList)
+            {
+                if (row.CourseID == CurrentCourseID)
+                {
+                    row.NotificationID = alertID;
+
+                    using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+                    {
+                        int rows = conn.Update(row);
+                    }
+                    break;
+                }
+            }//foreach
+
+            DisplayAlert(alertID.ToString(), "Notification set!\n" + "Start date: " + start.ToString() + "\n" + "End date: " + end.ToString(), "OK");//DELETE THIS except for 'Notification set!'
+            CrossLocalNotifications.Current.Show(" ", "Start date: " + start.ToString() + "\n" + "End date: " + end.ToString(), alertID, start);
             //CrossLocalNotifications.Current.Show("Alert!!!", "End date: + " + end.ToString(), alertID, end);
         }//end AlertTest_Clicked
     }
