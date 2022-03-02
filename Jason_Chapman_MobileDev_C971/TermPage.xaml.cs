@@ -33,6 +33,7 @@ namespace Jason_Chapman_MobileDev_C971
             CurrentTermID = termID;
             BindingContext = this;
             //DeleteCourseRows();
+            //DropCourseTableAddCourseTable();
             AddCourseFromDB();
 
         }//end constructor
@@ -308,8 +309,16 @@ namespace Jason_Chapman_MobileDev_C971
                 conn.DeleteAll<Course>();
             }
         }//end DeleteCourseRows
+        private void DropCourseTableAddCourseTable()
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            {
+                conn.DropTable<Course>();
+                conn.CreateTable<Course>();
+            }
+        }//end DropCourseTableAddCourseTable
 
-        
+
 
         //PART OF TAPPING TITLE TO CHANGE
         //TitleEntry.Completed += (sender, e) => TitleEntry_Completed(sender, e);//THIS LINE GOES IN CONSTRUCTOR
