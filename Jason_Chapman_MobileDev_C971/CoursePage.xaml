@@ -71,19 +71,12 @@
                         CornerRadius="10"/>
                 
                 <!--SET ALERTS FOR START AND END DATES FOR COURSE-->
-                <Button x:Name="AlertTest"
-                        Text="+Alert Test"
+                <Button x:Name="SetNotificationButton"
+                        Text="Set Course Notification"
                         BackgroundColor="White"
-                        Clicked="AlertTest_Clicked"
+                        Clicked="SetNotification_Clicked"
                         IsVisible="true"/>
-                <!--GotoCourseButton--><!--
-                <Button x:Name="GoToCourseButton"
-                        Text="GoToCOurseButton"
-                        FontSize="20"
-                        FontAttributes="Bold"
-                        Clicked="GoToCourseBtn_Clicked"
-                        Margin="30"
-                        BackgroundColor="White"/>-->
+                
 
             </StackLayout>
         </ScrollView>
