@@ -4,7 +4,9 @@
              x:Class="Jason_Chapman_MobileDev_C971.CoursePage">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout BackgroundColor="Black">
+            <StackLayout x:Name="layout"
+                BackgroundColor="Black">
+                
                 <Label x:Name="CourseLabel"
                    TextColor="White"
                    Margin="20,15,0,30"
@@ -74,7 +76,7 @@
                 <Button x:Name="SetNotificationButton"
                         Text="Set Course Notification"
                         BackgroundColor="White"
-                        Clicked="SetNotification_Clicked"
+                        Clicked="SetCourseNotification_Clicked"
                         IsVisible="true"/>
                 
 

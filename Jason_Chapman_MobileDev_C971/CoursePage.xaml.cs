@@ -18,8 +18,8 @@ namespace Jason_Chapman_MobileDev_C971
         private int CurrentCourseID;
         List<Course> courseList;
         List<Assessment> assmtList;
-        DateTime Start;
-        DateTime End;
+        DateTime start;
+        DateTime end;
         private string CurrentCourseTitle;
         private DateTime CurrentCourseStart;
         private DateTime CurrentCourseEnd;
@@ -31,8 +31,8 @@ namespace Jason_Chapman_MobileDev_C971
         {
             InitializeComponent();
             CurrentCourseID = courseID;
-            //DeleteAssessmentRows();
-            //DropAssmtTableAddAssmtTable();
+            //DropAddAssmtTable();
+            //DropAddAssmtTable();
             //AddAssessmentFromDB();
         }
         protected override void OnAppearing()
@@ -112,21 +112,21 @@ namespace Jason_Chapman_MobileDev_C971
             EditCourseCancelBtn.IsVisible = false;
         }
 
-        private void AddAssessmentCancelBtn_Clicked(object sender, EventArgs e)
+        private void AddAssmtCancelBtn_Clicked(object sender, EventArgs e)
         {
             CoursePageStartDateLabel.IsVisible = true;
             StartDatePicker.IsVisible = true;
             EndDatePicker.IsVisible = true;
             CoursePageEndDateLabel.IsVisible = true;
 
-            AddAssessmentEntry.IsVisible = false;
-            AddAssessmentSaveBtn.IsVisible = false;
-            AddAssessmentCancelBtn.IsVisible = false;
-            AssessmentStartDatePicker.IsVisible = false;
-            AssessmentStartDateLabel.IsVisible = false;
-            AssessmentEndDatePicker.IsVisible = false;
-            AssessmentEndDateLabel.IsVisible = false;
-            AssessmentNotesEditor.IsVisible = false;
+            AddAssmtEntry.IsVisible = false;
+            AddAssmtSaveBtn.IsVisible = false;
+            AddAssmtCancelBtn.IsVisible = false;
+            AssmtStartDatePicker.IsVisible = false;
+            AssmtStartDateLabel.IsVisible = false;
+            AssmtEndDatePicker.IsVisible = false;
+            AssmtEndDateLabel.IsVisible = false;
+            AssmtNotesEditor.IsVisible = false;
         }//end AddAssessmentCancelBtn_Clicked
         private void AddAssmt_Clicked(object sender, EventArgs e)//ADD ASSESSMENTS
         {
@@ -151,23 +151,23 @@ namespace Jason_Chapman_MobileDev_C971
                 EndDatePicker.IsVisible = false;
                 CoursePageEndDateLabel.IsVisible = false;
 
-                AddAssessmentEntry.IsVisible = true;
-                AddAssessmentEntry.Focus();
-                AssessmentDueDateLabel.IsVisible = true;
-                AssessmentDueDatePicker.IsVisible = true;
-                AddAssessmentSaveBtn.IsVisible = true;
-                AddAssessmentCancelBtn.IsVisible = true;
-                AssessmentNotesEditor.IsVisible = true;
-                AddAssessmentEntry.Text = null;
+                AddAssmtEntry.IsVisible = true;
+                AddAssmtEntry.Focus();
+                AssmtDueDateLabel.IsVisible = true;
+                AssmtDueDatePicker.IsVisible = true;
+                AssmtSaveBtn.IsVisible = true;
+                AssmtCancelBtn.IsVisible = true;
+                AssmtNotesEditor.IsVisible = true;
+                AddAssmtEntry.Text = null;
             }
             else DisplayAlert(" ", "Can not add more than 2 assessments to this course. (One performance and one objective)", "OK");
         }//end AddAssmt_Clicked
 
 
-        private void AddAssessmentSaveBtn_Clicked(object sender, EventArgs e)
+        private void AddAssmtSaveBtn_Clicked(object sender, EventArgs e)
         {
-            if (AddAssessmentEntry.Text == null ||
-                AssessmentNotesEditor.Text == null ||)
+            if (AddAssmtEntry.Text == null ||
+                AssmtNotesEditor.Text == null ||)
             {
                 DisplayAlert(" ", "Please enter all fields.", "OK");
             }
@@ -178,13 +178,12 @@ namespace Jason_Chapman_MobileDev_C971
                 EndDatePicker.IsVisible = true;
                 CoursePageEndDateLabel.IsVisible = true;
 
-                AddAssessmentEntry.IsVisible = false;
-                AddAssessmentSaveBtn.IsVisible = false;
-                AddAssessmentCancelBtn.IsVisible = false;
-                AssessmentDueDatePicker.IsVisible = false;
-                AssessmentDueDateLabel.IsVisible = false;
-                CourseNotesEditor.IsVisible = false;
-                //CourseProgressPicker.SelectedItem = null;
+                AddAssmtEntry.IsVisible = false;
+                AddAssmtSaveBtn.IsVisible = false;
+                AddAssmtCancelBtn.IsVisible = false;
+                AssmtDueDatePicker.IsVisible = false;
+                AssmtDueDateLabel.IsVisible = false;
+                AssmtNotesEditor.IsVisible = false;
 
                 Assessment assmt = new Assessment()
                 {
@@ -210,33 +209,30 @@ namespace Jason_Chapman_MobileDev_C971
                     CornerRadius = 10
                 };
 
-                int AssessmentID = assmt.CourseID;
-                testBtn.Clicked += (s, a) => GoToAssmtBtn_Clicked(s, a, ID);
-                testBtn.BindingContext = course;
-                testBtn.SetBinding(Button.TextProperty, "CourseTitle");
+                int assmtID = assmt.AssessmentID;
+                testBtn.Clicked += (s, a) => GoToAssmtBtn_Clicked(s, a, assmtID);
+                testBtn.BindingContext = assmt;
+                testBtn.SetBinding(Button.TextProperty, "AssessmentTitle");
                 layout.Children.Add(testBtn);
-                AddCourseEntry.Placeholder = "Enter Course Title";
+                AddAssmtEntry.Placeholder = "Enter Assessment Title";
 
-                AddCourseEntry.Text = null;
-                CourseInstructorName.Text = null;
-                CourseInstructorPhone.Text = null;
-                CourseInstructorEmail.Text = null;
+                AddAssessmentEntry.Text = null;
             }
 
         }//end AddCourseSaveBtn_Clicked
 
-        private void AddAssessmentFromDB()//Creates Buttons for all Terms in DB
+        private void AddAssmtFromDB()//Creates Buttons for all Terms in DB
         {
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
             {
-                courseList = conn.Table<Course>().ToList();
+                assmtList = conn.Table<Assessment>().ToList();
 
-                for (int i = 0; i < courseList.Count; i++)
+                for (int i = 0; i < assmtList.Count; i++)
                 {
-                    int courseID = courseList[i].CourseID;
-                    string btnTitle = courseList[i].CourseTitle;
+                    int assmtID = assmtList[i].AssessmentID;
+                    string btnTitle = assmtList[i].AssessmentTitle;
 
-                    Button testBtn = new Button()
+                    Button assmtBtn = new Button()
                     {
                         TextColor = Color.Black,
                         FontAttributes = FontAttributes.Bold,
@@ -246,14 +242,14 @@ namespace Jason_Chapman_MobileDev_C971
                         CornerRadius = 10
                     };
 
-                    testBtn.Clicked += (sender, args) => GoToCourseBtn_Clicked(sender, args, courseID);
-                    testBtn.BindingContext = courseList[i];
-                    testBtn.SetBinding(Button.TextProperty, "CourseTitle");
+                    assmtBtn.Clicked += (sender, args) => GoToAssessmentBtn_Clicked(sender, args, assmtID);
+                    assmtBtn.BindingContext = assmtList[i];
+                    assmtBtn.SetBinding(Button.TextProperty, "AssessmentTitle");
 
-                    layout.Children.Add(testBtn);
+                    layout.Children.Add(assmtBtn);
                 }
             }
-        }//end AddCourseFromDB
+        }//end AddAssmtFromDB
         private void DeleteButtons()//Delete buttons to replace refreshed
         {
             for (int i = 20; i < layout.Children.Count;)
@@ -262,18 +258,15 @@ namespace Jason_Chapman_MobileDev_C971
             }
         }//end DeleteButtons
 
-        private async void GoToAssessmentBtn_Clicked(object sender, EventArgs e, int id)
+        private async void GoToAssmtBtn_Clicked(object sender, EventArgs e, int id)
         {
 
-            await Navigation.PushAsync(new CoursePage(id));//USE WHEN READY TO ADD COURSES
+            await Navigation.PushAsync(new AssessmentPage(id));//USE WHEN READY TO ADD ASSMTS
 
-            //await Navigation.PushAsync(new Course1Page());//TEST TEST TEST delete when ready to add courses
 
         }//end GoToAssessmentBtn_Clicked
-        private void SetNotification_Clicked(object sender, EventArgs e/*, DateTime start, DateTime end*/)
+        private void SetCourseNotification_Clicked(object sender, EventArgs e)
         {
-            //alertID++;
-
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
             {
                 courseList = conn.Table<Course>().ToList();
@@ -283,7 +276,6 @@ namespace Jason_Chapman_MobileDev_C971
             {
                 if (courseList[i].CourseID == CurrentCourseID)
                 {
-                    //alertID = courseList[i].NotificationID;
                     start = courseList[i].StartDate;
                     end = courseList[i].EndDate;
                     if (courseList[i].NotificationID > 0)
@@ -319,14 +311,14 @@ namespace Jason_Chapman_MobileDev_C971
             CrossLocalNotifications.Current.Show(" ", "Start date: " + start.ToString() + "\n" + "End date: " + end.ToString(), alertID, start);
             //CrossLocalNotifications.Current.Show("Alert!!!", "End date: + " + end.ToString(), alertID, end);
         }//end AlertTest_Clicked
-        private void DeleteAssessmentRows()
+        private void DeleteAssmtRows()
         {
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
             {
                 conn.DeleteAll<Assessment>();
             }
         }//end DeleteCourseRows
-        private void DropAssmtTableAddAssmtTable()
+        private void DropAddAssmtTable()
         {
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
             {
