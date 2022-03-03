@@ -287,11 +287,9 @@ namespace Jason_Chapman_MobileDev_C971
 
         private async void GoToAssmtBtn_Clicked(object sender, EventArgs e, int id)
         {
-
             await Navigation.PushAsync(new AssessmentPage(id));//USE WHEN READY TO ADD ASSMTS
 
-
-        }//end GoToAssessmentBtn_Clicked
+        }//end GoToAssmtBtn_Clicked
         private void SetCourseNotification_Clicked(object sender, EventArgs e)
         {
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
@@ -338,7 +336,7 @@ namespace Jason_Chapman_MobileDev_C971
             //DisplayAlert("Alert ID: " + alertID.ToString(), "Notification set!\n" + "Start date: " + start.ToString() + "\n" + "End date: " + end.ToString(), "OK");//DELETE THIS except for 'Notification set!'
             CrossLocalNotifications.Current.Show(" ", "Start date: " + start.ToString() + "\n" + "End date: " + end.ToString(), alertID, start);
             //CrossLocalNotifications.Current.Show("Alert!!!", "End date: + " + end.ToString(), alertID, end);
-        }//end AlertTest_Clicked
+        }//end SetCourseNotification_Clicked
         private void DeleteAssmtRows()
         {
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
@@ -372,8 +370,7 @@ namespace Jason_Chapman_MobileDev_C971
                             conn.Delete(row);
                         }
                         await DisplayAlert(" ", "Course deleted.", "OK");
-                        await Navigation.PopAsync();
-                        //await Navigation.PushAsync(new TermPage(currentTermID));//USE WHEN READY TO ADD COURSES
+                        await Navigation.PopAsync();//Goes back to previous page
 
                         break;
                     }

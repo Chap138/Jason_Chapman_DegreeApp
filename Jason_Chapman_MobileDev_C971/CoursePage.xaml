@@ -84,9 +84,6 @@
                        FontSize="20"
                         IsReadOnly="true"
                         Margin="20,0,0,0"/>
-                <Button x:Name="DeleteCourse"
-                        Text="Delete Course"
-                        Clicked="DeleteCourse_Clicked"/>
 
                 <!--EDIT COURSE INFO-->
                 <Entry x:Name="EditCourseTitleEntry"
@@ -154,7 +151,6 @@
                    PlaceholderColor="White"
                    TextColor="White"
                    IsVisible="false"/>
-
                 <Editor x:Name="AssmtNotesEditor"
                         Placeholder="Enter notes"
                         PlaceholderColor="White"
@@ -173,7 +169,6 @@
                             Margin="0,0,100,10"
                             HorizontalOptions="StartAndExpand"
                             IsVisible="false"/>
-
                 <Button x:Name="AddAssmtSaveBtn"
                     Text="Save"
                     Clicked="AddAssmtSaveBtn_Clicked"
@@ -193,7 +188,10 @@
                     FontAttributes="Bold"
                     BackgroundColor="White"
                         CornerRadius="10"/>
-
+                
+                <Button x:Name="DeleteCourse"
+                        Text="Delete Course"
+                        Clicked="DeleteCourse_Clicked"/>
 
             </StackLayout>
         </ScrollView>
