@@ -122,10 +122,8 @@ namespace Jason_Chapman_MobileDev_C971
             AddAssmtEntry.IsVisible = false;
             AddAssmtSaveBtn.IsVisible = false;
             AddAssmtCancelBtn.IsVisible = false;
-            AssmtStartDatePicker.IsVisible = false;
-            AssmtStartDateLabel.IsVisible = false;
-            AssmtEndDatePicker.IsVisible = false;
-            AssmtEndDateLabel.IsVisible = false;
+            AssmtDueDatePicker.IsVisible = false;
+            AssmtDueDateLabel.IsVisible = false;
             AssmtNotesEditor.IsVisible = false;
         }//end AddAssessmentCancelBtn_Clicked
         private void AddAssmt_Clicked(object sender, EventArgs e)//ADD ASSESSMENTS
@@ -155,8 +153,8 @@ namespace Jason_Chapman_MobileDev_C971
                 AddAssmtEntry.Focus();
                 AssmtDueDateLabel.IsVisible = true;
                 AssmtDueDatePicker.IsVisible = true;
-                AssmtSaveBtn.IsVisible = true;
-                AssmtCancelBtn.IsVisible = true;
+                AddAssmtSaveBtn.IsVisible = true;
+                AddAssmtCancelBtn.IsVisible = true;
                 AssmtNotesEditor.IsVisible = true;
                 AddAssmtEntry.Text = null;
             }
@@ -167,7 +165,7 @@ namespace Jason_Chapman_MobileDev_C971
         private void AddAssmtSaveBtn_Clicked(object sender, EventArgs e)
         {
             if (AddAssmtEntry.Text == null ||
-                AssmtNotesEditor.Text == null ||)
+                AssmtNotesEditor.Text == null)
             {
                 DisplayAlert(" ", "Please enter all fields.", "OK");
             }
@@ -188,9 +186,9 @@ namespace Jason_Chapman_MobileDev_C971
                 Assessment assmt = new Assessment()
                 {
                     CourseID = CurrentCourseID,
-                    AssmtTitle = AddAssmtEntry.Text,
+                    AssessmentTitle = AddAssmtEntry.Text,
                     DueDate = AssmtDueDatePicker.Date,
-                    AssmtNotes = AssmtNotesEditor.Text
+                    AssessmentNotes = AssmtNotesEditor.Text
                 };
 
                 using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
@@ -216,7 +214,7 @@ namespace Jason_Chapman_MobileDev_C971
                 layout.Children.Add(testBtn);
                 AddAssmtEntry.Placeholder = "Enter Assessment Title";
 
-                AddAssessmentEntry.Text = null;
+                AddAssmtEntry.Text = null;
             }
 
         }//end AddCourseSaveBtn_Clicked
@@ -242,7 +240,7 @@ namespace Jason_Chapman_MobileDev_C971
                         CornerRadius = 10
                     };
 
-                    assmtBtn.Clicked += (sender, args) => GoToAssessmentBtn_Clicked(sender, args, assmtID);
+                    assmtBtn.Clicked += (sender, args) => GoToAssmtBtn_Clicked(sender, args, assmtID);
                     assmtBtn.BindingContext = assmtList[i];
                     assmtBtn.SetBinding(Button.TextProperty, "AssessmentTitle");
 
