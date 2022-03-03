@@ -52,7 +52,7 @@ namespace Jason_Chapman_MobileDev_C971
                 CourseInstructorPhone.Text == null ||
                 CourseInstructorEmail.Text == null ||
                 CourseNotesEditor.Text == null ||
-                CourseProgressPicker.SelectedItem.ToString() == null)
+                CourseProgressPicker.SelectedItem == null)
             {
                 DisplayAlert(" ", "Please enter all fields.", "OK");
             }
@@ -155,7 +155,7 @@ namespace Jason_Chapman_MobileDev_C971
 
         private void DeleteButtons()//Delete buttons to replace refreshed
         {
-            for (int i = 20; i < layout.Children.Count;)
+            for (int i = 21; i < layout.Children.Count;)
             {
                 layout.Children.RemoveAt(i);
             }

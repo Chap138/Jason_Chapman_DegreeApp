@@ -94,15 +94,6 @@ namespace Jason_Chapman_MobileDev_C971
 
         private void EditCourseSaveBtn_Clicked(object sender, EventArgs e)
         {
-            EditCourseTitleEntry.IsVisible = false;
-            EditCourseInstructorName.IsVisible = false;
-            EditCourseInstructorPhone.IsVisible = false;
-            EditCourseInstructorEmail.IsVisible = false;
-            EditCourseNotesEditor.IsVisible = false;
-            EditCourseProgressPicker.IsVisible = false;
-            EditCourseSaveBtn.IsVisible = false;
-            EditCourseCancelBtn.IsVisible = false;
-
             foreach (Course row in courseList)
             {
                 if (row.CourseID == CurrentCourseID)
@@ -113,9 +104,46 @@ namespace Jason_Chapman_MobileDev_C971
                     { row.CourseTitle = EditCourseTitleEntry.Text; CourseLabel.Text = EditCourseTitleEntry.Text; }
 
 
-                    row.CourseStatus = CurrentCourseProgress;
-                    row.CourseNotes = CurrentCourseNotes;
+                    //THIS DOESN'T CHANGE progress to string
+                    if (EditCourseProgressPicker.SelectedItem.ToString() == null)
+                    { row.CourseStatus = CurrentCourseProgress; }
+                    else
+                    {
+                        row.CourseStatus = EditCourseProgressPicker.SelectedItem.ToString();
+                        ProgressLabel.Text = EditCourseProgressPicker.SelectedItem.ToString();
+                    }
 
+                    if (EditCourseInstructorName.Text == null)
+                    { row.InstructorName = CurrentCourseInstructorName; }
+                    else
+                    {
+                        row.InstructorName = EditCourseInstructorName.Text;
+                        InstructorName.Text = EditCourseInstructorName.Text;
+                    }
+
+                    if (EditCourseInstructorPhone.Text == null)
+                    { row.InstructorPhone = CurrentCourseInstructorPhone; }
+                    else
+                    {
+                        row.InstructorPhone = EditCourseInstructorPhone.Text;
+                        InstructorPhone.Text = EditCourseInstructorPhone.Text;
+                    }
+
+                    if (EditCourseInstructorEmail.Text == null)
+                    { row.InstructorEmail = CurrentCourseInstructorEmail; }
+                    else
+                    {
+                        row.InstructorEmail = EditCourseInstructorEmail.Text;
+                        InstructorEmail.Text = EditCourseInstructorEmail.Text;
+                    }
+
+                    if (EditCourseNotesEditor.Text == null)
+                    { row.CourseNotes = CurrentCourseNotes; }
+                    else
+                    {
+                        row.CourseNotes = EditCourseNotesEditor.Text;
+                        CourseNotes.Text = EditCourseNotesEditor.Text;
+                    }
 
                     row.StartDate = StartDatePicker.Date;
                     row.EndDate = EndDatePicker.Date;
@@ -127,6 +155,14 @@ namespace Jason_Chapman_MobileDev_C971
                     break;
                 }
             }
+            EditCourseTitleEntry.IsVisible = false;
+            EditCourseInstructorName.IsVisible = false;
+            EditCourseInstructorPhone.IsVisible = false;
+            EditCourseInstructorEmail.IsVisible = false;
+            EditCourseNotesEditor.IsVisible = false;
+            EditCourseProgressPicker.IsVisible = false;
+            EditCourseSaveBtn.IsVisible = false;
+            EditCourseCancelBtn.IsVisible = false;
         }//end EditCourseSaveBtn_Clicked
 
         private void EditCourseCancelBtn_Clicked(object sender, EventArgs e)
