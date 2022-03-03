@@ -2,18 +2,35 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Jason_Chapman_MobileDev_C971.CoursePage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="EditCourse"
+                     Clicked="EditCourse_Clicked"
+                     Text="Edit"/>
+        <ToolbarItem x:Name="AddAssmt"
+                     Clicked="AddAssmt_Clicked"  
+                     Text="+Assessment"/>
+        <ToolbarItem x:Name="SetNotificationButton"
+                     Clicked="SetCourseNotification_Clicked"  
+                     Text="Set Alert"/>
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
         <ScrollView>
             <StackLayout x:Name="layout"
                 BackgroundColor="Black">
-                
+
                 <Label x:Name="CourseLabel"
                    TextColor="White"
-                   Margin="20,15,0,30"
+                   Margin="0,15,0,0"
                    FontSize="35"
                    FontAttributes="Bold">
                 </Label>
-
+                <Label x:Name="ProgressLabel"
+                   TextColor="White"
+                   Margin="20,0,0,30"
+                   FontSize="25"
+                   FontAttributes="None">
+                </Label>
                 <!--StartDatePicker-->
                 <Label x:Name="CoursePageStartDateLabel"
                        Text="Start Date"
@@ -22,11 +39,10 @@
                        FontSize="25"/>
                 <DatePicker x:Name="StartDatePicker"
                             TextColor="White"
-                            FontAttributes="Bold"
-                            FontSize="25"
-                            Margin="0,0,100,10"
+                            FontAttributes="None"
+                            FontSize="20"
+                            Margin="20,0,0,0"
                             HorizontalOptions="StartAndExpand"/>
-
                 <!--EndDatePicker-->
                 <Label x:Name="CoursePageEndDateLabel"
                        Text="End Date"
@@ -35,23 +51,84 @@
                        FontSize="25"/>
                 <DatePicker x:Name="EndDatePicker"
                             TextColor="White"
-                            FontAttributes="Bold"
-                            FontSize="25"
-                            Margin="0,0,100,10"
+                            FontAttributes="None"
+                            FontSize="20"
+                            Margin="20,0,0,0"
                             HorizontalOptions="StartAndExpand"/>
-
-                <!--TitleEntry-->
-                <Entry x:Name="TitleEntry"
+                <Label x:Name="Instructor"
+                       Text="Instructor"
                        TextColor="White"
-                       Placeholder="Edit Term Title"
-                       PlaceholderColor="White"
+                       FontAttributes="Bold"
+                       FontSize="25"/>
+                <Label x:Name="InstructorName"
+                       TextColor="White"
                        FontSize="20"
-                       Margin="20,15,0,0"
+                       Margin="20,0,0,0"/>
+                <Label x:Name="InstructorPhone"
+                       TextColor="White"
+                       FontSize="20"
+                       Margin="20,0,0,0"/>
+                <Label x:Name="InstructorEmail"
+                       TextColor="White"
+                       FontSize="20"
+                       Margin="20,0,0,0"/>
+                <Label x:Name="Notes"
+                       Text="Notes"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       FontSize="25"
+                       Margin="0,20,0,0"/>
+                <Editor x:Name="CourseNotes"
+                        FontAttributes="None"
+                       TextColor="White"
+                       FontSize="20"
+                        IsReadOnly="true"
+                        Margin="20,0,0,0"/>
+                <Button x:Name="DeleteCourse"
+                        Text="Delete Course"
+                        Clicked="DeleteCourse_Clicked"/>
+
+                <!--EDIT COURSE INFO-->
+                <Entry x:Name="EditCourseTitleEntry"
+                       TextColor="White"
+                       Placeholder="Edit Course Title"
+                       PlaceholderColor="White"
                        IsVisible="false"
                        VerticalTextAlignment="Start"
                        HorizontalTextAlignment="Start"/>
+                <Entry x:Name="EditCourseInstructorName"
+                    Placeholder="Enter instructor name"
+                   PlaceholderColor="White"
+                   TextColor="White"
+                   IsVisible="false"/>
+                <Entry x:Name="EditCourseInstructorPhone"
+                    Placeholder="Enter instructor phone number"
+                   PlaceholderColor="White"
+                   TextColor="White"
+                   IsVisible="false"/>
+                <Entry x:Name="EditCourseInstructorEmail"
+                    Placeholder="Enter instructor email"
+                   PlaceholderColor="White"
+                   TextColor="White"
+                   IsVisible="false"/>
+                <Editor x:Name="EditCourseNotesEditor"
+                        Placeholder="Enter notes"
+                        PlaceholderColor="White"
+                        TextColor="White"
+                        IsVisible="false"/>
+                <Picker x:Name="EditCourseProgressPicker"
+                        BackgroundColor="White"
+                        TextColor="Black"
+                        FontSize="20"
+                        IsVisible="false">
+                    <Picker.Items>
+                        <x:String>In Progress</x:String>
+                        <x:String>Completed</x:String>
+                        <x:String>Dropped</x:String>
+                        <x:String>Plan To Take</x:String>
+                    </Picker.Items>
+                </Picker>
 
-                <!--EditTermSaveBtn-->
                 <Button x:Name="EditCourseSaveBtn"
                         Text="Save"
                         IsVisible="false"
@@ -61,7 +138,6 @@
                         FontAttributes="Bold"
                         BackgroundColor="White"
                         CornerRadius="10"/>
-
                 <Button x:Name="EditCourseCancelBtn"
                         Text="Cancel"
                         IsVisible="false"
@@ -71,13 +147,6 @@
                         FontAttributes="Bold"
                         BackgroundColor="White"
                         CornerRadius="10"/>
-                
-                <!--SET ALERTS FOR START AND END DATES FOR COURSE-->
-                <Button x:Name="SetNotificationButton"
-                        Text="Set Course Notification"
-                        BackgroundColor="White"
-                        Clicked="SetCourseNotification_Clicked"
-                        IsVisible="true"/>
 
                 <!--ADD ASSESSMENT ADD ASSESSMENT ADD ASSESSMENT ADD ASSESSMENT ADD ASSESSMENT-->
                 <Entry x:Name="AddAssmtEntry"

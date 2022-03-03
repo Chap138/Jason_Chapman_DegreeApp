@@ -118,6 +118,7 @@ namespace Jason_Chapman_MobileDev_C971
                 CourseInstructorName.Text = null;
                 CourseInstructorPhone.Text = null;
                 CourseInstructorEmail.Text = null;
+                CourseNotesEditor.Text = null;
             }
 
         }//end AddCourseSaveBtn_Clicked

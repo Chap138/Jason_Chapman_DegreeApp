@@ -21,7 +21,12 @@ namespace Jason_Chapman_MobileDev_C971
         DateTime start;
         DateTime end;
         private string CurrentCourseTitle;
+        private string CurrentCourseProgress;
+        private string CurrentCourseNotes;
         private DateTime CurrentCourseStart;
+        private string CurrentCourseInstructorName;
+        private string CurrentCourseInstructorPhone;
+        private string CurrentCourseInstructorEmail;
         private DateTime CurrentCourseEnd;
         //private string title = "Course Title";
         //private bool courseSaveValid;
@@ -37,9 +42,9 @@ namespace Jason_Chapman_MobileDev_C971
         }
         protected override void OnAppearing()
         {
-            //GetCourse();
+            GetCourse();
             //DeleteButtons();
-            //AddCourseFromDB();
+            //AddAssmtFromDB();
         }//end OnAppearing
         public void GetCourse()//Update course info when page appears
         {
@@ -54,28 +59,47 @@ namespace Jason_Chapman_MobileDev_C971
                 if (row.CourseID == CurrentCourseID)
                 {
                     CurrentCourseTitle = row.CourseTitle;
+                    CurrentCourseProgress = row.CourseStatus;
                     CurrentCourseStart = row.StartDate;
                     CurrentCourseEnd = row.EndDate;
+                    CurrentCourseInstructorName = row.InstructorName;
+                    CurrentCourseInstructorPhone = row.InstructorPhone;
+                    CurrentCourseInstructorEmail = row.InstructorEmail;
+                    CurrentCourseNotes = row.CourseNotes;
                 }
             }
             CourseLabel.Text = CurrentCourseTitle;
+            ProgressLabel.Text = "Status: " + CurrentCourseProgress;
             StartDatePicker.Date = CurrentCourseStart;
             EndDatePicker.Date = CurrentCourseEnd;
-            //DisplayAlert(CurrentTermTitle, CurrentTermStart.ToString(), CurrentTermEnd.ToString());//Test to display CurrentTerm properties 
+            InstructorName.Text = "Name: " + CurrentCourseInstructorName;
+            InstructorPhone.Text = "Phone: " + CurrentCourseInstructorPhone;
+            InstructorEmail.Text = "Email: " + CurrentCourseInstructorEmail;
+            CourseNotes.Text = CurrentCourseNotes;
         }//end GetCourse()
 
         private void EditCourse_Clicked(object sender, EventArgs e)
         {
             //Navigation.PushAsync(new EditTermPage(CurrentTermID));
-            TitleEntry.IsVisible = true;
-            TitleEntry.Focus();
+            EditCourseTitleEntry.IsVisible = true;
+            EditCourseTitleEntry.Focus();
+            EditCourseInstructorName.IsVisible = true;
+            EditCourseInstructorPhone.IsVisible = true;
+            EditCourseInstructorEmail.IsVisible = true;
+            EditCourseNotesEditor.IsVisible = true;
+            EditCourseProgressPicker.IsVisible = true;
             EditCourseSaveBtn.IsVisible = true;
             EditCourseCancelBtn.IsVisible = true;
         }//end EditCourse_Clicked
 
         private void EditCourseSaveBtn_Clicked(object sender, EventArgs e)
         {
-            TitleEntry.IsVisible = false;
+            EditCourseTitleEntry.IsVisible = false;
+            EditCourseInstructorName.IsVisible = false;
+            EditCourseInstructorPhone.IsVisible = false;
+            EditCourseInstructorEmail.IsVisible = false;
+            EditCourseNotesEditor.IsVisible = false;
+            EditCourseProgressPicker.IsVisible = false;
             EditCourseSaveBtn.IsVisible = false;
             EditCourseCancelBtn.IsVisible = false;
 
@@ -83,15 +107,15 @@ namespace Jason_Chapman_MobileDev_C971
             {
                 if (row.CourseID == CurrentCourseID)
                 {
-                    if (TitleEntry.Text == null)
-                    {
-                        row.CourseTitle = CurrentCourseTitle;
-                    }
+                    if (EditCourseTitleEntry.Text == null)
+                    { row.CourseTitle = CurrentCourseTitle; }
                     else
-                    {
-                        row.CourseTitle = TitleEntry.Text;
-                        CourseLabel.Text = TitleEntry.Text;
-                    }
+                    { row.CourseTitle = EditCourseTitleEntry.Text; CourseLabel.Text = EditCourseTitleEntry.Text; }
+
+
+                    row.CourseStatus = CurrentCourseProgress;
+                    row.CourseNotes = CurrentCourseNotes;
+
 
                     row.StartDate = StartDatePicker.Date;
                     row.EndDate = EndDatePicker.Date;
@@ -107,7 +131,12 @@ namespace Jason_Chapman_MobileDev_C971
 
         private void EditCourseCancelBtn_Clicked(object sender, EventArgs e)
         {
-            TitleEntry.IsVisible = false;
+            EditCourseTitleEntry.IsVisible = false;
+            EditCourseInstructorName.IsVisible = false;
+            EditCourseInstructorPhone.IsVisible = false;
+            EditCourseInstructorEmail.IsVisible = false;
+            EditCourseNotesEditor.IsVisible = false;
+            EditCourseProgressPicker.IsVisible = false;
             EditCourseSaveBtn.IsVisible = false;
             EditCourseCancelBtn.IsVisible = false;
         }
@@ -305,7 +334,8 @@ namespace Jason_Chapman_MobileDev_C971
                 }
             }//foreach
 
-            DisplayAlert(alertID.ToString(), "Notification set!\n" + "Start date: " + start.ToString() + "\n" + "End date: " + end.ToString(), "OK");//DELETE THIS except for 'Notification set!'
+            DisplayAlert(" ", "Notification set!", "OK");
+            //DisplayAlert("Alert ID: " + alertID.ToString(), "Notification set!\n" + "Start date: " + start.ToString() + "\n" + "End date: " + end.ToString(), "OK");//DELETE THIS except for 'Notification set!'
             CrossLocalNotifications.Current.Show(" ", "Start date: " + start.ToString() + "\n" + "End date: " + end.ToString(), alertID, start);
             //CrossLocalNotifications.Current.Show("Alert!!!", "End date: + " + end.ToString(), alertID, end);
         }//end AlertTest_Clicked
@@ -325,5 +355,31 @@ namespace Jason_Chapman_MobileDev_C971
             }
         }//end DropCourseTableAddCourseTable
 
+        private async void DeleteCourse_Clicked(object sender, EventArgs e)
+        {
+            bool answer = await DisplayAlert("Alert!", "Are you sure you want to delete this course?", "Yes", "No");
+            int currentTermID;
+
+            if (answer)
+            {
+                foreach (Course row in courseList)
+                {
+                    if (row.CourseID == CurrentCourseID)
+                    {
+                        currentTermID = row.TermID;
+                        using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+                        {
+                            conn.Delete(row);
+                        }
+                        await DisplayAlert(" ", "Course deleted.", "OK");
+                        await Navigation.PopAsync();
+                        //await Navigation.PushAsync(new TermPage(currentTermID));//USE WHEN READY TO ADD COURSES
+
+                        break;
+                    }
+                }
+            }
+            else return;
+        }//end DeleteCourse_Clicked
     }
 }

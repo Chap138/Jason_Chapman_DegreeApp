@@ -17,7 +17,7 @@
                 
                 <Label x:Name="TermLabel"
                    TextColor="White"
-                   Margin="20,15,0,30"
+                   Margin="0,15,0,20"
                    FontSize="35"
                    FontAttributes="Bold">
                 </Label>
@@ -29,9 +29,9 @@
                        FontSize="25"/>
                 <DatePicker x:Name="StartDatePicker"
                             TextColor="White"
-                            FontAttributes="Bold"
-                            FontSize="25"
-                            Margin="0,0,100,10"
+                            FontAttributes="None"
+                            FontSize="20"
+                            Margin="20,0,0,0"
                             HorizontalOptions="StartAndExpand"/>
 
                 <!--EndDatePicker-->
@@ -42,9 +42,9 @@
                        FontSize="25"/>
                 <DatePicker x:Name="EndDatePicker"
                             TextColor="White"
-                            FontAttributes="Bold"
-                            FontSize="25"
-                            Margin="0,0,100,10"
+                            FontAttributes="None"
+                            FontSize="20"
+                            Margin="20,0,0,0"
                             HorizontalOptions="StartAndExpand"/>
 
                 <!--TitleEntry-->
@@ -86,7 +86,7 @@
                 <!--ADD COURSES-->
                 <!--ADD COURSES-->
                 <Entry x:Name="AddCourseEntry"
-                    Placeholder="Enter Term Title"
+                    Placeholder="Enter Course Title"
                    PlaceholderColor="White"
                    TextColor="White"
                    IsVisible="false"/>

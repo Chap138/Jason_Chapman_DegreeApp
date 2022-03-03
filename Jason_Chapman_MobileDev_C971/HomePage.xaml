@@ -16,9 +16,10 @@
                 <Label x:Name="HomeLabel"
                    Text="Home"
                    TextColor="White"
-                   Margin="30,15,0,0"
+                   Margin="0,15,0,0"
                    FontSize="35"
-                   FontAttributes="Bold"/>
+                   FontAttributes="Bold">
+                </Label>
                 <Entry x:Name="AddTermEntry"
                     Placeholder="Enter Term Title"
                    PlaceholderColor="White"
