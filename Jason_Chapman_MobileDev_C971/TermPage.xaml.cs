@@ -22,9 +22,9 @@ namespace Jason_Chapman_MobileDev_C971
         private string CurrentTermTitle;
         private DateTime CurrentTermStart;
         private DateTime CurrentTermEnd;
-        private int currentCourse;//CourseID to pass into GoToCourseBtn_Clicked() for navigating to appropriate coursePage
-        private string title = "Term Title";
-        private bool courseSaveValid;
+        //private int currentCourse;//CourseID to pass into GoToCourseBtn_Clicked() for navigating to appropriate coursePage
+        //private string title = "Term Title";
+        //private bool courseSaveValid;
         int numCourses;
 
         public TermPage(int termID)

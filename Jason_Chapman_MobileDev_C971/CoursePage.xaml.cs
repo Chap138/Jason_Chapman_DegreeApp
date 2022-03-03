@@ -23,8 +23,8 @@ namespace Jason_Chapman_MobileDev_C971
         private string CurrentCourseTitle;
         private DateTime CurrentCourseStart;
         private DateTime CurrentCourseEnd;
-        private string title = "Course Title";
-        private bool courseSaveValid;
+        //private string title = "Course Title";
+        //private bool courseSaveValid;
         int numAssmts;
 
         public CoursePage(int courseID)

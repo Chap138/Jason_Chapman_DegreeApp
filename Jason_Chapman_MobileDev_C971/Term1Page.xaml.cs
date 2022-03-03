@@ -158,13 +158,13 @@ namespace Jason_Chapman_MobileDev_C971
 
 
 
-        private async void Course1Btn_Clicked(object sender, EventArgs e)
-        {
-            //Course1Button.Text = Course1Title;
-            //await Navigation.PushAsync(new Course1Page());
-            //((Button)sender).Text = "Math 101";
-            //this.TitleLabel.Text = "Term 87978";
-        }
+        //private async void Course1Btn_Clicked(object sender, EventArgs e)
+        //{
+        //    //Course1Button.Text = Course1Title;
+        //    //await Navigation.PushAsync(new Course1Page());
+        //    //((Button)sender).Text = "Math 101";
+        //    //this.TitleLabel.Text = "Term 87978";
+        //}
 
 
         //int count = 5555;
