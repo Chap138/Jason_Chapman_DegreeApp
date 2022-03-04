@@ -101,11 +101,12 @@ namespace Jason_Chapman_MobileDev_C971
                     if (EditCourseTitleEntry.Text == null)
                     { row.CourseTitle = CurrentCourseTitle; }
                     else
-                    { row.CourseTitle = EditCourseTitleEntry.Text; CourseLabel.Text = EditCourseTitleEntry.Text; }
+                    {
+                        row.CourseTitle = EditCourseTitleEntry.Text;
+                        CourseLabel.Text = EditCourseTitleEntry.Text;
+                    }
 
-
-                    //THIS DOESN'T CHANGE progress to string
-                    if (EditCourseProgressPicker.SelectedItem.ToString() == null)
+                    if (EditCourseProgressPicker.SelectedItem == null)
                     { row.CourseStatus = CurrentCourseProgress; }
                     else
                     {

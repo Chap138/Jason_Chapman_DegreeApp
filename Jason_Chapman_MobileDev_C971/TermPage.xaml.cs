@@ -131,25 +131,28 @@ namespace Jason_Chapman_MobileDev_C971
 
                 for (int i = 0; i < courseList.Count; i++)
                 {
-                    int courseID = courseList[i].CourseID;
-                    string btnTitle = courseList[i].CourseTitle;
-
-                    Button testBtn = new Button()
+                    if (courseList[i].TermID == CurrentTermID)
                     {
-                        TextColor = Color.Black,
-                        FontAttributes = FontAttributes.Bold,
-                        FontSize = 20,
-                        Margin = 30,
-                        BackgroundColor = Color.White,
-                        CornerRadius = 10
-                    };
+                        int courseID = courseList[i].CourseID;
+                        string btnTitle = courseList[i].CourseTitle;
 
-                    testBtn.Clicked += (sender, args) => GoToCourseBtn_Clicked(sender, args, courseID);
-                    testBtn.BindingContext = courseList[i];
-                    testBtn.SetBinding(Button.TextProperty, "CourseTitle");
+                        Button testBtn = new Button()
+                        {
+                            TextColor = Color.Black,
+                            FontAttributes = FontAttributes.Bold,
+                            FontSize = 20,
+                            Margin = 30,
+                            BackgroundColor = Color.White,
+                            CornerRadius = 10
+                        };
 
-                    layout.Children.Add(testBtn);
-                }
+                        testBtn.Clicked += (sender, args) => GoToCourseBtn_Clicked(sender, args, courseID);
+                        testBtn.BindingContext = courseList[i];
+                        testBtn.SetBinding(Button.TextProperty, "CourseTitle");
+
+                        layout.Children.Add(testBtn);
+                    }//if
+                }//for
             }
         }//end AddCourseFromDB
 
