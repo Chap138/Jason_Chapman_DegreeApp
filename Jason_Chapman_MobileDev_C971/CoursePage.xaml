@@ -189,9 +189,15 @@
                     BackgroundColor="White"
                         CornerRadius="10"/>
                 
+                <Button x:Name="ShareCourseNotes"
+                        Text="Share Course Notes"
+                        Clicked="ShareCourseNotes_Clicked"
+                        Margin="0,0,0,10"/>
+                
                 <Button x:Name="DeleteCourse"
                         Text="Delete Course"
-                        Clicked="DeleteCourse_Clicked"/>
+                        Clicked="DeleteCourse_Clicked"
+                        Margin="0,0,0,20"/>
 
             </StackLayout>
         </ScrollView>

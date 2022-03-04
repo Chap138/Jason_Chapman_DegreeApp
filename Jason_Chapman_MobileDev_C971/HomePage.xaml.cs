@@ -68,9 +68,11 @@ namespace Jason_Chapman_MobileDev_C971
                 TextColor = Color.Black,
                 FontAttributes = FontAttributes.Bold,
                 FontSize = 20,
-                Margin = 30,
+                Margin = 20,
                 BackgroundColor = Color.White,
-                CornerRadius = 10
+                CornerRadius = 10,
+                BorderColor = Color.LightSkyBlue,
+                BorderWidth = 5
             };
 
             int termID = term.ID;
@@ -188,9 +190,11 @@ namespace Jason_Chapman_MobileDev_C971
                         TextColor = Color.Black,
                         FontAttributes = FontAttributes.Bold,
                         FontSize = 20,
-                        Margin = 30,
+                        Margin = 20,
                         BackgroundColor = Color.White,
-                        CornerRadius = 10
+                        CornerRadius = 10,
+                        BorderColor = Color.LightSkyBlue,
+                        BorderWidth = 5
                     };
 
                     testBtn.Clicked += (sender, args) => GoToTermButton_Clicked(sender, args, termID);

@@ -2,7 +2,8 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:views="clr-namespace:Jason_Chapman_MobileDev_C971"
-       x:Class="Jason_Chapman_MobileDev_C971.AppShell">
+       x:Class="Jason_Chapman_MobileDev_C971.AppShell"
+       BackgroundColor="DeepSkyBlue">
 
     <FlyoutItem Title="Home"
                 Icon="icon_feed.png">

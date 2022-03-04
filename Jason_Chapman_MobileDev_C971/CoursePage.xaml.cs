@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -227,7 +227,6 @@ namespace Jason_Chapman_MobileDev_C971
             else DisplayAlert(" ", "Can not add more than 2 assessments to this course. (One performance and one objective)", "OK");
         }//end AddAssmt_Clicked
 
-
         private void AddAssmtSaveBtn_Clicked(object sender, EventArgs e)
         {
             if (AddAssmtEntry.Text == null ||
@@ -321,7 +320,6 @@ namespace Jason_Chapman_MobileDev_C971
                 layout.Children.RemoveAt(i);
             }
         }//end DeleteButtons
-
         private async void GoToAssmtBtn_Clicked(object sender, EventArgs e, int id)
         {
             await Navigation.PushAsync(new AssessmentPage(id));//USE WHEN READY TO ADD ASSMTS
@@ -415,5 +413,15 @@ namespace Jason_Chapman_MobileDev_C971
             }
             else return;
         }//end DeleteCourse_Clicked
+
+        private async void ShareCourseNotes_Clicked(object sender, EventArgs e)
+        {
+            await Share.RequestAsync(CurrentCourseNotes);
+            //await Share.RequestAsync(new ShareTextRequest
+            //{
+            //    Text = text,
+            //    Title = "Share Text"
+            //});
+        }
     }
 }
