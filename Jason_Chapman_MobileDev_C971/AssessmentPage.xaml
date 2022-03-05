@@ -2,11 +2,89 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Jason_Chapman_MobileDev_C971.AssessmentPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="EditAssmt"
+                     Clicked="EditAssessment_Clicked"
+                     Text="Edit"/>
+        <ToolbarItem x:Name="SetNotificationButton"
+                     Clicked="SetNotificationButton_Clicked"  
+                     Text="Set Alert"/>
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView>
+            <StackLayout x:Name="layout"
+                BackgroundColor="Black">
+
+                <Label x:Name="AssmtLabel"
+                   TextColor="White"
+                   Margin="0,15,0,0"
+                   FontSize="35"
+                   FontAttributes="Bold">
+                </Label>
+                <Label x:Name="AssmtTypeLabel"
+                   TextColor="White"
+                   Margin="20,0,0,30"
+                   FontSize="25"
+                   FontAttributes="None">
+                </Label>
+                <!--DueDatePicker-->
+                <Label x:Name="AssmtDueDateLabel"
+                       Text="Due Date"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       FontSize="25"/>
+                <DatePicker x:Name="AssmtDueDatePicker"
+                            TextColor="White"
+                            FontAttributes="None"
+                            FontSize="20"
+                            Margin="20,0,0,0"
+                            HorizontalOptions="StartAndExpand"/>
+
+                <!--EDIT ASSESSMENT INFO-->
+                <Entry x:Name="EditAssmtTitleEntry"
+                       TextColor="White"
+                       Placeholder="Edit Course Title"
+                       PlaceholderColor="White"
+                       IsVisible="false"
+                       VerticalTextAlignment="Start"
+                       HorizontalTextAlignment="Start"/>
+                <Picker x:Name="EditAssmtTypePicker"
+                        BackgroundColor="White"
+                        TextColor="Black"
+                        FontSize="20"
+                        IsVisible="false">
+                    <Picker.Items>
+                        <x:String>Performance Assessment</x:String>
+                        <x:String>Objective Assessment</x:String>
+                    </Picker.Items>
+                </Picker>
+
+                <Button x:Name="EditAssmtSaveBtn"
+                        Text="Save"
+                        IsVisible="false"
+                        Clicked="EditAssmtSaveBtn_Clicked"
+                        FontSize="20"
+                        HorizontalOptions="EndAndExpand"
+                        FontAttributes="Bold"
+                        BackgroundColor="White"
+                        CornerRadius="10"/>
+                <Button x:Name="EditAssmtCancelBtn"
+                        Text="Cancel"
+                        IsVisible="false"
+                        Clicked="EditAssmtCancelBtn_Clicked"
+                        FontSize="20"
+                        HorizontalOptions="EndAndExpand"
+                        FontAttributes="Bold"
+                        BackgroundColor="White"
+                        CornerRadius="10"/>
+
+                <Button x:Name="DeleteAssmt"
+                        Text="Delete Assessment"
+                        Clicked="DeleteAssmt_Clicked"
+                        Margin="0,0,0,20"/>
+
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
