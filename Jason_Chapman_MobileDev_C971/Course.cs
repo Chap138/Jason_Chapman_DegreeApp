@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Jason_Chapman_MobileDev_C971
 {
-    public class Course
+    public class Course 
     {
         [PrimaryKey, AutoIncrement]
         public int CourseID { get; set; }
@@ -19,11 +19,12 @@ namespace Jason_Chapman_MobileDev_C971
         public string InstructorEmail { get; set; }
         [MaxLength(250)]
         public string CourseNotes { get; set; }
-        private int notitificationID = 1;
+        //private int notitificationID = 0;
+        private int notificationID = 1;
         public int NotificationID
         {
-            get { return notitificationID; }
-            set { notitificationID = value; }
+            get { return notificationID; }
+            set { notificationID = value; }
         }
 
         //public Course(int termID, string title, DateTime start, DateTime end, string prog, string name, string phone, string email)

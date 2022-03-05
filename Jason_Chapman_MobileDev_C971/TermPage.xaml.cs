@@ -106,7 +106,7 @@ namespace Jason_Chapman_MobileDev_C971
                     BackgroundColor = Color.White,
                     CornerRadius = 10,
                     BorderColor = Color.LightSkyBlue,
-                    BorderWidth = 5
+                    BorderWidth = 2
                 };
 
                 int courseID = course.CourseID;
@@ -147,7 +147,7 @@ namespace Jason_Chapman_MobileDev_C971
                             BackgroundColor = Color.White,
                             CornerRadius = 10,
                             BorderColor = Color.LightSkyBlue,
-                            BorderWidth = 5
+                            BorderWidth = 2
                         };
 
                         testBtn.Clicked += (sender, args) => GoToCourseBtn_Clicked(sender, args, courseID);

@@ -2,6 +2,7 @@
 using SQLite;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -253,7 +254,7 @@ namespace Jason_Chapman_MobileDev_C971
                     CourseID = CurrentCourseID,
                     AssessmentTitle = AddAssmtEntry.Text,
                     DueDate = AssmtDueDatePicker.Date,
-                    AssessmentNotes = AssmtNotesEditor.Text
+                    //AssessmentNotes = AssmtNotesEditor.Text
                 };
 
                 using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
@@ -334,6 +335,11 @@ namespace Jason_Chapman_MobileDev_C971
 
             for (int i = 0; i < courseList.Count; i++)
             {
+                Debug.WriteLine(courseList[i].NotificationID);
+            }
+
+            for (int i = 0; i < courseList.Count; i++)
+            {
                 if (courseList[i].CourseID == CurrentCourseID)
                 {
                     start = courseList[i].StartDate;
@@ -368,7 +374,7 @@ namespace Jason_Chapman_MobileDev_C971
             }//foreach
 
             DisplayAlert(" ", "Notification set!", "OK");
-            //DisplayAlert("Alert ID: " + alertID.ToString(), "Notification set!\n" + "Start date: " + start.ToString() + "\n" + "End date: " + end.ToString(), "OK");//DELETE THIS except for 'Notification set!'
+            DisplayAlert("Alert ID: " + alertID.ToString(), "Notification set!\n" + "Start date: " + start.ToString() + "\n" + "End date: " + end.ToString(), "OK");//DELETE THIS except for 'Notification set!'
             CrossLocalNotifications.Current.Show(" ", "Start date: " + start.ToString() + "\n" + "End date: " + end.ToString(), alertID, start);
             //CrossLocalNotifications.Current.Show("Alert!!!", "End date: + " + end.ToString(), alertID, end);
         }//end SetCourseNotification_Clicked

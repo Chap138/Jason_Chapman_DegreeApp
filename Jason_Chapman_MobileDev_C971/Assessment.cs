@@ -12,13 +12,12 @@ namespace Jason_Chapman_MobileDev_C971
         public int CourseID { get; set; }
         public string AssessmentTitle { get; set; }
         public DateTime DueDate { get; set; }
-        [MaxLength(250)]
-        public string AssessmentNotes { get; set; }
-        private int notitificationID = 1;
+        public string AssessmentType;
+        private int notificationID = 1;
         public int NotificationID
         {
-            get { return notitificationID; }
-            set { notitificationID = value; }
+            get { return notificationID; }
+            set { notificationID = value; }
         }
 
     }
