@@ -16,12 +16,10 @@ namespace Jason_Chapman_MobileDev_C971
     {
         int alertID;
         private int CurrentAssmtID;
-        List<Course> courseList;
         List<Assessment> assmtList;
         private string CurrentAssmtTitle;
         private string CurrentAssmtType;
         private DateTime CurrentAssmtDueDate;
-        int numAssmts;
         private DateTime dueDate;
 
         public AssessmentPage(int assmtID)
@@ -30,20 +28,19 @@ namespace Jason_Chapman_MobileDev_C971
             CurrentAssmtID = assmtID;
             //DropAddAssmtTable();
             //DropAddAssmtTable();
-            //AddAssessmentFromDB();
+            //AddAssmtFromDB();
         }
         protected override void OnAppearing()
         {
-            GetCourse();
+            GetAssessment();
             //DeleteButtons();
             //AddAssmtFromDB();
         }//end OnAppearing
-        public void GetCourse()//Update course info when page appears
+        public void GetAssessment()//Update assessment info when page appears
         {
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
             {
                 assmtList = conn.Table<Assessment>().ToList();
-                //conn.Table<Term>().Select(termList ,CurrentTermID)
             }
 
             foreach (Assessment row in assmtList)
@@ -56,19 +53,18 @@ namespace Jason_Chapman_MobileDev_C971
                 }
             }
             AssmtLabel.Text = CurrentAssmtTitle;
-            AssmtTypeLabel.Text = "Assessment Type: " + CurrentAssmtType;
+            AssmtTypeLabel.Text = CurrentAssmtType;
             AssmtDueDatePicker.Date = CurrentAssmtDueDate;
         }//end GetCourse()
 
         private void EditAssessment_Clicked(object sender, EventArgs e)
         {
-            //Navigation.PushAsync(new EditTermPage(CurrentTermID));
             EditAssmtTitleEntry.IsVisible = true;
             EditAssmtTitleEntry.Focus();
             EditAssmtTypePicker.IsVisible = true;
             EditAssmtSaveBtn.IsVisible = true;
             EditAssmtCancelBtn.IsVisible = true;
-        }//end EditCourse_Clicked
+        }//end EditAssessment_Clicked
 
         private void EditAssmtSaveBtn_Clicked(object sender, EventArgs e)
         {
@@ -105,7 +101,7 @@ namespace Jason_Chapman_MobileDev_C971
             EditAssmtTypePicker.IsVisible = false;
             EditAssmtSaveBtn.IsVisible = false;
             EditAssmtCancelBtn.IsVisible = false;
-        }//end EditCourseSaveBtn_Clicked
+        }//end EditAssmtSaveBtn_Clicked
 
         private void EditAssmtCancelBtn_Clicked(object sender, EventArgs e)
         {
@@ -113,7 +109,7 @@ namespace Jason_Chapman_MobileDev_C971
             EditAssmtTypePicker.IsVisible = false;
             EditAssmtSaveBtn.IsVisible = false;
             EditAssmtCancelBtn.IsVisible = false;
-        }//end EditCourseCancelBtn_Clicked
+        }//end EditAssmtCancelBtn_Clicked
 
         //private void AddAssmtCancelBtn_Clicked(object sender, EventArgs e)
         //{
@@ -256,11 +252,13 @@ namespace Jason_Chapman_MobileDev_C971
                 layout.Children.RemoveAt(i);
             }
         }//end DeleteButtons
+
         //private async void GoToAssmtBtn_Clicked(object sender, EventArgs e, int id)
         //{
         //    await Navigation.PushAsync(new AssessmentPage(id));//USE WHEN READY TO ADD ASSMTS
 
         //}//end GoToAssmtBtn_Clicked
+
         private void SetDueDateAlertButton_Clicked(object sender, EventArgs e)
         {
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
@@ -329,7 +327,7 @@ namespace Jason_Chapman_MobileDev_C971
                         {
                             conn.Delete(row);
                         }
-                        await DisplayAlert(" ", "Course deleted.", "OK");
+                        await DisplayAlert(" ", "Assessment deleted.", "OK");
                         await Navigation.PopAsync();//Goes back to previous page
 
                         break;
@@ -337,7 +335,7 @@ namespace Jason_Chapman_MobileDev_C971
                 }
             }
             else return;
-        }//end DeleteCourse_Clicked
+        }//end DeleteAssmt_Clicked
 
     }
 }

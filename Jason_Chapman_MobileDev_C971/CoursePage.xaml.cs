@@ -38,14 +38,13 @@ namespace Jason_Chapman_MobileDev_C971
             InitializeComponent();
             CurrentCourseID = courseID;
             //DropAddAssmtTable();
-            //DropAddAssmtTable();
             //AddAssessmentFromDB();
         }
         protected override void OnAppearing()
         {
             GetCourse();
-            //DeleteButtons();
-            //AddAssmtFromDB();
+            DeleteButtons();
+            AddAssmtFromDB();
         }//end OnAppearing
         public void GetCourse()//Update course info when page appears
         {
@@ -191,7 +190,7 @@ namespace Jason_Chapman_MobileDev_C971
             AddAssmtCancelBtn.IsVisible = false;
             AssmtDueDatePicker.IsVisible = false;
             AssmtDueDateLabel.IsVisible = false;
-            AssmtNotesEditor.IsVisible = false;
+            AddAssmtTypePicker.IsVisible = false;
         }//end AddAssessmentCancelBtn_Clicked
         private void AddAssmt_Clicked(object sender, EventArgs e)//ADD ASSESSMENTS
         {
@@ -199,7 +198,7 @@ namespace Jason_Chapman_MobileDev_C971
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
             {
                 assmtList = conn.Table<Assessment>().ToList();
-                for (int i = 0; i < courseList.Count; i++)
+                for (int i = 0; i < assmtList.Count; i++)
                 {
                     if (assmtList[i].CourseID == CurrentCourseID)
                     {
@@ -222,7 +221,7 @@ namespace Jason_Chapman_MobileDev_C971
                 AssmtDueDatePicker.IsVisible = true;
                 AddAssmtSaveBtn.IsVisible = true;
                 AddAssmtCancelBtn.IsVisible = true;
-                AssmtNotesEditor.IsVisible = true;
+                AddAssmtTypePicker.IsVisible = true;
                 AddAssmtEntry.Text = null;
             }
             else DisplayAlert(" ", "Can not add more than 2 assessments to this course. (One performance and one objective)", "OK");
@@ -230,8 +229,8 @@ namespace Jason_Chapman_MobileDev_C971
 
         private void AddAssmtSaveBtn_Clicked(object sender, EventArgs e)
         {
-            if (AddAssmtEntry.Text == null ||
-                AssmtNotesEditor.Text == null)
+            if (AddAssmtEntry.Text == null 
+               /* || AssmtNotesEditor.Text == null*/)
             {
                 DisplayAlert(" ", "Please enter all fields.", "OK");
             }
@@ -247,14 +246,14 @@ namespace Jason_Chapman_MobileDev_C971
                 AddAssmtCancelBtn.IsVisible = false;
                 AssmtDueDatePicker.IsVisible = false;
                 AssmtDueDateLabel.IsVisible = false;
-                AssmtNotesEditor.IsVisible = false;
+                AddAssmtTypePicker.IsVisible = false;
 
                 Assessment assmt = new Assessment()
                 {
                     CourseID = CurrentCourseID,
                     AssessmentTitle = AddAssmtEntry.Text,
-                    DueDate = AssmtDueDatePicker.Date,
-                    //AssessmentNotes = AssmtNotesEditor.Text
+                    AssessmentType = AddAssmtTypePicker.SelectedItem.ToString(),
+                    DueDate = AssmtDueDatePicker.Date
                 };
 
                 using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
@@ -316,7 +315,7 @@ namespace Jason_Chapman_MobileDev_C971
         }//end AddAssmtFromDB
         private void DeleteButtons()//Delete buttons to replace refreshed
         {
-            for (int i = 20; i < layout.Children.Count;)
+            for (int i = 28; i < layout.Children.Count;)
             {
                 layout.Children.RemoveAt(i);
             }

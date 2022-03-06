@@ -134,7 +134,9 @@
                         HorizontalOptions="EndAndExpand"
                         FontAttributes="Bold"
                         BackgroundColor="White"
-                        CornerRadius="10"/>
+                        CornerRadius="10"
+                        BorderColor = "LightSkyBlue"
+                        BorderWidth = "2"/>
                 <Button x:Name="EditCourseCancelBtn"
                         Text="Cancel"
                         IsVisible="false"
@@ -143,7 +145,9 @@
                         HorizontalOptions="EndAndExpand"
                         FontAttributes="Bold"
                         BackgroundColor="White"
-                        CornerRadius="10"/>
+                        CornerRadius="10"
+                        BorderColor = "LightSkyBlue"
+                        BorderWidth = "2"/>
 
                 <!--ADD ASSESSMENT ADD ASSESSMENT ADD ASSESSMENT ADD ASSESSMENT ADD ASSESSMENT-->
                 <Entry x:Name="AddAssmtEntry"
@@ -151,13 +155,8 @@
                    PlaceholderColor="White"
                    TextColor="White"
                    IsVisible="false"/>
-                <Editor x:Name="AssmtNotesEditor"
-                        Placeholder="Enter notes"
-                        PlaceholderColor="White"
-                        TextColor="White"
-                        IsVisible="false"/>
                 <Label x:Name="AssmtDueDateLabel"
-                       Text="Start Date"
+                       Text="Due Date"
                        FontAttributes="Bold"
                        TextColor="White"
                        FontSize="25"
@@ -169,6 +168,16 @@
                             Margin="0,0,100,10"
                             HorizontalOptions="StartAndExpand"
                             IsVisible="false"/>
+                <Picker x:Name="AddAssmtTypePicker"
+                        BackgroundColor="White"
+                        TextColor="Black"
+                        FontSize="20"
+                        IsVisible="false">
+                    <Picker.Items>
+                        <x:String>Performance Assessment</x:String>
+                        <x:String>Objective Assessment</x:String>
+                    </Picker.Items>
+                </Picker>
                 <Button x:Name="AddAssmtSaveBtn"
                     Text="Save"
                     Clicked="AddAssmtSaveBtn_Clicked"
@@ -178,7 +187,9 @@
                     HorizontalOptions="EndAndExpand"
                     FontAttributes="Bold"
                     BackgroundColor="White"
-                        CornerRadius="10"/>
+                    CornerRadius="10"
+                    BorderColor = "LightSkyBlue"
+                    BorderWidth = "2"/>
                 <Button x:Name="AddAssmtCancelBtn"
                     Text="Cancel"
                     Clicked="AddAssmtCancelBtn_Clicked"
@@ -187,7 +198,9 @@
                     HorizontalOptions="EndAndExpand"
                     FontAttributes="Bold"
                     BackgroundColor="White"
-                        CornerRadius="10"/>
+                    CornerRadius="10"
+                    BorderColor = "LightSkyBlue"
+                    BorderWidth = "2"/>
                 
                 <Button x:Name="ShareCourseNotes"
                         Text="Share Course Notes"
