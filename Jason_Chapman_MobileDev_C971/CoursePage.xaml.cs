@@ -39,6 +39,7 @@ namespace Jason_Chapman_MobileDev_C971
             CurrentCourseID = courseID;
             //DropAddAssmtTable();
             //AddAssessmentFromDB();
+            //DeleteAssmtRows();
         }
         protected override void OnAppearing()
         {
@@ -229,59 +230,78 @@ namespace Jason_Chapman_MobileDev_C971
 
         private void AddAssmtSaveBtn_Clicked(object sender, EventArgs e)
         {
-            if (AddAssmtEntry.Text == null 
-               /* || AssmtNotesEditor.Text == null*/)
+            bool saveOkay = true;
+            foreach (Assessment row in assmtList)
             {
-                DisplayAlert(" ", "Please enter all fields.", "OK");
-            }
-            else
-            {
-                CoursePageStartDateLabel.IsVisible = true;
-                StartDatePicker.IsVisible = true;
-                EndDatePicker.IsVisible = true;
-                CoursePageEndDateLabel.IsVisible = true;
-
-                AddAssmtEntry.IsVisible = false;
-                AddAssmtSaveBtn.IsVisible = false;
-                AddAssmtCancelBtn.IsVisible = false;
-                AssmtDueDatePicker.IsVisible = false;
-                AssmtDueDateLabel.IsVisible = false;
-                AddAssmtTypePicker.IsVisible = false;
-
-                Assessment assmt = new Assessment()
+                if (row.CourseID == CurrentCourseID)
                 {
-                    CourseID = CurrentCourseID,
-                    AssessmentTitle = AddAssmtEntry.Text,
-                    AssessmentType = AddAssmtTypePicker.SelectedItem.ToString(),
-                    DueDate = AssmtDueDatePicker.Date
-                };
-
-                using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
-                {
-                    conn.CreateTable<Assessment>();
-                    conn.Insert(assmt);
+                    if (row.AssessmentType != AddAssmtTypePicker.SelectedItem.ToString())
+                    {
+                        saveOkay = true;
+                    }
+                    else
+                    {
+                        saveOkay = false;
+                        DisplayAlert(" ", "Only one PA and OA allowed per course.", "OK");
+                    }
                 }
-
-                Button testBtn = new Button()
+            }
+            if (saveOkay)
+            {
+                if (AddAssmtEntry.Text == null ||
+                    AddAssmtTypePicker.ToString() == null)
                 {
-                    TextColor = Color.Black,
-                    FontAttributes = FontAttributes.Bold,
-                    FontSize = 20,
-                    Margin = 30,
-                    BackgroundColor = Color.White,
-                    CornerRadius = 10,
-                    BorderColor = Color.LightSkyBlue,
-                    BorderWidth = 2
-                };
+                    DisplayAlert(" ", "Please enter all fields.", "OK");
+                }
+                else
+                {
+                    CoursePageStartDateLabel.IsVisible = true;
+                    StartDatePicker.IsVisible = true;
+                    EndDatePicker.IsVisible = true;
+                    CoursePageEndDateLabel.IsVisible = true;
 
-                int assmtID = assmt.AssessmentID;
-                testBtn.Clicked += (s, a) => GoToAssmtBtn_Clicked(s, a, assmtID);
-                testBtn.BindingContext = assmt;
-                testBtn.SetBinding(Button.TextProperty, "AssessmentTitle");
-                layout.Children.Add(testBtn);
-                AddAssmtEntry.Placeholder = "Enter Assessment Title";
+                    AddAssmtEntry.IsVisible = false;
+                    AddAssmtSaveBtn.IsVisible = false;
+                    AddAssmtCancelBtn.IsVisible = false;
+                    AssmtDueDatePicker.IsVisible = false;
+                    AssmtDueDateLabel.IsVisible = false;
+                    AddAssmtTypePicker.IsVisible = false;
 
-                AddAssmtEntry.Text = null;
+                    Assessment assmt = new Assessment()
+                    {
+                        CourseID = CurrentCourseID,
+                        AssessmentTitle = AddAssmtEntry.Text,
+                        AssessmentType = AddAssmtTypePicker.SelectedItem.ToString(),
+                        DueDate = AssmtDueDatePicker.Date
+                    };
+
+                    using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+                    {
+                        conn.CreateTable<Assessment>();
+                        conn.Insert(assmt);
+                    }
+
+                    Button testBtn = new Button()
+                    {
+                        TextColor = Color.Black,
+                        FontAttributes = FontAttributes.Bold,
+                        FontSize = 20,
+                        Margin = 30,
+                        BackgroundColor = Color.White,
+                        CornerRadius = 10,
+                        BorderColor = Color.LightSkyBlue,
+                        BorderWidth = 2
+                    };
+
+                    int assmtID = assmt.AssessmentID;
+                    testBtn.Clicked += (s, a) => GoToAssmtBtn_Clicked(s, a, assmtID);
+                    testBtn.BindingContext = assmt;
+                    testBtn.SetBinding(Button.TextProperty, "AssessmentTitle");
+                    layout.Children.Add(testBtn);
+                    AddAssmtEntry.Placeholder = "Enter Assessment Title";
+
+                    AddAssmtEntry.Text = null;
+                }
             }
 
         }//end AddCourseSaveBtn_Clicked
@@ -403,15 +423,26 @@ namespace Jason_Chapman_MobileDev_C971
         private async void DeleteCourse_Clicked(object sender, EventArgs e)
         {
             bool answer = await DisplayAlert("Alert!", "Are you sure you want to delete this course?", "Yes", "No");
-            int currentTermID;
+            //int currentTermID;
 
             if (answer)
             {
+                foreach (Assessment row in assmtList)
+                {
+                    if (row.CourseID == CurrentCourseID)
+                    {
+                        using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+                        {
+                            conn.Delete(row);
+                        }
+                    }
+                }//delete assessments associated with this course
+
                 foreach (Course row in courseList)
                 {
                     if (row.CourseID == CurrentCourseID)
                     {
-                        currentTermID = row.TermID;
+                        //currentTermID = row.TermID;
                         using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
                         {
                             conn.Delete(row);
@@ -420,8 +451,8 @@ namespace Jason_Chapman_MobileDev_C971
                         await Navigation.PopAsync();//Goes back to previous page
 
                         break;
-                    }
-                }
+                    }//course row
+                }//course foreach
             }
             else return;
         }//end DeleteCourse_Clicked
