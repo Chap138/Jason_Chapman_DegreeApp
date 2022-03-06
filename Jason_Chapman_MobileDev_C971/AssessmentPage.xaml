@@ -7,7 +7,7 @@
                      Clicked="EditAssessment_Clicked"
                      Text="Edit"/>
         <ToolbarItem x:Name="SetNotificationButton"
-                     Clicked="SetNotificationButton_Clicked"  
+                     Clicked="SetDueDateAlertButton_Clicked"  
                      Text="Set Alert"/>
     </ContentPage.ToolbarItems>
 
