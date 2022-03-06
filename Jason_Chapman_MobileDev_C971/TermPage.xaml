@@ -182,6 +182,11 @@
                     CornerRadius="10"
                     BorderColor = "LightSkyBlue"
                     BorderWidth = "2"/>
+                <Button x:Name="DeleteTerm"
+                        Text="Delete Term"
+                        Clicked="DeleteTerm_Clicked"
+                        IsVisible="true"
+                        Margin="0,0,200,20"/>
 
             </StackLayout>
         </ScrollView>

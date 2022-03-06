@@ -14,18 +14,16 @@ namespace Jason_Chapman_MobileDev_C971
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TermPage : ContentPage
     {
-        // private int termId;
-
-        private List<Course> courseList;//From the DB
-        private List<Term> termList;//From the DB
+        private List<Assessment> assmtList;
+        private List<Course> courseList;
+        private List<Term> termList;
         private int CurrentTermID;
         private string CurrentTermTitle;
         private DateTime CurrentTermStart;
         private DateTime CurrentTermEnd;
-        //private int currentCourse;//CourseID to pass into GoToCourseBtn_Clicked() for navigating to appropriate coursePage
-        //private string title = "Term Title";
-        //private bool courseSaveValid;
         int numCourses;
+        private int currentTermID;
+        private int currentCourseID;
 
         public TermPage(int termID)
         {
@@ -162,7 +160,7 @@ namespace Jason_Chapman_MobileDev_C971
 
         private void DeleteButtons()//Delete buttons to replace refreshed
         {
-            for (int i = 21; i < layout.Children.Count;)
+            for (int i = 22; i < layout.Children.Count;)
             {
                 layout.Children.RemoveAt(i);
             }
@@ -326,6 +324,61 @@ namespace Jason_Chapman_MobileDev_C971
             }
         }//end DropCourseTableAddCourseTable
 
+        private async void DeleteTerm_Clicked(object sender, EventArgs e)
+        {
+            bool answer = await DisplayAlert("Alert!", "Are you sure you want to delete this term?", "Yes", "No");
+            //int currentTermID;
+            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            {
+                assmtList = conn.Table<Assessment>().ToList();
+            }
 
+            if (answer)
+            {
+                foreach (Course row in courseList)
+                {
+                    if (row.TermID == CurrentTermID)
+                    {
+                        currentCourseID = row.CourseID;
+                        foreach (Assessment rowAssmt in assmtList)
+                        {
+                            if (rowAssmt.CourseID == currentCourseID)
+                            {
+                                using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+                                {
+                                    conn.Delete(rowAssmt);
+                                    conn.Update(rowAssmt);
+                                }
+                            }
+                        }//delete assessments associated with this course
+
+                        using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+                        {
+                            conn.Delete(row);
+                            conn.Update(row);
+                        }
+                        //await DisplayAlert(" ", "Course deleted.", "OK");
+                        //await Navigation.PopAsync();//Goes back to previous page
+
+                        break;
+                    }//course row
+                }//course foreach
+                foreach (Term rowT in termList)
+                {
+                    if (rowT.ID == CurrentTermID)
+                    {
+                        using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+                        {
+                            conn.Delete(rowT);
+                        }
+                        await DisplayAlert(" ", "Term deleted.", "OK");
+                        await Navigation.PopAsync();//Goes back to previous page
+
+                        break;
+                    }
+                }
+            }
+            else return;
+        }//end DeleteTerm_Clicked
     }
 }
