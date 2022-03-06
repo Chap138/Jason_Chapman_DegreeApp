@@ -172,7 +172,8 @@
                         BackgroundColor="White"
                         TextColor="Black"
                         FontSize="20"
-                        IsVisible="false">
+                        IsVisible="false"
+                        Margin="0,0,0,50">
                     <Picker.Items>
                         <x:String>Performance Assessment</x:String>
                         <x:String>Objective Assessment</x:String>

@@ -269,7 +269,9 @@ namespace Jason_Chapman_MobileDev_C971
                     FontSize = 20,
                     Margin = 30,
                     BackgroundColor = Color.White,
-                    CornerRadius = 10
+                    CornerRadius = 10,
+                    BorderColor = Color.LightSkyBlue,
+                    BorderWidth = 2
                 };
 
                 int assmtID = assmt.AssessmentID;
@@ -292,24 +294,29 @@ namespace Jason_Chapman_MobileDev_C971
 
                 for (int i = 0; i < assmtList.Count; i++)
                 {
-                    int assmtID = assmtList[i].AssessmentID;
-                    string btnTitle = assmtList[i].AssessmentTitle;
-
-                    Button assmtBtn = new Button()
+                    if (assmtList[i].CourseID == CurrentCourseID)
                     {
-                        TextColor = Color.Black,
-                        FontAttributes = FontAttributes.Bold,
-                        FontSize = 20,
-                        Margin = 30,
-                        BackgroundColor = Color.White,
-                        CornerRadius = 10
-                    };
+                        int assmtID = assmtList[i].AssessmentID;
+                        string btnTitle = assmtList[i].AssessmentTitle;
 
-                    assmtBtn.Clicked += (sender, args) => GoToAssmtBtn_Clicked(sender, args, assmtID);
-                    assmtBtn.BindingContext = assmtList[i];
-                    assmtBtn.SetBinding(Button.TextProperty, "AssessmentTitle");
+                        Button assmtBtn = new Button()
+                        {
+                            TextColor = Color.Black,
+                            FontAttributes = FontAttributes.Bold,
+                            FontSize = 20,
+                            Margin = 30,
+                            BackgroundColor = Color.White,
+                            CornerRadius = 10,
+                            BorderColor = Color.LightSkyBlue,
+                            BorderWidth = 2
+                        };
 
-                    layout.Children.Add(assmtBtn);
+                        assmtBtn.Clicked += (sender, args) => GoToAssmtBtn_Clicked(sender, args, assmtID);
+                        assmtBtn.BindingContext = assmtList[i];
+                        assmtBtn.SetBinding(Button.TextProperty, "AssessmentTitle");
+
+                        layout.Children.Add(assmtBtn);
+                    }
                 }
             }
         }//end AddAssmtFromDB

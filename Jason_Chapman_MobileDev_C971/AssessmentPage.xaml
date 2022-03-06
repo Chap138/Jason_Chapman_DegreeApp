@@ -68,7 +68,9 @@
                         HorizontalOptions="EndAndExpand"
                         FontAttributes="Bold"
                         BackgroundColor="White"
-                        CornerRadius="10"/>
+                        CornerRadius="10"
+                        BorderColor = "LightSkyBlue"
+                        BorderWidth = "2"/>
                 <Button x:Name="EditAssmtCancelBtn"
                         Text="Cancel"
                         IsVisible="false"
@@ -77,7 +79,9 @@
                         HorizontalOptions="EndAndExpand"
                         FontAttributes="Bold"
                         BackgroundColor="White"
-                        CornerRadius="10"/>
+                        CornerRadius="10"
+                        BorderColor = "LightSkyBlue"
+                        BorderWidth = "2"/>
 
                 <Button x:Name="DeleteAssmt"
                         Text="Delete Assessment"
