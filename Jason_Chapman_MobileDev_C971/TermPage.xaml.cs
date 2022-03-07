@@ -58,7 +58,7 @@ namespace Jason_Chapman_MobileDev_C971
             }
             else if (CourseStartDatePicker.Date >= CourseEndDatePicker.Date)
             {
-                DisplayAlert(" ", "Start date can not be after the end date.", "OK");
+                DisplayAlert(" ", "The start date can not occur on or after the end date.", "OK");
             }
             else
             {
