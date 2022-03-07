@@ -4,9 +4,10 @@
              x:Class="Jason_Chapman_MobileDev_C971.AboutPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Created by Jason Chapman -- March 16, 2021"
+            <Label Text="Created by Jason Chapman -- March 16, 2021. In order to prepopulate DB for evaluation, please uncomment the TestDataForEval() method in the App constructor."
                 VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+                HorizontalOptions="CenterAndExpand"
+                Margin="30,0,0,0"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

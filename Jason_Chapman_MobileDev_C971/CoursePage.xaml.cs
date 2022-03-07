@@ -320,7 +320,7 @@ namespace Jason_Chapman_MobileDev_C971
                             TextColor = Color.Black,
                             FontAttributes = FontAttributes.Bold,
                             FontSize = 20,
-                            Margin = 30,
+                            Margin = 20,
                             BackgroundColor = Color.White,
                             CornerRadius = 10,
                             BorderColor = Color.LightSkyBlue,
@@ -338,7 +338,7 @@ namespace Jason_Chapman_MobileDev_C971
         }//end AddAssmtFromDB
         private void DeleteButtons()//Delete buttons to replace refreshed
         {
-            for (int i = 28; i < layout.Children.Count;)
+            for (int i = 29; i < layout.Children.Count;)
             {
                 layout.Children.RemoveAt(i);
             }

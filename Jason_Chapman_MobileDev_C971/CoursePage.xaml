@@ -212,6 +212,12 @@
                         Clicked="DeleteCourse_Clicked"
                         Margin="0,0,200,20"/>
 
+                <Label x:Name="Assessments"
+                       Text="Assessments"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       FontSize="25"/>
+
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
