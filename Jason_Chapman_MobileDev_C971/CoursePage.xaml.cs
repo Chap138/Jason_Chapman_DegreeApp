@@ -143,8 +143,15 @@ namespace Jason_Chapman_MobileDev_C971
                         CourseNotes.Text = EditCourseNotesEditor.Text;
                     }
 
-                    row.StartDate = StartDatePicker.Date;
-                    row.EndDate = EndDatePicker.Date;
+                    if (StartDatePicker.Date < EndDatePicker.Date)
+                    {
+                        row.StartDate = StartDatePicker.Date;
+                        row.EndDate = EndDatePicker.Date;
+                    }
+                    else
+                    {
+                        DisplayAlert(" ", "The start date can not occur on or after the end date.", "OK");
+                    }
 
                     using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
                     {
@@ -245,7 +252,8 @@ namespace Jason_Chapman_MobileDev_C971
             if (saveOkay)
             {
                 if (AddAssmtEntry.Text == null ||
-                    AddAssmtTypePicker.ToString() == null)
+                    AddAssmtTypePicker.SelectedItem == null ||
+                    AssmtDueDatePicker.ToString() == null)
                 {
                     DisplayAlert(" ", "Please enter all fields.", "OK");
                 }

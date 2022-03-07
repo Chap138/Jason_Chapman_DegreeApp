@@ -50,9 +50,15 @@ namespace Jason_Chapman_MobileDev_C971
                 CourseInstructorPhone.Text == null ||
                 CourseInstructorEmail.Text == null ||
                 CourseNotesEditor.Text == null ||
+                CourseStartDatePicker.ToString() == null ||
+                CourseEndDatePicker.ToString() == null||
                 CourseProgressPicker.SelectedItem == null)
             {
                 DisplayAlert(" ", "Please enter all fields.", "OK");
+            }
+            else if (CourseStartDatePicker.Date >= CourseEndDatePicker.Date)
+            {
+                DisplayAlert(" ", "Start date can not be after the end date.", "OK");
             }
             else
             {
@@ -219,8 +225,15 @@ namespace Jason_Chapman_MobileDev_C971
                         TermLabel.Text = TitleEntry.Text;
                     }
 
-                    row.Start = StartDatePicker.Date;
-                    row.End = EndDatePicker.Date;
+                    if (StartDatePicker.Date < EndDatePicker.Date)
+                    {
+                        row.Start = StartDatePicker.Date;
+                        row.End = EndDatePicker.Date;
+                    }
+                    else
+                    {
+                        DisplayAlert(" ", "The start date can not occur on or after the end date.", "OK");
+                    }
 
                     using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
                     {

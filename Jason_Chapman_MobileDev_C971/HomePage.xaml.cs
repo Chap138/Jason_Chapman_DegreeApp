@@ -41,45 +41,58 @@ namespace Jason_Chapman_MobileDev_C971
 
         private void AddTermSaveBtn_Clicked(object sender, EventArgs e)
         {
-            AddTermEntry.IsVisible = false;
-            AddTermSaveBtn.IsVisible = false;
-            AddTermCancelBtn.IsVisible = false;
-            StartDatePicker.IsVisible = false;
-            StartDateLabel.IsVisible = false;
-            EndDatePicker.IsVisible = false;
-            EndDateLabel.IsVisible = false;
-
-            Term term = new Term()
+            if (AddTermEntry.Text == null ||
+                StartDatePicker.ToString() == null ||
+                EndDatePicker.ToString() == null)
             {
-                TermTitle = AddTermEntry.Text,
-                Start = StartDatePicker.Date,
-                End = EndDatePicker.Date
-            };
-
-            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
-            {
-                conn.CreateTable<Term>();
-                conn.Insert(term);
+                DisplayAlert(" ", "Please enter all fields.", "OK");
             }
-
-            Button testBtn = new Button()
+            else if (StartDatePicker.Date >= EndDatePicker.Date)
             {
-                TextColor = Color.Black,
-                FontAttributes = FontAttributes.Bold,
-                FontSize = 20,
-                Margin = 20,
-                BackgroundColor = Color.White,
-                CornerRadius = 10,
-                BorderColor = Color.LightSkyBlue,
-                BorderWidth = 2
-            };
+                DisplayAlert(" ", "The start date can not occur on or after the end date.", "OK");
+            }
+            else
+            {
+                AddTermEntry.IsVisible = false;
+                AddTermSaveBtn.IsVisible = false;
+                AddTermCancelBtn.IsVisible = false;
+                StartDatePicker.IsVisible = false;
+                StartDateLabel.IsVisible = false;
+                EndDatePicker.IsVisible = false;
+                EndDateLabel.IsVisible = false;
 
-            int termID = term.ID;
-            testBtn.Clicked += (s, a) => GoToTermButton_Clicked(s, a, termID);
-            testBtn.BindingContext = term;
-            testBtn.SetBinding(Button.TextProperty, "TermTitle");
-            layout.Children.Add(testBtn);
-            AddTermEntry.Placeholder = "Enter Term Title";
+                Term term = new Term()
+                {
+                    TermTitle = AddTermEntry.Text,
+                    Start = StartDatePicker.Date,
+                    End = EndDatePicker.Date
+                };
+
+                using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+                {
+                    conn.CreateTable<Term>();
+                    conn.Insert(term);
+                }
+
+                Button testBtn = new Button()
+                {
+                    TextColor = Color.Black,
+                    FontAttributes = FontAttributes.Bold,
+                    FontSize = 20,
+                    Margin = 20,
+                    BackgroundColor = Color.White,
+                    CornerRadius = 10,
+                    BorderColor = Color.LightSkyBlue,
+                    BorderWidth = 2
+                };
+
+                int termID = term.ID;
+                testBtn.Clicked += (s, a) => GoToTermButton_Clicked(s, a, termID);
+                testBtn.BindingContext = term;
+                testBtn.SetBinding(Button.TextProperty, "TermTitle");
+                layout.Children.Add(testBtn);
+                AddTermEntry.Placeholder = "Enter Term Title";
+            }
 
         }//end AddTermSaveBtn_Clicked
 

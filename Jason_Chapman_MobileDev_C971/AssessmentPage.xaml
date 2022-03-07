@@ -44,7 +44,7 @@
                 <!--EDIT ASSESSMENT INFO-->
                 <Entry x:Name="EditAssmtTitleEntry"
                        TextColor="White"
-                       Placeholder="Edit Course Title"
+                       Placeholder="Edit Assessment Title"
                        PlaceholderColor="White"
                        IsVisible="false"
                        VerticalTextAlignment="Start"
