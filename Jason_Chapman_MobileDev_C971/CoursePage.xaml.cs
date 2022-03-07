@@ -29,8 +29,6 @@ namespace Jason_Chapman_MobileDev_C971
         private string CurrentCourseInstructorPhone;
         private string CurrentCourseInstructorEmail;
         private DateTime CurrentCourseEnd;
-        //private string title = "Course Title";
-        //private bool courseSaveValid;
         int numAssmts;
 
         public CoursePage(int courseID)
@@ -52,7 +50,6 @@ namespace Jason_Chapman_MobileDev_C971
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
             {
                 courseList = conn.Table<Course>().ToList();
-                //conn.Table<Term>().Select(termList ,CurrentTermID)
             }
 
             foreach (Course row in courseList)
@@ -81,7 +78,6 @@ namespace Jason_Chapman_MobileDev_C971
 
         private void EditCourse_Clicked(object sender, EventArgs e)
         {
-            //Navigation.PushAsync(new EditTermPage(CurrentTermID));
             EditCourseTitleEntry.IsVisible = true;
             EditCourseTitleEntry.Focus();
             EditCourseInstructorName.IsVisible = true;
@@ -349,7 +345,7 @@ namespace Jason_Chapman_MobileDev_C971
         }//end DeleteButtons
         private async void GoToAssmtBtn_Clicked(object sender, EventArgs e, int id)
         {
-            await Navigation.PushAsync(new AssessmentPage(id));//USE WHEN READY TO ADD ASSMTS
+            await Navigation.PushAsync(new AssessmentPage(id));
 
         }//end GoToAssmtBtn_Clicked
         private void SetCourseNotification_Clicked(object sender, EventArgs e)
@@ -400,9 +396,7 @@ namespace Jason_Chapman_MobileDev_C971
             }//foreach
 
             DisplayAlert(" ", "Notification set!", "OK");
-            DisplayAlert("Alert ID: " + alertID.ToString(), "Notification set!\n" + "Start date: " + start.ToString() + "\n" + "End date: " + end.ToString(), "OK");//DELETE THIS except for 'Notification set!'
             CrossLocalNotifications.Current.Show(" ", "Start date: " + start.ToString() + "\n" + "End date: " + end.ToString(), alertID, start);
-            //CrossLocalNotifications.Current.Show("Alert!!!", "End date: + " + end.ToString(), alertID, end);
         }//end SetCourseNotification_Clicked
         private void DeleteAssmtRows()
         {
@@ -423,7 +417,6 @@ namespace Jason_Chapman_MobileDev_C971
         private async void DeleteCourse_Clicked(object sender, EventArgs e)
         {
             bool answer = await DisplayAlert("Alert!", "Are you sure you want to delete this course?", "Yes", "No");
-            //int currentTermID;
 
             if (answer)
             {
@@ -442,7 +435,6 @@ namespace Jason_Chapman_MobileDev_C971
                 {
                     if (row.CourseID == CurrentCourseID)
                     {
-                        //currentTermID = row.TermID;
                         using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
                         {
                             conn.Delete(row);
@@ -460,11 +452,7 @@ namespace Jason_Chapman_MobileDev_C971
         private async void ShareCourseNotes_Clicked(object sender, EventArgs e)
         {
             await Share.RequestAsync(CurrentCourseNotes);
-            //await Share.RequestAsync(new ShareTextRequest
-            //{
-            //    Text = text,
-            //    Title = "Share Text"
-            //});
+
         }
     }
 }

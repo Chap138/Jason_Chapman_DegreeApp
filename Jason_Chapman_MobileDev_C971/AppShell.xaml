@@ -6,39 +6,16 @@
        BackgroundColor="DeepSkyBlue">
 
     <FlyoutItem Title="Home"
-                Icon="icon_feed.png">
+                Icon="icon_feed">
         <Tab>
             <ShellContent  ContentTemplate="{DataTemplate views:HomePage}" />
         </Tab>
     </FlyoutItem>
+    <FlyoutItem Title="About"
+                Icon="icon_about">
+        <Tab>
+            <ShellContent  ContentTemplate="{DataTemplate views:AboutPage}" />
+        </Tab>
+    </FlyoutItem>
     
-    <!--<FlyoutItem Title="Term 1"
-                Icon="icon_feed.png">
-        <Tab>
-            <ShellContent  ContentTemplate="{DataTemplate views:Term1Page}" />
-        </Tab>
-    </FlyoutItem>
-
-    <FlyoutItem Title="Term 2"
-                Icon="icon_feed.png">
-        <Tab>
-            <ShellContent ContentTemplate="{DataTemplate views:Term2Page}" />
-        </Tab>
-    </FlyoutItem>
-
-    <FlyoutItem Title="Display for test"
-                Icon="icon_feed.png">
-        <Tab>
-            <ShellContent  ContentTemplate="{DataTemplate views:Display}" />
-        </Tab>
-    </FlyoutItem>-->
-
 </Shell>
-<!-- 
-        When the Flyout is visible this defines the content to display in the flyout.
-        FlyoutDisplayOptions="AsMultipleItems" will create a separate flyout item for each child element    
-        https://docs.microsoft.com/dotnet/api/xamarin.forms.shellgroupitem.flyoutdisplayoptions?view=xamarin-forms
-    -->
-<!--<FlyoutItem Title="About" Icon="icon_about.png">
-        <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
-    </FlyoutItem>-->

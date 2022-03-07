@@ -13,14 +13,13 @@ namespace Jason_Chapman_MobileDev_C971
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HomePage : ContentPage
     {
-        //private int crrntTerm;
         private List<Term> termList;
-        
+
         public HomePage()
         {
             InitializeComponent();
             BindingContext = this;
-            //DeleteTermRows(); //DELETES EVERYTHING FROM THE TERM TABLE
+            //DeleteTermRows(); 
             //CreateTermTable();
             AddTermFromDb();
         }
@@ -87,7 +86,6 @@ namespace Jason_Chapman_MobileDev_C971
         private async void GoToTermButton_Clicked(object sender, EventArgs e, int id)//Navigate to appropriate term
         {
             await Navigation.PushAsync(new TermPage(id));
-            //await DisplayAlert(id.ToString(), "Werks", "Git!!!");//DELETE For testing 
         }//end GoToTermButton_Clicked
 
         private void AddTermBtn_Clicked(object sender, EventArgs e)//Initiates Term creation 
@@ -122,8 +120,7 @@ namespace Jason_Chapman_MobileDev_C971
         {
             Term termTest = new Term()
             {
-                TermTitle = "Term 1", //Needs to get this from DB because it tests ability to change 'TermTitle'
-                //CreateDate = System.DateTime.Now
+                TermTitle = "Term 1"
             };
 
             int termID = termTest.ID;
@@ -142,14 +139,10 @@ namespace Jason_Chapman_MobileDev_C971
                 FontSize = 20,
                 Margin = 30,
                 BackgroundColor = Color.White,
-                //CommandParameter = termTest.TermID
                 ClassId = termTest.ID.ToString()
             };
-            //testBtn.Clicked += (sender, args) => GoToTermButton_Clicked(sender, args, termID);
             testBtn.BindingContext = termTest;
             testBtn.SetBinding(Button.TextProperty, "TermTitle");
-            //testBtn.SetValue(Button.ClassIdProperty, termTest.TermID);
-            //int termID = termTest.TermID;
             layout.Children.Add(testBtn);
 
         }//end AddTermBtnForTest FOR TESTING
@@ -175,7 +168,6 @@ namespace Jason_Chapman_MobileDev_C971
         }//end CreateTermTable
         private void AddTermFromDb()//Creates Buttons for all Terms in DB
         {
-            
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
             {
                 termList = conn.Table<Term>().ToList();

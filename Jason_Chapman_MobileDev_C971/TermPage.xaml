@@ -5,16 +5,16 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="EditTerm"
                      Clicked="EditTerm_Clicked"
-                     Text="Edit Term"/>
+                     Text="Edit"/>
         <ToolbarItem x:Name="AddCourse"
                      Clicked="AddCourse_Clicked"  
-                     Text="Add Course"/>
+                     Text="+Course"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <ScrollView>
             <StackLayout x:Name="layout" 
                 BackgroundColor="Black">
-                
+
                 <Label x:Name="TermLabel"
                    TextColor="White"
                    Margin="0,15,0,20"

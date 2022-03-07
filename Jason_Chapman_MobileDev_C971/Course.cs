@@ -19,7 +19,6 @@ namespace Jason_Chapman_MobileDev_C971
         public string InstructorEmail { get; set; }
         [MaxLength(250)]
         public string CourseNotes { get; set; }
-        //private int notitificationID = 0;
         private int notificationID = 1;
         public int NotificationID
         {
@@ -27,16 +26,5 @@ namespace Jason_Chapman_MobileDev_C971
             set { notificationID = value; }
         }
 
-        //public Course(int termID, string title, DateTime start, DateTime end, string prog, string name, string phone, string email)
-        //{
-        //    TermID = termID;
-        //    CourseTitle = title;
-        //    StartDate = start;
-        //    EndDate = end;
-        //    Progress = prog;
-        //    InstructorName = name;
-        //    InstructorPhone = phone;
-        //    InstructorEmail = email;
-        //}
     }
 }

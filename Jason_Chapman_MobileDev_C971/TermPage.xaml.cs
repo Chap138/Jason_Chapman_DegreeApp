@@ -74,7 +74,6 @@ namespace Jason_Chapman_MobileDev_C971
                 CourseStatusLabel.IsVisible = false;
                 CourseProgressPicker.IsVisible = false;
                 CourseNotesEditor.IsVisible = false;
-                //CourseProgressPicker.SelectedItem = null;
 
                 Course course = new Course()
                 {
@@ -171,7 +170,6 @@ namespace Jason_Chapman_MobileDev_C971
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
             {
                 termList = conn.Table<Term>().ToList();
-                //conn.Table<Term>().Select(termList ,CurrentTermID)
             }
 
             foreach (Term row in termList)
@@ -186,21 +184,15 @@ namespace Jason_Chapman_MobileDev_C971
             TermLabel.Text = CurrentTermTitle;
             StartDatePicker.Date = CurrentTermStart;
             EndDatePicker.Date = CurrentTermEnd;
-            //DisplayAlert(CurrentTermTitle, CurrentTermStart.ToString(), CurrentTermEnd.ToString());//Test to display CurrentTerm properties 
         }//end GetTerm()
 
         private async void GoToCourseBtn_Clicked(object sender, EventArgs e, int id)
         {
-
-            await Navigation.PushAsync(new CoursePage(id));//USE WHEN READY TO ADD COURSES
-
-            //await Navigation.PushAsync(new Course1Page());//TEST TEST TEST delete when ready to add courses
-
+            await Navigation.PushAsync(new CoursePage(id));
         }//end GoToCourseBtn_Clicked
 
         private void EditTerm_Clicked(object sender, EventArgs e)
         {
-            //Navigation.PushAsync(new EditTermPage(CurrentTermID));
             TitleEntry.IsVisible = true;
             TitleEntry.Focus();
             EditTermSaveBtn.IsVisible = true;
@@ -327,7 +319,7 @@ namespace Jason_Chapman_MobileDev_C971
         private async void DeleteTerm_Clicked(object sender, EventArgs e)
         {
             bool answer = await DisplayAlert("Alert!", "Are you sure you want to delete this term?", "Yes", "No");
-            //int currentTermID;
+
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
             {
                 assmtList = conn.Table<Assessment>().ToList();
@@ -357,9 +349,6 @@ namespace Jason_Chapman_MobileDev_C971
                             conn.Delete(row);
                             conn.Update(row);
                         }
-                        //await DisplayAlert(" ", "Course deleted.", "OK");
-                        //await Navigation.PopAsync();//Goes back to previous page
-
                         break;
                     }//course row
                 }//course foreach

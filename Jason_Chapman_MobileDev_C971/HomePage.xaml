@@ -6,13 +6,13 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="AddTermBtn"
                      Clicked="AddTermBtn_Clicked"
-                     Text="Add Term"/>
+                     Text="+Term"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <ScrollView>
             <StackLayout x:Name="layout">
-            
-            <!--Title-->
+
+                <!--Title-->
                 <Label x:Name="HomeLabel"
                    Text="Home"
                    TextColor="White"

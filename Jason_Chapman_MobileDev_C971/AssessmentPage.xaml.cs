@@ -27,8 +27,6 @@ namespace Jason_Chapman_MobileDev_C971
             InitializeComponent();
             CurrentAssmtID = assmtID;
             //DropAddAssmtTable();
-            //DropAddAssmtTable();
-            //AddAssmtFromDB();
         }
         protected override void OnAppearing()
         {
@@ -154,12 +152,6 @@ namespace Jason_Chapman_MobileDev_C971
             {
                 assmtList = conn.Table<Assessment>().ToList();
             }
-
-            //for (int i = 0; i < courseList.Count; i++)
-            //{
-            //    Debug.WriteLine(courseList[i].NotificationID);
-            //}
-
             for (int i = 0; i < assmtList.Count; i++)
             {
                 if (assmtList[i].AssessmentID == CurrentAssmtID)
@@ -195,9 +187,7 @@ namespace Jason_Chapman_MobileDev_C971
             }//foreach
 
             DisplayAlert(" ", "Notification set!", "OK");
-            DisplayAlert("Alert ID: " + alertID.ToString(), "Notification set!\n" + "Due date: " + dueDate.ToString(), "OK");//DELETE THIS except for 'Notification set!'
             CrossLocalNotifications.Current.Show(" ", "Due date: " + dueDate.ToString() + "\n", alertID, dueDate);
-            //CrossLocalNotifications.Current.Show("Alert!!!", "End date: + " + end.ToString(), alertID, end);
         }//end SetDueDateAlertButton_Clicked
 
         private async void DeleteAssmt_Clicked(object sender, EventArgs e)
