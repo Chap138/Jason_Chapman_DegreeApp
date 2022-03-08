@@ -14,7 +14,7 @@
 
                 <!--Title-->
                 <Label x:Name="HomeLabel"
-                   Text="Home"
+                   Text="Degree Plan"
                    TextColor="White"
                    Margin="0,15,0,30"
                    FontSize="35"

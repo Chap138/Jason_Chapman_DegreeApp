@@ -4,7 +4,7 @@
              x:Class="Jason_Chapman_MobileDev_C971.AboutPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Created by Jason Chapman -- March 6, 2021. In order to prepopulate DB for evaluation, please uncomment the TestDataForEval() method in the App constructor."
+            <Label Text="Created by Jason Chapman -- March 7, 2021. In order to prepopulate DB for evaluation, please uncomment the TestDataForEval() method in the overloaded App constructor in the App.xaml.cs file."
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand"
                 Margin="30,0,0,0"/>

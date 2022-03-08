@@ -5,7 +5,7 @@
        x:Class="Jason_Chapman_MobileDev_C971.AppShell"
        BackgroundColor="DeepSkyBlue">
 
-    <FlyoutItem Title="Home"
+    <FlyoutItem Title="Degree Plan"
                 Icon="icon_feed">
         <Tab>
             <ShellContent  ContentTemplate="{DataTemplate views:HomePage}" />
