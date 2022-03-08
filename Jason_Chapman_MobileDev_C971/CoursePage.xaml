@@ -151,7 +151,7 @@
 
                 <!--ADD ASSESSMENT ADD ASSESSMENT ADD ASSESSMENT ADD ASSESSMENT ADD ASSESSMENT-->
                 <Entry x:Name="AddAssmtEntry"
-                    Placeholder="Enter Term Title"
+                    Placeholder="Enter Assessment Title"
                    PlaceholderColor="White"
                    TextColor="White"
                    IsVisible="false"/>

@@ -78,6 +78,13 @@ namespace Jason_Chapman_MobileDev_C971
 
         private void EditCourse_Clicked(object sender, EventArgs e)
         {
+            Instructor.IsVisible = false;
+            InstructorName.IsVisible = false;
+            InstructorPhone.IsVisible = false;
+            InstructorEmail.IsVisible = false;
+            Notes.IsVisible = false;
+            CourseNotes.IsVisible = false;
+
             EditCourseTitleEntry.IsVisible = true;
             EditCourseTitleEntry.Focus();
             EditCourseInstructorName.IsVisible = true;
@@ -160,6 +167,13 @@ namespace Jason_Chapman_MobileDev_C971
                     break;
                 }
             }
+            Instructor.IsVisible = true;
+            InstructorName.IsVisible = true;
+            InstructorPhone.IsVisible = true;
+            InstructorEmail.IsVisible = true;
+            Notes.IsVisible = true;
+            CourseNotes.IsVisible = true;
+
             EditCourseTitleEntry.IsVisible = false;
             EditCourseInstructorName.IsVisible = false;
             EditCourseInstructorPhone.IsVisible = false;
@@ -172,6 +186,13 @@ namespace Jason_Chapman_MobileDev_C971
 
         private void EditCourseCancelBtn_Clicked(object sender, EventArgs e)
         {
+            Instructor.IsVisible = true;
+            InstructorName.IsVisible = true;
+            InstructorPhone.IsVisible = true;
+            InstructorEmail.IsVisible = true;
+            Notes.IsVisible = true;
+            CourseNotes.IsVisible = true;
+
             EditCourseTitleEntry.IsVisible = false;
             EditCourseInstructorName.IsVisible = false;
             EditCourseInstructorPhone.IsVisible = false;
@@ -188,6 +209,12 @@ namespace Jason_Chapman_MobileDev_C971
             StartDatePicker.IsVisible = true;
             EndDatePicker.IsVisible = true;
             CoursePageEndDateLabel.IsVisible = true;
+            Instructor.IsVisible = true;
+            InstructorName.IsVisible = true;
+            InstructorPhone.IsVisible = true;
+            InstructorEmail.IsVisible = true;
+            Notes.IsVisible = true;
+            CourseNotes.IsVisible = true;
 
             AddAssmtEntry.IsVisible = false;
             AddAssmtSaveBtn.IsVisible = false;
@@ -218,6 +245,12 @@ namespace Jason_Chapman_MobileDev_C971
                 StartDatePicker.IsVisible = false;
                 EndDatePicker.IsVisible = false;
                 CoursePageEndDateLabel.IsVisible = false;
+                Instructor.IsVisible = false;
+                InstructorName.IsVisible = false;
+                InstructorPhone.IsVisible = false;
+                InstructorEmail.IsVisible = false;
+                Notes.IsVisible = false;
+                CourseNotes.IsVisible = false;
 
                 AddAssmtEntry.IsVisible = true;
                 AddAssmtEntry.Focus();
@@ -234,78 +267,86 @@ namespace Jason_Chapman_MobileDev_C971
         private void AddAssmtSaveBtn_Clicked(object sender, EventArgs e)
         {
             bool saveOkay = true;
-            foreach (Assessment row in assmtList)
+            if (AddAssmtEntry.Text != null &&
+                AddAssmtTypePicker.SelectedItem != null &&
+                AssmtDueDatePicker.ToString() != null)
             {
-                if (row.CourseID == CurrentCourseID)
+                foreach (Assessment row in assmtList)
                 {
-                    if (row.AssessmentType != AddAssmtTypePicker.SelectedItem.ToString())
+                    if (row.CourseID == CurrentCourseID)
                     {
-                        saveOkay = true;
-                    }
-                    else
-                    {
-                        saveOkay = false;
-                        DisplayAlert(" ", "Only one PA and OA allowed per course.", "OK");
+                        if (row.AssessmentType != AddAssmtTypePicker.SelectedItem.ToString())
+                        {
+                            saveOkay = true;
+                        }
+                        else
+                        {
+                            saveOkay = false;
+                            DisplayAlert(" ", "Only one PA and OA allowed per course.", "OK");
+                            break;
+                        }
                     }
                 }
             }
+            else
+            {
+                DisplayAlert(" ", "Please enter all fields.", "OK");
+            }
             if (saveOkay)
             {
-                if (AddAssmtEntry.Text == null ||
-                    AddAssmtTypePicker.SelectedItem == null ||
-                    AssmtDueDatePicker.ToString() == null)
+                CoursePageStartDateLabel.IsVisible = true;
+                StartDatePicker.IsVisible = true;
+                EndDatePicker.IsVisible = true;
+                CoursePageEndDateLabel.IsVisible = true;
+                Instructor.IsVisible = true;
+                InstructorName.IsVisible = true;
+                InstructorPhone.IsVisible = true;
+                InstructorEmail.IsVisible = true;
+                Notes.IsVisible = true;
+                CourseNotes.IsVisible = true;
+
+                AddAssmtEntry.IsVisible = false;
+                AddAssmtSaveBtn.IsVisible = false;
+                AddAssmtCancelBtn.IsVisible = false;
+                AssmtDueDatePicker.IsVisible = false;
+                AssmtDueDateLabel.IsVisible = false;
+                AddAssmtTypePicker.IsVisible = false;
+
+                Assessment assmt = new Assessment()
                 {
-                    DisplayAlert(" ", "Please enter all fields.", "OK");
-                }
-                else
+                    CourseID = CurrentCourseID,
+                    AssessmentTitle = AddAssmtEntry.Text,
+                    AssessmentType = AddAssmtTypePicker.SelectedItem.ToString(),
+                    DueDate = AssmtDueDatePicker.Date
+                };
+
+                using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
                 {
-                    CoursePageStartDateLabel.IsVisible = true;
-                    StartDatePicker.IsVisible = true;
-                    EndDatePicker.IsVisible = true;
-                    CoursePageEndDateLabel.IsVisible = true;
-
-                    AddAssmtEntry.IsVisible = false;
-                    AddAssmtSaveBtn.IsVisible = false;
-                    AddAssmtCancelBtn.IsVisible = false;
-                    AssmtDueDatePicker.IsVisible = false;
-                    AssmtDueDateLabel.IsVisible = false;
-                    AddAssmtTypePicker.IsVisible = false;
-
-                    Assessment assmt = new Assessment()
-                    {
-                        CourseID = CurrentCourseID,
-                        AssessmentTitle = AddAssmtEntry.Text,
-                        AssessmentType = AddAssmtTypePicker.SelectedItem.ToString(),
-                        DueDate = AssmtDueDatePicker.Date
-                    };
-
-                    using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
-                    {
-                        conn.CreateTable<Assessment>();
-                        conn.Insert(assmt);
-                    }
-
-                    Button testBtn = new Button()
-                    {
-                        TextColor = Color.Black,
-                        FontAttributes = FontAttributes.Bold,
-                        FontSize = 20,
-                        Margin = 30,
-                        BackgroundColor = Color.White,
-                        CornerRadius = 10,
-                        BorderColor = Color.LightSkyBlue,
-                        BorderWidth = 2
-                    };
-
-                    int assmtID = assmt.AssessmentID;
-                    testBtn.Clicked += (s, a) => GoToAssmtBtn_Clicked(s, a, assmtID);
-                    testBtn.BindingContext = assmt;
-                    testBtn.SetBinding(Button.TextProperty, "AssessmentTitle");
-                    layout.Children.Add(testBtn);
-                    AddAssmtEntry.Placeholder = "Enter Assessment Title";
-
-                    AddAssmtEntry.Text = null;
+                    conn.CreateTable<Assessment>();
+                    conn.Insert(assmt);
                 }
+
+                Button testBtn = new Button()
+                {
+                    TextColor = Color.Black,
+                    FontAttributes = FontAttributes.Bold,
+                    FontSize = 20,
+                    Margin = 30,
+                    BackgroundColor = Color.White,
+                    CornerRadius = 10,
+                    BorderColor = Color.LightSkyBlue,
+                    BorderWidth = 2
+                };
+
+                int assmtID = assmt.AssessmentID;
+                testBtn.Clicked += (s, a) => GoToAssmtBtn_Clicked(s, a, assmtID);
+                testBtn.BindingContext = assmt;
+                testBtn.SetBinding(Button.TextProperty, "AssessmentTitle");
+                layout.Children.Add(testBtn);
+                AddAssmtEntry.Placeholder = "Enter Assessment Title";
+
+                AddAssmtEntry.Text = null;
+
             }
 
         }//end AddCourseSaveBtn_Clicked
