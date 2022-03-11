@@ -20,13 +20,6 @@ namespace Jason_Chapman_MobileDev_C971
 
             FilePath = filePath;
 
-            //using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
-            //{
-            //    conn.DropTable<Assessment>();
-            //    conn.DropTable<Course>();
-            //    conn.DropTable<Term>();
-            //}
-
             TestDataForEval();
         }//end constructor
 

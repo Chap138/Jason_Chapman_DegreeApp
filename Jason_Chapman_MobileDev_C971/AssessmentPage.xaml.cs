@@ -17,6 +17,7 @@ namespace Jason_Chapman_MobileDev_C971
         int alertID;
         private int CurrentAssmtID;
         List<Assessment> assmtList;
+        List<Course> courseList;
         private string CurrentAssmtTitle;
         private string CurrentAssmtType;
         private DateTime CurrentAssmtDueDate;
@@ -66,6 +67,9 @@ namespace Jason_Chapman_MobileDev_C971
 
         private void EditAssmtSaveBtn_Clicked(object sender, EventArgs e)
         {
+            bool pa = false;
+            bool oa = false;
+
             foreach (Assessment row in assmtList)
             {
                 if (row.AssessmentID == CurrentAssmtID)
@@ -79,12 +83,30 @@ namespace Jason_Chapman_MobileDev_C971
                     }
 
                     if (EditAssmtTypePicker.SelectedItem == null)
-                    { row.AssessmentType = CurrentAssmtType; }
-                    else
+                    {
+                        row.AssessmentType = CurrentAssmtType;
+                    }
+                    else if (row.AssessmentType == EditAssmtTypePicker.SelectedItem.ToString())
                     {
                         row.AssessmentType = EditAssmtTypePicker.SelectedItem.ToString();
                         AssmtTypeLabel.Text = EditAssmtTypePicker.SelectedItem.ToString();
                     }
+                    else if (row.AssessmentType != EditAssmtTypePicker.SelectedItem.ToString())
+                    {
+                        if (row.AssessmentType == "Performance Assessment")
+                        {
+                            pa = true;
+                        }
+                        else if (row.AssessmentType == "Objective Assessment")
+                        {
+                            oa = true;
+                        }
+                        if (pa || oa)
+                        {
+                            DisplayAlert(" ", "Only one Performance Assessment and one Objective Assessment allowed per course.", "OK");
+                        }
+                    }
+
 
                     row.DueDate = AssmtDueDatePicker.Date;
 
@@ -109,35 +131,6 @@ namespace Jason_Chapman_MobileDev_C971
             EditAssmtCancelBtn.IsVisible = false;
         }//end EditAssmtCancelBtn_Clicked
 
-        //private void AddAssmtFromDB()//Creates Buttons for all Terms in DB
-        //{
-        //    using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
-        //    {
-        //        assmtList = conn.Table<Assessment>().ToList();
-
-        //        for (int i = 0; i < assmtList.Count; i++)
-        //        {
-        //            int assmtID = assmtList[i].AssessmentID;
-        //            string btnTitle = assmtList[i].AssessmentTitle;
-
-        //            Button assmtBtn = new Button()
-        //            {
-        //                TextColor = Color.Black,
-        //                FontAttributes = FontAttributes.Bold,
-        //                FontSize = 20,
-        //                Margin = 30,
-        //                BackgroundColor = Color.White,
-        //                CornerRadius = 10
-        //            };
-
-        //            assmtBtn.Clicked += (sender, args) => GoToAssmtBtn_Clicked(sender, args, assmtID);
-        //            assmtBtn.BindingContext = assmtList[i];
-        //            assmtBtn.SetBinding(Button.TextProperty, "AssessmentTitle");
-
-        //            layout.Children.Add(assmtBtn);
-        //        }
-        //    }
-        //}//end AddAssmtFromDB
         private void DeleteButtons()//Delete buttons to replace refreshed
         {
             for (int i = 20; i < layout.Children.Count;)

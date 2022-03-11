@@ -291,6 +291,7 @@ namespace Jason_Chapman_MobileDev_C971
             else
             {
                 DisplayAlert(" ", "Please enter all fields.", "OK");
+                saveOkay = false;
             }
             if (saveOkay)
             {
