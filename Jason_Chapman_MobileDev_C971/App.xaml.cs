@@ -19,8 +19,18 @@ namespace Jason_Chapman_MobileDev_C971
             MainPage = new AppShell();
 
             FilePath = filePath;
+            using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
+            {
+                //conn.DropTable<Term>();
+                //conn.DropTable<Course>();
+                //conn.DropTable<Assessment>();
 
-            TestDataForEval();
+                conn.CreateTable<Term>();
+                conn.CreateTable<Course>();
+                conn.CreateTable<Assessment>();
+            }
+
+            //TestDataForEval();
         }//end constructor
 
         private void TestDataForEval()
