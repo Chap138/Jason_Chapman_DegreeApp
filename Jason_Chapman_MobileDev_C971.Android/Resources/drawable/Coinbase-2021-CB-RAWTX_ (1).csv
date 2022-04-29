@@ -1,0 +1,2 @@
+Transaction ID,Transaction Type,Date & time,Asset Acquired,"Quantity Acquired (Bought, Received, etc)",Cost Basis (incl. fees paid) (USD),Data Source,"Asset Disposed (Sold, Sent, etc)",Quantity Disposed,Proceeds (excl. fees paid) (USD)
+78e82315-d03a-53b1-9cde-6c4235cee632,Reward,2021-09-14T19:38:38Z,BTC,0.00010726,5.0013096266,Coinbase,,,
