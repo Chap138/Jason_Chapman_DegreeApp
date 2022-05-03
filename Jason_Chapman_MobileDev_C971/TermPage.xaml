@@ -86,9 +86,6 @@
                 <!--ADD COURSES-->
                 <!--ADD COURSES-->
                 <!--ADD COURSES-->
-                <!--ADD COURSES-->
-                <!--ADD COURSES-->
-                <!--ADD COURSES-->
                 <Entry x:Name="AddCourseEntry"
                     Placeholder="Enter Course Title"
                    PlaceholderColor="White"
