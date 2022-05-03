@@ -163,8 +163,8 @@
                        IsVisible="false"/>
                 <DatePicker x:Name="AssmtDueDatePicker"
                             TextColor="White"
-                            FontAttributes="Bold"
-                            FontSize="25"
+                            FontAttributes="None"
+                            FontSize="20"
                             Margin="0,0,100,10"
                             HorizontalOptions="StartAndExpand"
                             IsVisible="false"/>
