@@ -63,8 +63,8 @@ namespace Jason_Chapman_MobileDev_C971
             else
             {
                 TermPageStartDateLabel.IsVisible = true;
-                StartDatePicker.IsVisible = true;
-                EndDatePicker.IsVisible = true;
+                TermStartDatePicker.IsVisible = true;
+                TermEndDatePicker.IsVisible = true;
                 TermPageEndDateLabel.IsVisible = true;
 
                 AddCourseEntry.IsVisible = false;
@@ -188,8 +188,8 @@ namespace Jason_Chapman_MobileDev_C971
                 }
             }
             TermLabel.Text = CurrentTermTitle;
-            StartDatePicker.Date = CurrentTermStart;
-            EndDatePicker.Date = CurrentTermEnd;
+            TermStartDatePicker.Date = CurrentTermStart;
+            TermEndDatePicker.Date = CurrentTermEnd;
         }//end GetTerm()
 
         private async void GoToCourseBtn_Clicked(object sender, EventArgs e, int id)
@@ -199,18 +199,35 @@ namespace Jason_Chapman_MobileDev_C971
 
         private void EditTerm_Clicked(object sender, EventArgs e)
         {
+            TermStartDatePicker.IsVisible = true;
+            TermPageStartDateLabel.IsVisible = true;
+            TermEndDatePicker.IsVisible = true;
+            TermPageEndDateLabel.IsVisible = true;
+
             TitleEntry.IsVisible = true;
             TitleEntry.Focus();
             EditTermSaveBtn.IsVisible = true;
             EditTermCancelBtn.IsVisible = true;
+
+            CourseStartDatePicker.IsVisible = false;
+            CourseStartDateLabel.IsVisible = false;
+            CourseEndDatePicker.IsVisible = false;
+            CourseEndDateLabel.IsVisible = false;
+
+            AddCourseEntry.IsVisible = false;
+            CourseInstructorName.IsVisible = false;
+            CourseInstructorPhone.IsVisible = false;
+            CourseInstructorEmail.IsVisible = false;
+            AddCourseSaveBtn.IsVisible = false;
+            AddCourseCancelBtn.IsVisible = false;
+            CourseStatusLabel.IsVisible = false;
+            CourseProgressPicker.IsVisible = false;
+            CourseNotesEditor.IsVisible = false;
+            DeleteTerm.IsVisible = false;
         }//end EditTerm_Clicked
 
         private void EditTermSaveBtn_Clicked(object sender, EventArgs e)
         {
-            TitleEntry.IsVisible = false;
-            EditTermSaveBtn.IsVisible = false;
-            EditTermCancelBtn.IsVisible = false;
-
             foreach (Term row in termList)
             {
                 if (row.ID == CurrentTermID)
@@ -225,10 +242,15 @@ namespace Jason_Chapman_MobileDev_C971
                         TermLabel.Text = TitleEntry.Text;
                     }
 
-                    if (StartDatePicker.Date < EndDatePicker.Date)
+                    if (TermStartDatePicker.Date < TermEndDatePicker.Date)//Will save term edits if true
                     {
-                        row.Start = StartDatePicker.Date;
-                        row.End = EndDatePicker.Date;
+                        row.Start = TermStartDatePicker.Date;
+                        row.End = TermEndDatePicker.Date;
+
+                        TitleEntry.IsVisible = false;
+                        EditTermSaveBtn.IsVisible = false;
+                        EditTermCancelBtn.IsVisible = false;
+                        DeleteTerm.IsVisible = true;
                     }
                     else
                     {
@@ -250,12 +272,17 @@ namespace Jason_Chapman_MobileDev_C971
             TitleEntry.IsVisible = false;
             EditTermSaveBtn.IsVisible = false;
             EditTermCancelBtn.IsVisible = false;
+
+            DeleteTerm.IsVisible = true;
+
+            TermStartDatePicker.Date = CurrentTermStart;
+            TermEndDatePicker.Date = CurrentTermEnd;
         }//end EditTermCancelBtn_Clicked
         private void AddCourseCancelBtn_Clicked(object sender, EventArgs e)
         {
             TermPageStartDateLabel.IsVisible = true;
-            StartDatePicker.IsVisible = true;
-            EndDatePicker.IsVisible = true;
+            TermStartDatePicker.IsVisible = true;
+            TermEndDatePicker.IsVisible = true;
             TermPageEndDateLabel.IsVisible = true;
 
             AddCourseEntry.IsVisible = false;
@@ -271,6 +298,7 @@ namespace Jason_Chapman_MobileDev_C971
             CourseStatusLabel.IsVisible = false;
             CourseProgressPicker.IsVisible = false;
             CourseNotesEditor.IsVisible = false;
+            DeleteTerm.IsVisible = true;
         }
         private void AddCourse_Clicked(object sender, EventArgs e)//ADD COURSES
         {
@@ -289,11 +317,15 @@ namespace Jason_Chapman_MobileDev_C971
 
             if (numCourses < 6)
             {
-
                 TermPageStartDateLabel.IsVisible = false;
-                StartDatePicker.IsVisible = false;
-                EndDatePicker.IsVisible = false;
+                TermStartDatePicker.IsVisible = false;
+                TermEndDatePicker.IsVisible = false;
                 TermPageEndDateLabel.IsVisible = false;
+                DeleteTerm.IsVisible = false;
+
+                TitleEntry.IsVisible = false;
+                EditTermSaveBtn.IsVisible = false;
+                EditTermCancelBtn.IsVisible = false;
 
                 AddCourseEntry.IsVisible = true;
                 AddCourseEntry.Focus();

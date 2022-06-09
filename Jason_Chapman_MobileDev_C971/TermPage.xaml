@@ -27,7 +27,7 @@
                        FontAttributes="Bold"
                        TextColor="White"
                        FontSize="25"/>
-                <DatePicker x:Name="StartDatePicker"
+                <DatePicker x:Name="TermStartDatePicker"
                             TextColor="White"
                             FontAttributes="None"
                             FontSize="20"
@@ -40,7 +40,7 @@
                        FontAttributes="Bold"
                        TextColor="White"
                        FontSize="25"/>
-                <DatePicker x:Name="EndDatePicker"
+                <DatePicker x:Name="TermEndDatePicker"
                             TextColor="White"
                             FontAttributes="None"
                             FontSize="20"
@@ -83,34 +83,8 @@
                         Margin="0,10,0,0"
                         BorderColor = "LightSkyBlue"
                         BorderWidth = "2"/>
+                
                 <!--ADD COURSES-->
-                <!--ADD COURSES-->
-                <!--ADD COURSES-->
-                <Entry x:Name="AddCourseEntry"
-                    Placeholder="Enter Course Title"
-                   PlaceholderColor="White"
-                   TextColor="White"
-                   IsVisible="false"/>
-                <Entry x:Name="CourseInstructorName"
-                    Placeholder="Enter instructor name"
-                   PlaceholderColor="White"
-                   TextColor="White"
-                   IsVisible="false"/>
-                <Entry x:Name="CourseInstructorPhone"
-                    Placeholder="Enter instructor phone number"
-                   PlaceholderColor="White"
-                   TextColor="White"
-                   IsVisible="false"/>
-                <Entry x:Name="CourseInstructorEmail"
-                    Placeholder="Enter instructor email"
-                   PlaceholderColor="White"
-                   TextColor="White"
-                   IsVisible="false"/>
-                <Editor x:Name="CourseNotesEditor"
-                        Placeholder="Enter notes"
-                        PlaceholderColor="White"
-                        TextColor="White"
-                        IsVisible="false"/>
                 <Label x:Name="CourseStartDateLabel"
                        Text="Start Date"
                        FontAttributes="Bold"
@@ -138,6 +112,32 @@
                             Margin="0,0,100,10"
                             HorizontalOptions="StartAndExpand"
                             IsVisible="false"/>
+                <Entry x:Name="AddCourseEntry"
+                    Placeholder="Enter Course Title"
+                   PlaceholderColor="White"
+                   TextColor="White"
+                   IsVisible="false"/>
+                <Entry x:Name="CourseInstructorName"
+                    Placeholder="Enter instructor name"
+                   PlaceholderColor="White"
+                   TextColor="White"
+                   IsVisible="false"/>
+                <Entry x:Name="CourseInstructorPhone"
+                    Placeholder="Enter instructor phone number"
+                   PlaceholderColor="White"
+                   TextColor="White"
+                   IsVisible="false"/>
+                <Entry x:Name="CourseInstructorEmail"
+                    Placeholder="Enter instructor email"
+                   PlaceholderColor="White"
+                   TextColor="White"
+                   IsVisible="false"/>
+                <Editor x:Name="CourseNotesEditor"
+                        Placeholder="Enter notes"
+                        PlaceholderColor="White"
+                        TextColor="White"
+                        IsVisible="false"/>
+                
                 <Label x:Name="CourseStatusLabel"
                        Text="Course Status"
                        FontAttributes="Bold"

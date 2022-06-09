@@ -14,7 +14,6 @@ namespace Jason_Chapman_MobileDev_C971
     public partial class HomePage : ContentPage
     {
         private List<Term> termList;
-
         public HomePage()
         {
             InitializeComponent();
