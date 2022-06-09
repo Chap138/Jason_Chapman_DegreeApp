@@ -69,13 +69,20 @@ namespace Jason_Chapman_MobileDev_C971
         {
             bool pa = false;
             bool oa = false;
+            bool containsSpec = EditAssmtTitleEntry.Text.Any(char.IsPunctuation) || EditAssmtTitleEntry.Text.Any(char.IsSymbol);//Check for special characters
 
             foreach (Assessment row in assmtList)
             {
                 if (row.AssessmentID == CurrentAssmtID)
                 {
                     if (EditAssmtTitleEntry.Text == null)
-                    { row.AssessmentTitle = CurrentAssmtTitle; }
+                    {
+                        row.AssessmentTitle = CurrentAssmtTitle;
+                    }
+                    else if (containsSpec)
+                    {
+                        DisplayAlert(" ", "Please use letters and numbers only.", "OK");
+                    }
                     else
                     {
                         row.AssessmentTitle = EditAssmtTitleEntry.Text;

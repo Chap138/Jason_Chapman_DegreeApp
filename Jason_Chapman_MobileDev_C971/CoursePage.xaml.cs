@@ -109,12 +109,20 @@ namespace Jason_Chapman_MobileDev_C971
 
         private void EditCourseSaveBtn_Clicked(object sender, EventArgs e)
         {
+            bool containsSpec = EditCourseTitleEntry.Text.Any(char.IsPunctuation) || EditCourseTitleEntry.Text.Any(char.IsSymbol);//Check for special characters
+
             foreach (Course row in courseList)
             {
                 if (row.CourseID == CurrentCourseID)
                 {
                     if (EditCourseTitleEntry.Text == null)
-                    { row.CourseTitle = CurrentCourseTitle; }
+                    {
+                        row.CourseTitle = CurrentCourseTitle;
+                    }
+                    else if (containsSpec)
+                    {
+                        DisplayAlert(" ", "Please use letters and numbers only.", "OK");
+                    }
                     else
                     {
                         row.CourseTitle = EditCourseTitleEntry.Text;
@@ -301,6 +309,8 @@ namespace Jason_Chapman_MobileDev_C971
 
         private void AddAssmtSaveBtn_Clicked(object sender, EventArgs e)
         {
+            bool containsSpec = AddAssmtEntry.Text.Any(char.IsPunctuation) || AddAssmtEntry.Text.Any(char.IsSymbol);//Check for special characters
+
             bool saveOkay = true;
             if (AddAssmtEntry.Text != null &&
                 AddAssmtTypePicker.SelectedItem != null &&
@@ -313,6 +323,10 @@ namespace Jason_Chapman_MobileDev_C971
                         if (row.AssessmentType != AddAssmtTypePicker.SelectedItem.ToString())
                         {
                             saveOkay = true;
+                        }
+                        else if (containsSpec)
+                        {
+                            DisplayAlert(" ", "Please use letters and numbers only.", "OK");
                         }
                         else
                         {

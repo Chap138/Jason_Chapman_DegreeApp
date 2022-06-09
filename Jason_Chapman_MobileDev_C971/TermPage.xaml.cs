@@ -45,6 +45,8 @@ namespace Jason_Chapman_MobileDev_C971
 
         private void AddCourseSaveBtn_Clicked(object sender, EventArgs e)
         {
+            bool containsSpec = AddCourseEntry.Text.Any(char.IsPunctuation) || AddCourseEntry.Text.Any(char.IsSymbol);//Check for special characters
+
             if (AddCourseEntry.Text == null ||
                 CourseInstructorName.Text == null ||
                 CourseInstructorPhone.Text == null ||
@@ -55,6 +57,10 @@ namespace Jason_Chapman_MobileDev_C971
                 CourseProgressPicker.SelectedItem == null)
             {
                 DisplayAlert(" ", "Please enter all fields.", "OK");
+            }
+            else if (containsSpec)
+            {
+                DisplayAlert(" ", "Please use letters and numbers only.", "OK");
             }
             else if (CourseStartDatePicker.Date >= CourseEndDatePicker.Date)
             {
@@ -228,6 +234,8 @@ namespace Jason_Chapman_MobileDev_C971
 
         private void EditTermSaveBtn_Clicked(object sender, EventArgs e)
         {
+            bool containsSpec = TitleEntry.Text.Any(char.IsPunctuation) || TitleEntry.Text.Any(char.IsSymbol);//Check for special characters
+
             foreach (Term row in termList)
             {
                 if (row.ID == CurrentTermID)
@@ -235,6 +243,10 @@ namespace Jason_Chapman_MobileDev_C971
                     if (TitleEntry.Text == null)
                     {
                         row.TermTitle = CurrentTermTitle;
+                    }
+                    else if (containsSpec)
+                    {
+                        DisplayAlert(" ", "Please use letters and numbers only.", "OK");
                     }
                     else
                     {
@@ -345,6 +357,7 @@ namespace Jason_Chapman_MobileDev_C971
             }
             else DisplayAlert(" ", "Can not add more than 6 courses to this term.", "OK");
         }//end AddCourse_Clicked
+
         private void DeleteCourseRows()
         {
             using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))

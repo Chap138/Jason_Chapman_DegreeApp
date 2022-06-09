@@ -40,12 +40,19 @@ namespace Jason_Chapman_MobileDev_C971
 
         private void AddTermSaveBtn_Clicked(object sender, EventArgs e)
         {
+            bool containsSpec = AddTermEntry.Text.Any(char.IsPunctuation) || AddTermEntry.Text.Any(char.IsSymbol);//Check for special characters
+
             if (AddTermEntry.Text == null ||
                 StartDatePicker.ToString() == null ||
                 EndDatePicker.ToString() == null)
             {
                 DisplayAlert(" ", "Please enter all fields.", "OK");
             }
+            else if (containsSpec)
+            {
+                DisplayAlert(" ", "Please use letters and numbers only.", "OK");
+            }
+
             else if (StartDatePicker.Date >= EndDatePicker.Date)
             {
                 DisplayAlert(" ", "The start date can not occur on or after the end date.", "OK");
