@@ -37,7 +37,7 @@
                        FontAttributes="Bold"
                        TextColor="White"
                        FontSize="25"/>
-                <DatePicker x:Name="StartDatePicker"
+                <DatePicker x:Name="CourseStartDatePicker"
                             TextColor="White"
                             FontAttributes="None"
                             FontSize="20"
@@ -49,7 +49,7 @@
                        FontAttributes="Bold"
                        TextColor="White"
                        FontSize="25"/>
-                <DatePicker x:Name="EndDatePicker"
+                <DatePicker x:Name="CourseEndDatePicker"
                             TextColor="White"
                             FontAttributes="None"
                             FontSize="20"
@@ -149,7 +149,7 @@
                         BorderColor = "LightSkyBlue"
                         BorderWidth = "2"/>
 
-                <!--ADD ASSESSMENT ADD ASSESSMENT ADD ASSESSMENT ADD ASSESSMENT ADD ASSESSMENT-->
+                <!--ADD ASSESSMENT-->
                 <Entry x:Name="AddAssmtEntry"
                     Placeholder="Enter Assessment Title"
                    PlaceholderColor="White"

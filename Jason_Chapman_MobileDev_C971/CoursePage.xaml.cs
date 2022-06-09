@@ -68,8 +68,8 @@ namespace Jason_Chapman_MobileDev_C971
             }
             CourseLabel.Text = CurrentCourseTitle;
             ProgressLabel.Text = "Status: " + CurrentCourseProgress;
-            StartDatePicker.Date = CurrentCourseStart;
-            EndDatePicker.Date = CurrentCourseEnd;
+            CourseStartDatePicker.Date = CurrentCourseStart;
+            CourseEndDatePicker.Date = CurrentCourseEnd;
             InstructorName.Text = "Name: " + CurrentCourseInstructorName;
             InstructorPhone.Text = "Phone: " + CurrentCourseInstructorPhone;
             InstructorEmail.Text = "Email: " + CurrentCourseInstructorEmail;
@@ -84,6 +84,17 @@ namespace Jason_Chapman_MobileDev_C971
             InstructorEmail.IsVisible = false;
             Notes.IsVisible = false;
             CourseNotes.IsVisible = false;
+
+            AddAssmtEntry.IsVisible = false;
+            AssmtDueDateLabel.IsVisible = false;
+            AssmtDueDatePicker.IsVisible = false;
+            AddAssmtTypePicker.IsVisible = false;
+            AddAssmtSaveBtn.IsVisible = false;
+            AddAssmtCancelBtn.IsVisible = false;
+            Assessments.IsVisible = false;
+
+            ShareCourseNotes.IsVisible = false;
+            DeleteCourse.IsVisible = false;
 
             EditCourseTitleEntry.IsVisible = true;
             EditCourseTitleEntry.Focus();
@@ -150,10 +161,10 @@ namespace Jason_Chapman_MobileDev_C971
                         CourseNotes.Text = EditCourseNotesEditor.Text;
                     }
 
-                    if (StartDatePicker.Date < EndDatePicker.Date)
+                    if (CourseStartDatePicker.Date < CourseEndDatePicker.Date)
                     {
-                        row.StartDate = StartDatePicker.Date;
-                        row.EndDate = EndDatePicker.Date;
+                        row.StartDate = CourseStartDatePicker.Date;
+                        row.EndDate = CourseEndDatePicker.Date;
                     }
                     else
                     {
@@ -174,6 +185,9 @@ namespace Jason_Chapman_MobileDev_C971
             Notes.IsVisible = true;
             CourseNotes.IsVisible = true;
 
+            ShareCourseNotes.IsVisible = true;
+            DeleteCourse.IsVisible = true;
+
             EditCourseTitleEntry.IsVisible = false;
             EditCourseInstructorName.IsVisible = false;
             EditCourseInstructorPhone.IsVisible = false;
@@ -193,6 +207,9 @@ namespace Jason_Chapman_MobileDev_C971
             Notes.IsVisible = true;
             CourseNotes.IsVisible = true;
 
+            ShareCourseNotes.IsVisible = true;
+            DeleteCourse.IsVisible = true;
+
             EditCourseTitleEntry.IsVisible = false;
             EditCourseInstructorName.IsVisible = false;
             EditCourseInstructorPhone.IsVisible = false;
@@ -206,8 +223,8 @@ namespace Jason_Chapman_MobileDev_C971
         private void AddAssmtCancelBtn_Clicked(object sender, EventArgs e)
         {
             CoursePageStartDateLabel.IsVisible = true;
-            StartDatePicker.IsVisible = true;
-            EndDatePicker.IsVisible = true;
+            CourseStartDatePicker.IsVisible = true;
+            CourseEndDatePicker.IsVisible = true;
             CoursePageEndDateLabel.IsVisible = true;
             Instructor.IsVisible = true;
             InstructorName.IsVisible = true;
@@ -215,6 +232,10 @@ namespace Jason_Chapman_MobileDev_C971
             InstructorEmail.IsVisible = true;
             Notes.IsVisible = true;
             CourseNotes.IsVisible = true;
+            Assessments.IsVisible = true;
+
+            ShareCourseNotes.IsVisible = true;
+            DeleteCourse.IsVisible = true;
 
             AddAssmtEntry.IsVisible = false;
             AddAssmtSaveBtn.IsVisible = false;
@@ -223,6 +244,7 @@ namespace Jason_Chapman_MobileDev_C971
             AssmtDueDateLabel.IsVisible = false;
             AddAssmtTypePicker.IsVisible = false;
         }//end AddAssessmentCancelBtn_Clicked
+
         private void AddAssmt_Clicked(object sender, EventArgs e)//ADD ASSESSMENTS
         {
             numAssmts = 0;
@@ -242,8 +264,8 @@ namespace Jason_Chapman_MobileDev_C971
             {
 
                 CoursePageStartDateLabel.IsVisible = false;
-                StartDatePicker.IsVisible = false;
-                EndDatePicker.IsVisible = false;
+                CourseStartDatePicker.IsVisible = false;
+                CourseEndDatePicker.IsVisible = false;
                 CoursePageEndDateLabel.IsVisible = false;
                 Instructor.IsVisible = false;
                 InstructorName.IsVisible = false;
@@ -251,6 +273,19 @@ namespace Jason_Chapman_MobileDev_C971
                 InstructorEmail.IsVisible = false;
                 Notes.IsVisible = false;
                 CourseNotes.IsVisible = false;
+
+                EditCourseTitleEntry.IsVisible = false;
+                EditCourseInstructorName.IsVisible = false;
+                EditCourseInstructorPhone.IsVisible = false;
+                EditCourseInstructorEmail.IsVisible = false;
+                EditCourseNotesEditor.IsVisible = false;
+                EditCourseProgressPicker.IsVisible = false;
+                EditCourseSaveBtn.IsVisible = false;
+                EditCourseCancelBtn.IsVisible = false;
+                Assessments.IsVisible = false;
+
+                ShareCourseNotes.IsVisible = false;
+                DeleteCourse.IsVisible = false;
 
                 AddAssmtEntry.IsVisible = true;
                 AddAssmtEntry.Focus();
@@ -296,8 +331,8 @@ namespace Jason_Chapman_MobileDev_C971
             if (saveOkay)
             {
                 CoursePageStartDateLabel.IsVisible = true;
-                StartDatePicker.IsVisible = true;
-                EndDatePicker.IsVisible = true;
+                CourseStartDatePicker.IsVisible = true;
+                CourseEndDatePicker.IsVisible = true;
                 CoursePageEndDateLabel.IsVisible = true;
                 Instructor.IsVisible = true;
                 InstructorName.IsVisible = true;
@@ -305,6 +340,10 @@ namespace Jason_Chapman_MobileDev_C971
                 InstructorEmail.IsVisible = true;
                 Notes.IsVisible = true;
                 CourseNotes.IsVisible = true;
+                Assessments.IsVisible = true;
+
+                ShareCourseNotes.IsVisible = true;
+                DeleteCourse.IsVisible = true;
 
                 AddAssmtEntry.IsVisible = false;
                 AddAssmtSaveBtn.IsVisible = false;
