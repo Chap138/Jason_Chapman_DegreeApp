@@ -4,7 +4,7 @@
              x:Class="Jason_Chapman_MobileDev_C971.AboutPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Created by Jason Chapman -- March 7, 2022."
+            <Label Text="Created by Jason Chapman -- March 7, 2022. (Updated June 29, 2022) "
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand"
                 Margin="30,0,0,0"/>
